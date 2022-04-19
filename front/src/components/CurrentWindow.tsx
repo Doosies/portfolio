@@ -6,7 +6,7 @@ interface CurrentWindowProps {
 }
 
 const CurrentWindowBlock = styled.div`
-    padding: 15px;
+    padding: 10px;
 `
 const CurrentWindow = () => {
     return (

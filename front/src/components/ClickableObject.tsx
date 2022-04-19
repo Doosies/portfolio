@@ -54,7 +54,7 @@ const ClickableObject = ({
     // 두번 클릭 했을 때
     const handleDoubleClick = () => {
         console.log("doubleClick!!"+objectName);
-        setClick
+        setClick(false);
 
     }
     // 현재 클릭된것 이외의 것을 클릭 했을 때

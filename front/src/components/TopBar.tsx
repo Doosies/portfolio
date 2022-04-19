@@ -5,13 +5,13 @@ import {GiPear} from 'react-icons/gi';
 import CurrentWindow from './CurrentWindow';
 
 interface TopBarProps {
-    
+    // width: 100%;
 }
 
 const TopBarBlock = styled.div`
-    width: 100%;
+    /* width: 100vw; */
     height: 30px;
-    padding: 0 10px 0 10px;
+    padding: 0 10px;
     background-color: #666666;
     display: flex;
     align-items: center;
@@ -19,6 +19,7 @@ const TopBarBlock = styled.div`
 
 const MainIcon = styled(GiPear)`
     font-size: 20px;
+    /* padding: 10px */
 `;
 const TopBar = () => {
     return (
