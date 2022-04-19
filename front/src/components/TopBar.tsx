@@ -9,9 +9,10 @@ interface TopBarProps {
 }
 
 const TopBarBlock = styled.div`
-    /* width: 100vw; */
-    height: 30px;
-    padding: 0 10px;
+    width: 100%;
+    /* height: 30px; */
+
+    padding-left: 15px;
     background-color: #666666;
     display: flex;
     align-items: center;

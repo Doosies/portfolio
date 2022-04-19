@@ -1,30 +1,52 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import ClickableObject from './ClickableObject';
-import {RiFinderLine, RiTerminalBoxLine, RiMailSendLine} from 'react-icons/ri'
+import {RiFinderLine, RiTerminalBoxLine, RiMailSendLine, RiProfileLine} from 'react-icons/ri'
 
 interface MainPageProps {
     
 }
 
 const MainPageBlock = styled.div`
-    padding: 20px;
+    width: 100%;
+    height: 100%;
+
+    text-align: center;
+    display: flex;
+    justify-content: center;
+
 `
+const ObjectContainer = styled.div`
+    padding: 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    justify-content: center;
+    align-content: center;
+`;
+
 const MainPage = () => {
     return (
         <MainPageBlock>
-            <ClickableObject 
-                ObjectIcon={RiFinderLine}
-                objectName={'탐색기'}
-            />
-            <ClickableObject 
-                ObjectIcon={RiTerminalBoxLine}
-                objectName={'터미널'}
-            />
-            <ClickableObject 
-                ObjectIcon={RiMailSendLine}
-                objectName={'메일전송'}
-            />
+            <ObjectContainer>
+                <ClickableObject 
+                    ObjectIcon={RiFinderLine}
+                    objectName={'탐색기'}
+                />
+                <ClickableObject 
+                    ObjectIcon={RiTerminalBoxLine}
+                    objectName={'터미널'}
+                />
+                <ClickableObject 
+                    ObjectIcon={RiMailSendLine}
+                    objectName={'메일전송'}
+                />
+                <ClickableObject 
+                    ObjectIcon={RiProfileLine}
+                    objectName={'프로필'}
+                />
+            </ObjectContainer>
         </MainPageBlock>
     );
 }
