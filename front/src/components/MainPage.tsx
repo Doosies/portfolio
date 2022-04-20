@@ -11,7 +11,8 @@ const MainPageBlock = styled.div`
     width: 100%;
     height: 100%;
 
-    text-align: center;
+    position: static;
+    
     display: flex;
     justify-content: center;
 
@@ -19,9 +20,11 @@ const MainPageBlock = styled.div`
 const ObjectContainer = styled.div`
     padding: 10px;
 
+    position: absolute;
+    bottom: 20%;
+
     display: flex;
     flex-wrap: wrap;
-    /* align-items: center; */
     justify-content: center;
     align-content: center;
 `;

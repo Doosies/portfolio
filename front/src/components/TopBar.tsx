@@ -13,7 +13,8 @@ const TopBarBlock = styled.div`
     /* height: 30px; */
 
     padding-left: 15px;
-    background-color: #666666;
+    /* background-color: #666666; */
+    background-color: #3D3C3C;
     display: flex;
     align-items: center;
 `;
