@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import ClickableObject from './ClickableObject';
+import ClickableObject from './Application';
 import {RiFinderLine, RiTerminalBoxLine, RiMailSendLine, RiProfileLine} from 'react-icons/ri'
+import Window from './Window';
+import Application from './Application';
 
 interface MainPageProps {
     
@@ -12,12 +14,12 @@ const MainPageBlock = styled.div`
     height: 100%;
 
     position: static;
-    
+
     display: flex;
     justify-content: center;
 
 `
-const ObjectContainer = styled.div`
+const ApplicationContainer = styled.div`
     padding: 10px;
 
     position: absolute;
@@ -32,24 +34,25 @@ const ObjectContainer = styled.div`
 const MainPage = () => {
     return (
         <MainPageBlock>
-            <ObjectContainer>
-                <ClickableObject 
+            <ApplicationContainer>
+                <Application 
                     ObjectIcon={RiFinderLine}
                     objectName={'탐색기'}
                 />
-                <ClickableObject 
+                <Application 
                     ObjectIcon={RiTerminalBoxLine}
                     objectName={'터미널'}
                 />
-                <ClickableObject 
+                <Application 
                     ObjectIcon={RiMailSendLine}
                     objectName={'메일전송'}
                 />
-                <ClickableObject 
+                <Application 
                     ObjectIcon={RiProfileLine}
                     objectName={'프로필'}
                 />
-            </ObjectContainer>
+            </ApplicationContainer>
+            <Window />
         </MainPageBlock>
     );
 }

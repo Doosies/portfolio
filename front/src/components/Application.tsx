@@ -43,24 +43,22 @@ const ClickableObjectBlock = styled.div`
     }
 `
 
-const ClickableObject = ({
+const Application = ({
     objectName, 
     ObjectIcon, 
 }:ClickableObjectProps) => {
     // 현재 객체의 ref
     const myRef = useRef<HTMLDivElement>(null);
-    // const [isClick, setClick] = useState(false);
     const rect = useRect(myRef);
 
     // 힌번 클릭 했을 때
     const handleClick = () => {
-        // setClick(true);
+        
     }
 
     return (
         <ClickableObjectBlock 
             ref={myRef}
-            // isClick = {isClick}
             onClick={handleClick}
         >
             <ObjectIcon className='Icon'/>
@@ -69,4 +67,4 @@ const ClickableObject = ({
     );
 }
 
-export default ClickableObject;
+export default Application;

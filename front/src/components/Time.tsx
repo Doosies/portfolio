@@ -7,17 +7,17 @@ interface TimeProps {
 }
 
 const TimeBlock = styled.div`
-    width: 200px;
+    width: 160px;
     /* height: 100px; */
     position: absolute;
     right: 0;
     /* padding: 15px; */
-    padding-left: 15px;
+    /* padding-left: 15px; */
     padding-right: 15px;
     /* margin-right: 15px; */
 
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 `
 const Time = () => {
     let [date, time] = useServerTime();
