@@ -7,17 +7,24 @@ import { ButtonDoing, ButtonSize } from '../enum/buttonEnum';
 
 interface WindowTopbarProps {
     windowId?: number;
+    windowName: string;
 }
 const WindowTopbarBlock = styled.div`
+    position: relative;
     width: 100%;
     height: 50px;
     background-color: #2d2d30;
 
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
 `;
 
 const WindowControllContainer = styled.div`
+    /* position: absolute; */
     height: 20px;
     width: 60px;
     height: 100%;
@@ -27,8 +34,17 @@ const WindowControllContainer = styled.div`
     flex-grow: 0;
     align-items: center;
     justify-content: space-around;
+    z-index: 1;
 `;
 
+const WindowTextContainer = styled.div`
+    position: absolute;
+    height: 20px;
+    width: 100%;
+    text-align: center;
+    letter-spacing: 5px;
+    user-select: none;
+`;
 const circles = [
     {color: '#FF5F57', size: ButtonSize.small, doing: ButtonDoing.close, strokeWidth: 90, icon: AiOutlineClose},
     {color: '#FEBC30', size: ButtonSize.small, doing: ButtonDoing.minimize, strokeWidth: 5, icon: FiMinus},
@@ -36,7 +52,7 @@ const circles = [
 ]
 
 const WindowTopbar = ({
-    windowId
+    windowId, windowName,
 }:WindowTopbarProps) => {
     const [isOnElement, setOnElement] = useState(false);
     const handleMouseMove = () => void setOnElement(true);
@@ -61,6 +77,9 @@ const WindowTopbar = ({
                     </CircleButton>
                 )}
             </WindowControllContainer>
+            <WindowTextContainer>
+                {windowName}
+            </WindowTextContainer>
         </WindowTopbarBlock>
     );
 }
