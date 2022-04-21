@@ -4,6 +4,7 @@ import ClickableObject from './Application';
 import {RiFinderLine, RiTerminalBoxLine, RiMailSendLine, RiProfileLine} from 'react-icons/ri'
 import Window from './Window';
 import Application from './Application';
+import { useAppSelector } from '../modules/hooks';
 
 interface MainPageProps {
     
@@ -38,23 +39,21 @@ const Applications = [
     { ObjectIcon: RiMailSendLine, ObjectName: '메일전송' },
     { ObjectIcon: RiProfileLine, ObjectName: '프로필' },
 ]
-// const Windows = [
-//     {}
-// ]
+
 const MainPage = () => {
-    const refs = useRef({});
+    // const refs = useRef({});
     
     // const [windows, setWindows] = useState([]);
+    const applications = useAppSelector(state => state.application)
 
     return (
         <MainPageBlock>
             <ApplicationContainer>
-                {Applications.map(el => 
-                    <Application
-                        ObjectIcon={el.ObjectIcon}
-                        objectName={el.ObjectName}
-                        // refs={refs}
-                        key={el.ObjectName}
+                {applications.map (el => 
+                    <Application 
+                        ObjectIcon={el.applicationIcon}
+                        objectName={el.applicationName}
+                        key={el.applicationName}
                     />
                 )}
             </ApplicationContainer>

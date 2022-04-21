@@ -1,46 +1,30 @@
+import { createAction, createReducer, createSlice, PayloadAction, PayloadActionCreator } from "@reduxjs/toolkit";
 import { IconType } from "react-icons";
 import { RiFinderLine, RiMailSendLine, RiProfileLine, RiTerminalBoxLine } from "react-icons/ri";
 
-const ADD_APP = 'application/ADD_APP' as const;
-const REMOVE_APP = 'application/REMOVE_APP' as const;
-
-export const addApp = (diff: string) => ({
-    type: ADD_APP,
-    payload: diff,
-});
-export const removeApp = (diff: string) => ({
-    type: REMOVE_APP,
-    payload: diff,
-});
-
-type ApplicationAction = 
-    | ReturnType<typeof addApp>
-    | ReturnType<typeof removeApp>;
-
 type ApplicationState = {
-    ObjectIcon: IconType | null,
-    ObjectName: string,
+    applicationIcon: IconType,
+    applicationName: string,
 }
 
 const initialStateApplication:ApplicationState[]  = [
-    { ObjectIcon: RiFinderLine, ObjectName: '탐색기' },
-    { ObjectIcon: RiTerminalBoxLine, ObjectName: '터미널' },
-    { ObjectIcon: RiMailSendLine, ObjectName: '메일전송' },
-    { ObjectIcon: RiProfileLine, ObjectName: '프로필' },
+    { applicationIcon: RiFinderLine, applicationName: '탐색기' },
+    { applicationIcon: RiTerminalBoxLine, applicationName: '터미널' },
+    { applicationIcon: RiMailSendLine, applicationName: '메일전송' },
+    { applicationIcon: RiProfileLine, applicationName: '프로필' },
 ];
 
-function applicationReducer(
-    state: ApplicationState[] = initialStateApplication,
-    action: ApplicationAction
-) {
-    switch (action.type) {
-        case ADD_APP:
-            return {};
-        case REMOVE_APP:
-            return {};
-        default:
-            return {};
+export const applicationSlice = createSlice({
+    name: 'application',
+    initialState: initialStateApplication,
+    reducers: {
+        addApplication: (state, action: PayloadAction<ApplicationState>) => {
+            state.push(action.payload);},
+        removeApplication: (state, action: PayloadAction<string>) => {
+            state.filter( el => el.applicationName !== action.payload);
+        }
     }
-}
+});
 
-export default applicationReducer;
+export const {addApplication, removeApplication} = applicationSlice.actions;
+export default applicationSlice.reducer;
