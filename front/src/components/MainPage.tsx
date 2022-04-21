@@ -44,7 +44,10 @@ const MainPage = () => {
     // const refs = useRef({});
     
     // const [windows, setWindows] = useState([]);
-    const applications = useAppSelector(state => state.application)
+    const applications = useAppSelector(state => state.application);
+    const windows = useAppSelector(state => state.window);
+    
+    console.log(windows);
 
     return (
         <MainPageBlock>
@@ -57,6 +60,9 @@ const MainPage = () => {
                     />
                 )}
             </ApplicationContainer>
+            {windows.map( el =>
+                <Window />    
+            )}
             
         </MainPageBlock>
     );
