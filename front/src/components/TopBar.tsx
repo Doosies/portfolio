@@ -10,9 +10,6 @@ interface TopBarProps {
 
 const TopBarBlock = styled.div`
     width: 100%;
-
-    /* padding-left: 15px; */
-    padding: 0 15px 0 15px;
     background-color: #3D3C3C;
     display: flex;
     align-items: center;
@@ -20,6 +17,7 @@ const TopBarBlock = styled.div`
 
 const MainIcon = styled(GiPear)`
     font-size: 20px;
+    margin-left: 15px;
 `;
 const TopBar = () => {
     return (

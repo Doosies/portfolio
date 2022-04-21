@@ -10,7 +10,7 @@ interface WindowTopbarProps {
 }
 
 const WindowTopbarBlock = styled.div`
-    position: relative;
+    /* position: absolute; */
     width: 100%;
     height: 50px;
     background-color: #2d2d30;
@@ -44,30 +44,8 @@ const WindowTopbar = () => {
         console.log("나갔어");
     }
 
-    let posX = 0;
-    let posY = 0;
-    let originX = 0;
-    let originY = 0;
-
-    const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
-        // e.preventDefault();
-        console.log("start");
-    }
-    const handleDrag = (e: React.DragEvent<HTMLDivElement>) => {
-        // e.preventDefault();
-        console.log("drag");
-        console.log(e.currentTarget.offsetLeft);
-    }
-    const handleDragEnd = (e: React.DragEvent<HTMLDivElement>) => {
-        console.log("end");
-    }
     return (
-        <WindowTopbarBlock
-            // draggable={true}
-            onDragStart={handleDragStart}
-            onDrag={handleDrag}
-            onDragEnd={handleDragEnd}
-        >
+        <WindowTopbarBlock>
             <WindowControllContainer 
                 onMouseMove={handleMouseMove} 
                 onMouseLeave={handleMouseLeave}
