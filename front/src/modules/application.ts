@@ -2,7 +2,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IconType } from "react-icons";
 import { RiFinderLine, RiMailSendLine, RiProfileLine, RiTerminalBoxLine } from "react-icons/ri";
 import { ApplicationTypes } from "../enum/applicationTypes";
-import { useAppSelector } from "./hooks";
 
 type ApplicationState = {
     applicationIcon: IconType,
