@@ -1,12 +1,8 @@
-import React, {useState} from 'react';
+import React  from 'react';
 import styled from 'styled-components';
 import Time from './Time';
 import {GiPear} from 'react-icons/gi';
 import CurrentWindow from './CurrentWindow';
-
-interface TopBarProps {
-    // width: 100%;
-}
 
 const TopBarBlock = styled.div`
     width: 100%;

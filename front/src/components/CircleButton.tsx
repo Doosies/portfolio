@@ -1,10 +1,8 @@
 import { lighten } from 'polished';
-import React, {useState} from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
-import { isPropertySignature } from 'typescript';
+import { ButtonDoing, ButtonSize } from '../enum/buttonEnum';
 
-export enum ButtonSize {'small','medium','large'};
-export enum ButtonDoing {'close', 'minimize', 'maxmize'};
 interface CircleButtonProps {
     color: string;
     size: ButtonSize;
