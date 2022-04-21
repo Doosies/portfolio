@@ -60,11 +60,11 @@ const Application = ({
     const handleClick = () => {
         console.log("Click!!");
         const window: WindowState = {
-            position: {x: 0, y: 0},
+            position: {x: 100, y: 100},
             windowName: applicationName,
             windowType: applicationType,
-        }
-        // useAppDispatch(addWindow())
+        };
+        dispatch(addWindow(window));
     }
 
     return (
