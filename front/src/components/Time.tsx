@@ -30,4 +30,4 @@ const Time = () => {
     );
 }
 
-export default Time;
+export default React.memo(Time);

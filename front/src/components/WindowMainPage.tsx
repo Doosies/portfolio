@@ -28,4 +28,4 @@ const WindowMainPage = () => {
     );
 }
 
-export default WindowMainPage;
+export default React.memo(WindowMainPage);

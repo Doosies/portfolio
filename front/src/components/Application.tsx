@@ -58,9 +58,9 @@ const Application = ({
     // 힌번 클릭 했을 때
     // 해당 애플리케이션을 열어줌
     const handleClick = () => {
-        console.log("Click!!");
         const window: WindowState = {
-            position: {x: 100, y: 100},
+            windowId: 0,
+            zindex: 0,
             windowName: applicationName,
             windowType: applicationType,
         };
@@ -75,4 +75,4 @@ const Application = ({
     );
 }
 
-export default Application;
+export default React.memo(Application);

@@ -16,4 +16,4 @@ const CurrentWindow = () => {
     );
 }
 
-export default CurrentWindow;
+export default React.memo(CurrentWindow);

@@ -2,6 +2,9 @@ import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
 
 interface DraggableProps {
+    onMouseDown?: () => void;
+    onMouseUp?: (e: React.MouseEvent<HTMLDivElement>) => void;
+    onClickMouse?: (e: React.MouseEvent<HTMLDivElement>) => void;
     children: React.ReactNode;
 }
 
@@ -10,7 +13,7 @@ const DraggableBlock = styled.div`
 `;
 
 const Draggable = ({
-    children
+    onMouseDown, onMouseUp, onClickMouse, children
 }:DraggableProps) => {
     const myRef = useRef<HTMLDivElement>(null);
     const [state,setState] = useState({
@@ -22,12 +25,15 @@ const Draggable = ({
     });
     
     const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+        
         setState({
             ...state,
             isClick: true,
             startX: e.clientX,
             startY: e.clientY
         });
+        
+        if (onMouseDown) onMouseDown();
     }
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (state.isClick) {
@@ -44,23 +50,23 @@ const Draggable = ({
             });
         }
     }
-    const handleMouseUp = () => {
+    const handleMouseUp = (e: React.MouseEvent<HTMLDivElement>) => {
         setState({...state, isClick: false});
+        if (onMouseUp) onMouseUp(e);
     }
 
 
     return (
         <DraggableBlock
             ref = {myRef}
+            onMouseUp={handleMouseUp}
             onMouseDown={handleMouseDown} 
             onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            style={{left: `${state.fixedX}px`, top: `${state.fixedY}px`}}
-            
+            // style={{left: `${state.fixedX}px`, top: `${state.fixedY}px`, zIndex: `${zindex}`}}
         >
             {children}      
         </DraggableBlock>
     );
 }
 
-export default Draggable;
+export default React.memo(Draggable);

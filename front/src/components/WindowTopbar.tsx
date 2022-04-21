@@ -5,6 +5,9 @@ import {FiMaximize2, FiMinus, } from 'react-icons/fi'
 import {AiOutlineClose} from 'react-icons/ai'
 import { ButtonDoing, ButtonSize } from '../enum/buttonEnum';
 
+interface WindowTopbarProps {
+    windowId?: number;
+}
 const WindowTopbarBlock = styled.div`
     width: 100%;
     height: 50px;
@@ -32,7 +35,9 @@ const circles = [
     {color: '#25C93E', size: ButtonSize.small, doing: ButtonDoing.maxmize, strokeWidth: 2.8, icon: FiMaximize2},
 ]
 
-const WindowTopbar = () => {
+const WindowTopbar = ({
+    windowId
+}:WindowTopbarProps) => {
     const [isOnElement, setOnElement] = useState(false);
     const handleMouseMove = () => void setOnElement(true);
     const handleMouseLeave = () => void setOnElement(false);
@@ -49,6 +54,8 @@ const WindowTopbar = () => {
                         size={el.size}
                         isHover={isOnElement}
                         doing={el.doing}
+                        key={`${el.color}+${el.doing}`}
+                        windowId={windowId}
                     >
                         <el.icon strokeWidth={el.strokeWidth}/>
                     </CircleButton>
@@ -58,4 +65,4 @@ const WindowTopbar = () => {
     );
 }
 
-export default WindowTopbar;
+export default React.memo(WindowTopbar);

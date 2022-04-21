@@ -2,13 +2,16 @@ import { lighten } from 'polished';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { ButtonDoing, ButtonSize } from '../enum/buttonEnum';
+import { useAppDispatch } from '../modules/hooks';
+import { removeWindow } from '../modules/window';
 
 interface CircleButtonProps {
     color: string;
     size: ButtonSize;
-    children?: React.ReactNode;
     isHover: boolean;
     doing: ButtonDoing;
+    children?: React.ReactNode;
+    windowId?: number;
 }
 
 function getButtonSize (size: ButtonSize): string {
@@ -25,7 +28,7 @@ function getButtonSize (size: ButtonSize): string {
 }
 
 // omit: <T,string> , T에서 string 제외하고 사용함.
-const CircleButtonBlock = styled.div<Omit<CircleButtonProps, 'doing'>>`
+const CircleButtonBlock = styled.div<Omit<CircleButtonProps, 'doing' | 'handleButtonClick'>>`
     border-radius: 15px;
     display: flex;
     justify-content: center;
@@ -51,14 +54,33 @@ const ChildBlock = styled.div`
 `;
 
 const CircleButton = ({
-    color, size, children, isHover, doing
+    color, size, children, isHover, doing, windowId
 }:CircleButtonProps) => {
-    const handleButtonClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    }
+
+    const dispatch = useAppDispatch();
+
     const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
         // 상위 노드로부터의 이벤트 캡쳐링 방지
         e.stopPropagation();
     }
+    const handleButtonClick = () => {
+        switch (doing) {
+            case ButtonDoing.close: {
+                dispatch(removeWindow(windowId))
+                break;
+            }
+            case ButtonDoing.minimize:{
+                console.log("minimize");
+                break;
+            }
+            case ButtonDoing.maxmize:{
+                console.log("maxmize");
+                break;
+            }
+            default: break;
+        }
+    }
+
     return (
         <CircleButtonBlock 
             size={size} 
@@ -74,4 +96,4 @@ const CircleButton = ({
     );
 }
 
-export default CircleButton;
+export default React.memo(CircleButton);

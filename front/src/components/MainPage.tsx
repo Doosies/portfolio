@@ -8,6 +8,7 @@ import { useAppSelector } from '../modules/hooks';
 import getRandomKey from '../utility/Random';
 import { GiAbstract002 } from 'react-icons/gi';
 import getIconFromAppType from '../utility/Icons';
+import { shallowEqual } from 'react-redux';
 
 interface MainPageProps {
     
@@ -38,26 +39,30 @@ const ApplicationContainer = styled.div`
 
 
 const MainPage = () => {
-    const applications = useAppSelector(state => state.application.appList);
-    const windows = useAppSelector(state => state.window.windowList);
+    const applications = useAppSelector(state => state.application.appList, shallowEqual);
+    const windows = useAppSelector(state => state.window.windowList, shallowEqual);
+    // console.log(windows);
+
+    
     
     return (
         <MainPageBlock>
             <ApplicationContainer>
-                {applications.map ((el) => 
+                {applications.map ((el, i) => 
                     <Application 
                         ApplicationIcon={getIconFromAppType(el.applicationType)}
                         applicationName={el.applicationName}
                         applicationType={el.applicationType}
-                        key={`${el.applicationName}+${getRandomKey(5)}`}
+                        key={`application:${el.applicationType}`}
                     />
                 )}
             </ApplicationContainer>
-            {windows.map((el) => 
+            {windows.map((el,i) => 
                 <Window 
                     windowName={el.windowName}
                     windowType={el.windowType}
-                    key={`${el.windowName}+${getRandomKey(5)}`}
+                    windowId={el.windowId}
+                    key={`window:${el.windowId}${el.windowType}`}
                 />
             )}
             
@@ -65,4 +70,4 @@ const MainPage = () => {
     );
 }
 
-export default MainPage;
+export default React.memo(MainPage);
