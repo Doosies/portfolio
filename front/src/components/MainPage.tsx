@@ -6,6 +6,8 @@ import Window from './Window';
 import Application from './Application';
 import { useAppSelector } from '../modules/hooks';
 import getRandomKey from '../utility/Random';
+import { GiAbstract002 } from 'react-icons/gi';
+import getIconFromAppType from '../utility/Icons';
 
 interface MainPageProps {
     
@@ -36,20 +38,15 @@ const ApplicationContainer = styled.div`
 
 
 const MainPage = () => {
-    // const refs = useRef({});
-    
-    // const [windows, setWindows] = useState([]);
     const applications = useAppSelector(state => state.application.appList);
     const windows = useAppSelector(state => state.window.windowList);
     
-    // console.log(getRandomKey(10));
-
     return (
         <MainPageBlock>
             <ApplicationContainer>
                 {applications.map ((el) => 
                     <Application 
-                        ApplicationIcon={el.applicationIcon}
+                        ApplicationIcon={getIconFromAppType(el.applicationType)}
                         applicationName={el.applicationName}
                         applicationType={el.applicationType}
                         key={`${el.applicationName}+${getRandomKey(5)}`}
@@ -60,6 +57,7 @@ const MainPage = () => {
                 <Window 
                     windowName={el.windowName}
                     windowType={el.windowType}
+                    key={`${el.windowName}+${getRandomKey(5)}`}
                 />
             )}
             
