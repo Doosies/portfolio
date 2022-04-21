@@ -8,7 +8,11 @@ import useMouse from '../hooks/useMouse';
 import Draggable from './Draggable';
 
 interface WindowProps {
-    
+    windowName: string;
+    windowType: string;
+    windowKey: string;
+    nowPosition: {x: number, y: number},
+    clickStartPosition: {x: number, y: number},
 }
 
 const WindowBlock = styled.div`
@@ -28,7 +32,9 @@ const WindowBlock = styled.div`
     }
 `
 
-const Window = () => {
+const Window = ({
+    
+}:WindowProps) => {
 
     return (
         <Draggable>

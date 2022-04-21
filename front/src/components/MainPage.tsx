@@ -5,6 +5,7 @@ import {RiFinderLine, RiTerminalBoxLine, RiMailSendLine, RiProfileLine} from 're
 import Window from './Window';
 import Application from './Application';
 import { useAppSelector } from '../modules/hooks';
+import getRandomKey from '../utility/Random';
 
 interface MainPageProps {
     
@@ -47,21 +48,27 @@ const MainPage = () => {
     const applications = useAppSelector(state => state.application);
     const windows = useAppSelector(state => state.window);
     
-    console.log(windows);
+    // console.log(getRandomKey(10));
 
     return (
         <MainPageBlock>
             <ApplicationContainer>
-                {applications.map (el => 
+                {applications.map ((el,i) => 
                     <Application 
                         ObjectIcon={el.applicationIcon}
                         objectName={el.applicationName}
-                        key={el.applicationName}
+                        key={`${el.applicationName}+${getRandomKey(5)}`}
                     />
                 )}
             </ApplicationContainer>
             {windows.map( el =>
-                <Window />    
+                <Window windowName={''} windowType={''} windowKey={''} nowPosition={{
+                    x: 0,
+                    y: 0
+                }} clickStartPosition={{
+                    x: 0,
+                    y: 0
+                }} />    
             )}
             
         </MainPageBlock>
