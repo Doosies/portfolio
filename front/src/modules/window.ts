@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction} from "@reduxjs/toolkit";
+import { WindowTypes } from "../enum/windowTypes";
 
 type WindowState = {
     windowName: string;
-    windowType: string;
+    windowType: WindowTypes;
     windowId: number;
-    nowPosition: {x: number, y: number},
-    clickStartPosition: {x: number, y: number},
+    position: {x: number, y: number},
 }
 
 const initialWindow: {windowList: WindowState[], windowCounter: number} = {
@@ -28,7 +28,7 @@ export const windowSlice = createSlice({
         moveWindow: (state, action: PayloadAction<{id: number, x: number, y: number}>) => {
             const window = state.windowList.find( el => el.windowId === action.payload.id);
             if (window) {
-                window.nowPosition = action.payload;
+                window.position = action.payload;
             }
         }
     }
