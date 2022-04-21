@@ -34,26 +34,20 @@ const ApplicationContainer = styled.div`
     align-content: center;
 `;
 
-const Applications = [
-    { ObjectIcon: RiFinderLine, ObjectName: '탐색기' },
-    { ObjectIcon: RiTerminalBoxLine, ObjectName: '터미널' },
-    { ObjectIcon: RiMailSendLine, ObjectName: '메일전송' },
-    { ObjectIcon: RiProfileLine, ObjectName: '프로필' },
-]
 
 const MainPage = () => {
     // const refs = useRef({});
     
     // const [windows, setWindows] = useState([]);
-    const applications = useAppSelector(state => state.application);
-    const windows = useAppSelector(state => state.window);
+    const applications = useAppSelector(state => state.application.appList);
+    const windows = useAppSelector(state => state.window.windowList);
     
     // console.log(getRandomKey(10));
 
     return (
         <MainPageBlock>
             <ApplicationContainer>
-                {applications.map ((el,i) => 
+                {applications.map ((el) => 
                     <Application 
                         ObjectIcon={el.applicationIcon}
                         objectName={el.applicationName}
@@ -61,14 +55,11 @@ const MainPage = () => {
                     />
                 )}
             </ApplicationContainer>
-            {windows.map( el =>
-                <Window windowName={''} windowType={''} windowKey={''} nowPosition={{
-                    x: 0,
-                    y: 0
-                }} clickStartPosition={{
-                    x: 0,
-                    y: 0
-                }} />    
+            {windows.map((el) => 
+                <Window 
+                    windowName={el.windowName}
+                    windowType={el.windowType}
+                />
             )}
             
         </MainPageBlock>
