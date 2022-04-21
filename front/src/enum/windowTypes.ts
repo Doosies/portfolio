@@ -1,0 +1,1 @@
+export enum WindowTypes {'finder', 'terminal','profile','sendmail'};
