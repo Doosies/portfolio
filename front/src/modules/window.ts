@@ -19,6 +19,12 @@ export const windowSlice = createSlice({
         },
         removeWindow: (state, action: PayloadAction<string>) => {
             state.filter( el => el.windowKey !== action.payload);
+        },
+        moveWindow: (state, action: PayloadAction<{key: string, x: number, y: number}>) => {
+            const window = state.find( el => el.windowKey === action.payload.key);
+            if (window) {
+                window.nowPosition = action.payload;
+            }
         }
     }
 })
