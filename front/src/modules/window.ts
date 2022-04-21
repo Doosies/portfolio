@@ -1,18 +1,5 @@
-const ADD_WINDOW = 'window/ADD_WINDOW' as const;
-const REMOVE_WINDOW = 'window/REMOVE_WINDOW' as const;
-
-export const addWindow = (diff: {windowName: string; windowType: string;}) => ({
-    type: ADD_WINDOW,
-    payload: diff,
-});
-export const removeWindow = (diff: {windowName: string;}) => ({
-    type: REMOVE_WINDOW,
-    payload: diff,
-});
-
-type WindowAction = 
-    | ReturnType<typeof addWindow>
-    | ReturnType<typeof removeWindow>;
+import { createSlice, PayloadAction} from "@reduxjs/toolkit";
+import { applicationSlice } from "./application";
 
 type WindowState = {
     windowName: string;
@@ -22,20 +9,20 @@ type WindowState = {
     clickStartPosition: {x: number, y: number},
 }
 
-const initialStateWindow: WindowState[] = [];
+const initialWindow: WindowState[] = [];
 
-function windowReducer(
-    state: WindowState[] = initialStateWindow,
-    action: WindowAction,
-) {
-    switch (action.type) {
-        case ADD_WINDOW:
-            return {};
-        case REMOVE_WINDOW:
-            return {};
-        default:
-            return {};
+export const windowSlice = createSlice({
+    name: 'application',
+    initialState: initialWindow,
+    reducers: {
+        addWindow: (state, action: PayloadAction<WindowState>) => {
+            state.push(action.payload);
+        },
+        removeWindow: (state, action: PayloadAction<string>) => {
+            state.filter( el => el.windowKey !== action.payload);
+        }
     }
-}
+})
 
-export default windowReducer;
+export const {addWindow, removeWindow} = windowSlice.actions;
+export default applicationSlice.reducer;
