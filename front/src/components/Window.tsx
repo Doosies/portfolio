@@ -1,18 +1,15 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import WindowMainPage from './WindowMainPage';
 import WindowTopbar from './WindowTopbar';
-import useRect from '../hooks/useRect'
-import { RecordWithTtl } from 'dns';
-import useMouse from '../hooks/useMouse';
 import Draggable from './Draggable';
+import { WindowTypes } from '../enum/windowTypes';
 
 interface WindowProps {
     windowName: string;
-    windowType: string;
-    windowKey: string;
-    nowPosition: {x: number, y: number},
-    clickStartPosition: {x: number, y: number},
+    windowType: WindowTypes;
+    nowPosition?: {x: number, y: number},
+    clickStartPosition?: {x: number, y: number},
 }
 
 const WindowBlock = styled.div`
@@ -33,7 +30,6 @@ const WindowBlock = styled.div`
 `
 
 const Window = ({
-    
 }:WindowProps) => {
 
     return (
