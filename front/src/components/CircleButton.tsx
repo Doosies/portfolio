@@ -1,3 +1,4 @@
+import { lighten } from 'polished';
 import React, {useState} from 'react';
 import styled, { css } from 'styled-components';
 import { isPropertySignature } from 'typescript';
@@ -35,10 +36,15 @@ const CircleButtonBlock = styled.div<Omit<CircleButtonProps, 'doing'>>`
         background-color: ${color};
         width: ${getButtonSize(size)};
         height: ${getButtonSize(size)};
+
+        &:active {
+            background-color: ${lighten(0.1,color)};
+        }
     `}
     ${({color, isHover}) => isHover && css`
         background-color: ${color};
     `}
+
 `
 const ChildBlock = styled.div`
     color: black;
@@ -49,8 +55,20 @@ const ChildBlock = styled.div`
 const CircleButton = ({
     color, size, children, isHover, doing
 }:CircleButtonProps) => {
+    const handleButtonClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    }
+    const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+        // 상위 노드로부터의 이벤트 캡쳐링 방지
+        e.stopPropagation();
+    }
     return (
-        <CircleButtonBlock size={size} color={color} isHover={isHover}>
+        <CircleButtonBlock 
+            size={size} 
+            color={color} 
+            isHover={isHover}
+            onClick={handleButtonClick}
+            onMouseDown={handleMouseDown}
+        >
             <ChildBlock>
                 {isHover && children}
             </ChildBlock>

@@ -12,7 +12,6 @@ const DraggableBlock = styled.div`
 const Draggable = ({
     children
 }:DraggableProps) => {
-
     const myRef = useRef<HTMLDivElement>(null);
     const [state,setState] = useState({
         isClick: false,
@@ -29,7 +28,6 @@ const Draggable = ({
             startX: e.clientX,
             startY: e.clientY
         });
-        
     }
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (state.isClick) {

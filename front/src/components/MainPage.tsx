@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
 import ClickableObject from './Application';
 import {RiFinderLine, RiTerminalBoxLine, RiMailSendLine, RiProfileLine} from 'react-icons/ri'
@@ -8,6 +8,9 @@ import Application from './Application';
 interface MainPageProps {
     
 }
+export type WindowRefType = React.MutableRefObject<{
+    [idx:number]: number;
+}>;
 
 const MainPageBlock = styled.div`
     width: 100%;
@@ -31,26 +34,27 @@ const ApplicationContainer = styled.div`
     align-content: center;
 `;
 
+const Applications = [
+    { ObjectIcon: RiFinderLine, ObjectName: '탐색기' },
+    { ObjectIcon: RiTerminalBoxLine, ObjectName: '터미널' },
+    { ObjectIcon: RiMailSendLine, ObjectName: '메일전송' },
+    { ObjectIcon: RiProfileLine, ObjectName: '프로필' },
+]
 const MainPage = () => {
+    const refs = useRef<WindowRefType>(null);
+    
+    const [windows, setWindows] = useState([]);
+
     return (
         <MainPageBlock>
             <ApplicationContainer>
-                <Application 
-                    ObjectIcon={RiFinderLine}
-                    objectName={'탐색기'}
-                />
-                <Application 
-                    ObjectIcon={RiTerminalBoxLine}
-                    objectName={'터미널'}
-                />
-                <Application 
-                    ObjectIcon={RiMailSendLine}
-                    objectName={'메일전송'}
-                />
-                <Application 
-                    ObjectIcon={RiProfileLine}
-                    objectName={'프로필'}
-                />
+                {Applications.map(val => 
+                    <Application
+                        ObjectIcon={val.ObjectIcon}
+                        objectName={val.ObjectName}
+                        refs={refs}
+                    />
+                )}
             </ApplicationContainer>
             <Window />
         </MainPageBlock>

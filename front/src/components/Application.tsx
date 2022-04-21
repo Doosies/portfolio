@@ -2,10 +2,12 @@ import React, {useEffect, useRef, useState} from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { IconType } from 'react-icons/lib';
 import useRect from '../hooks/useRect';
+import { WindowRefType } from './MainPage';
 
 interface ClickableObjectProps {
     objectName: string;
     ObjectIcon: IconType;
+    refs: React.RefObject<WindowRefType>;
 }
 
 const ClickableObjectBlock = styled.div`
@@ -20,7 +22,8 @@ const ClickableObjectBlock = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: all ease-in-out 200ms;
+
+    transition: all ease-in-out 300ms;
 
     .Icon {
         font-size: 90px;
@@ -33,7 +36,7 @@ const ClickableObjectBlock = styled.div`
 
 
     &:hover {
-        transform: scale(1.3);
+        transform: scale(1.15);
         .Icon {
             border: 0.1px solid white;
         }
@@ -48,17 +51,17 @@ const Application = ({
     ObjectIcon, 
 }:ClickableObjectProps) => {
     // 현재 객체의 ref
-    const myRef = useRef<HTMLDivElement>(null);
-    const rect = useRect(myRef);
+    // const myRef = useRef<HTMLDivElement>(null);
+    // const rect = useRect(myRef);
 
     // 힌번 클릭 했을 때
     const handleClick = () => {
-        
+        console.log("Click!!");
     }
 
     return (
         <ClickableObjectBlock 
-            ref={myRef}
+            // ref={myRef}
             onClick={handleClick}
         >
             <ObjectIcon className='Icon'/>

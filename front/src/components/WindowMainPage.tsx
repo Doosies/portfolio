@@ -15,8 +15,14 @@ const WindowMainPageBlock = styled.div`
     padding: 10px;
 `
 const WindowMainPage = () => {
+    const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+        // 상위 노드로부터의 이벤트 캡쳐링 방지
+        e.stopPropagation();
+    }
     return (
-        <WindowMainPageBlock>
+        <WindowMainPageBlock
+            onMouseDown={handleMouseDown}
+        >
             fsdfsdfs
         </WindowMainPageBlock>
     );

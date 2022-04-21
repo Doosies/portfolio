@@ -10,7 +10,6 @@ interface WindowTopbarProps {
 }
 
 const WindowTopbarBlock = styled.div`
-    /* position: absolute; */
     width: 100%;
     height: 50px;
     background-color: #2d2d30;
@@ -20,7 +19,6 @@ const WindowTopbarBlock = styled.div`
 `;
 
 const WindowControllContainer = styled.div`
-    /* position: relative; */
     height: 20px;
     width: 60px;
     height: 100%;
