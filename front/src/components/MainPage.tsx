@@ -57,9 +57,7 @@ const MainPage = () => {
                     />
                 )}
             </ApplicationContainer>
-            {/* {Windows.map(el => */}
-                <Window />    
-            {/* )} */}
+            
         </MainPageBlock>
     );
 }
