@@ -49,8 +49,9 @@ const MainPage = () => {
             <ApplicationContainer>
                 {applications.map ((el) => 
                     <Application 
-                        ObjectIcon={el.applicationIcon}
-                        objectName={el.applicationName}
+                        ApplicationIcon={el.applicationIcon}
+                        applicationName={el.applicationName}
+                        applicationType={el.applicationType}
                         key={`${el.applicationName}+${getRandomKey(5)}`}
                     />
                 )}

@@ -1,16 +1,17 @@
-import React, {useEffect, useRef, useState} from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import React from 'react';
+import styled from 'styled-components';
 import { IconType } from 'react-icons/lib';
-import useRect from '../hooks/useRect';
-// import { WindowRefType } from './MainPage';
+import { useAppDispatch } from '../modules/hooks';
+import { addWindow, WindowState } from '../modules/window';
+import { ApplicationTypes } from '../enum/applicationTypes';
 
-interface ClickableObjectProps {
-    objectName: string;
-    ObjectIcon: IconType;
-    // refs: React.MutableRefObject<{}>;
+interface ApplicationProps {
+    applicationName: string;
+    applicationType: ApplicationTypes;
+    ApplicationIcon: IconType;
 }
 
-const ClickableObjectBlock = styled.div`
+const ApplicationBlock = styled.div`
 
     margin: 20px;
     /* padding: 5px; */
@@ -47,28 +48,30 @@ const ClickableObjectBlock = styled.div`
 `
 
 const Application = ({
-    objectName, 
-    ObjectIcon, 
-    // refs,
-}:ClickableObjectProps) => {
-    // 현재 객체의 ref
-    // const myRef = useRef<HTMLDivElement>(null);
-    // const rect = useRect(myRef);
+    ApplicationIcon,
+    applicationName,
+    applicationType,
+}:ApplicationProps) => {
+
+    const dispatch = useAppDispatch();
 
     // 힌번 클릭 했을 때
+    // 해당 애플리케이션을 열어줌
     const handleClick = () => {
         console.log("Click!!");
-        // console.log(refs);
+        const window: WindowState = {
+            position: {x: 0, y: 0},
+            windowName: applicationName,
+            windowType: applicationType,
+        }
+        // useAppDispatch(addWindow())
     }
 
     return (
-        <ClickableObjectBlock 
-            // ref={el => refs.current = {...refs.current, [objectName]:el}}
-            onClick={handleClick}
-        >
-            <ObjectIcon className='Icon'/>
-            <p>{objectName}</p>
-        </ClickableObjectBlock>
+        <ApplicationBlock onClick={handleClick}>
+            <ApplicationIcon className='Icon'/>
+            <p>{applicationName}</p>
+        </ApplicationBlock>
     );
 }
 

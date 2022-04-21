@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction} from "@reduxjs/toolkit";
-import { WindowTypes } from "../enum/windowTypes";
+import { ApplicationTypes } from "../enum/applicationTypes";
 
-type WindowState = {
+export type WindowState = {
     windowName: string;
-    windowType: WindowTypes;
-    windowId: number;
+    windowType: ApplicationTypes;
+    windowId?: number;
     position: {x: number, y: number},
 }
 

@@ -3,13 +3,12 @@ import styled from 'styled-components';
 import WindowMainPage from './WindowMainPage';
 import WindowTopbar from './WindowTopbar';
 import Draggable from './Draggable';
-import { WindowTypes } from '../enum/windowTypes';
+import { ApplicationTypes } from '../enum/applicationTypes';
 
 interface WindowProps {
     windowName: string;
-    windowType: WindowTypes;
-    nowPosition?: {x: number, y: number},
-    clickStartPosition?: {x: number, y: number},
+    windowType: ApplicationTypes;
+    position?: {x: number, y: number},
 }
 
 const WindowBlock = styled.div`
@@ -30,6 +29,7 @@ const WindowBlock = styled.div`
 `
 
 const Window = ({
+    windowName, windowType, position
 }:WindowProps) => {
 
     return (
