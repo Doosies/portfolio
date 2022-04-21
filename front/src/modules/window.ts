@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction} from "@reduxjs/toolkit";
-import { applicationSlice } from "./application";
 
 type WindowState = {
     windowName: string;
@@ -25,4 +24,4 @@ export const windowSlice = createSlice({
 })
 
 export const {addWindow, removeWindow} = windowSlice.actions;
-export default applicationSlice.reducer;
+export default windowSlice.reducer;
