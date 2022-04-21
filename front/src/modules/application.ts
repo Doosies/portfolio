@@ -5,13 +5,14 @@ import { RiFinderLine, RiMailSendLine, RiProfileLine, RiTerminalBoxLine } from "
 type ApplicationState = {
     applicationIcon: IconType,
     applicationName: string,
+    applicationKey: string,
 }
 
 const initialStateApplication:ApplicationState[]  = [
-    { applicationIcon: RiFinderLine, applicationName: '탐색기' },
-    { applicationIcon: RiTerminalBoxLine, applicationName: '터미널' },
-    { applicationIcon: RiMailSendLine, applicationName: '메일전송' },
-    { applicationIcon: RiProfileLine, applicationName: '프로필' },
+    { applicationIcon: RiFinderLine, applicationName: '탐색기', applicationKey: "asre23uini"},
+    { applicationIcon: RiTerminalBoxLine, applicationName: '터미널', applicationKey: "oi8ug6f598"},
+    { applicationIcon: RiMailSendLine, applicationName: '메일전송', applicationKey: "kj096gfjde"},
+    { applicationIcon: RiProfileLine, applicationName: '프로필', applicationKey: "dk31098aj1"},
 ];
 
 export const applicationSlice = createSlice({
@@ -21,7 +22,7 @@ export const applicationSlice = createSlice({
         addApplication: (state, action: PayloadAction<ApplicationState>) => {
             state.push(action.payload);},
         removeApplication: (state, action: PayloadAction<string>) => {
-            state.filter( el => el.applicationName !== action.payload);
+            state.filter( el => el.applicationKey !== action.payload);
         }
     }
 });
