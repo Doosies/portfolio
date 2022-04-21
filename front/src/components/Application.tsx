@@ -2,12 +2,12 @@ import React, {useEffect, useRef, useState} from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { IconType } from 'react-icons/lib';
 import useRect from '../hooks/useRect';
-import { WindowRefType } from './MainPage';
+// import { WindowRefType } from './MainPage';
 
 interface ClickableObjectProps {
     objectName: string;
     ObjectIcon: IconType;
-    refs: React.RefObject<WindowRefType>;
+    // refs: React.MutableRefObject<{}>;
 }
 
 const ClickableObjectBlock = styled.div`
@@ -49,6 +49,7 @@ const ClickableObjectBlock = styled.div`
 const Application = ({
     objectName, 
     ObjectIcon, 
+    // refs,
 }:ClickableObjectProps) => {
     // 현재 객체의 ref
     // const myRef = useRef<HTMLDivElement>(null);
@@ -57,11 +58,12 @@ const Application = ({
     // 힌번 클릭 했을 때
     const handleClick = () => {
         console.log("Click!!");
+        // console.log(refs);
     }
 
     return (
         <ClickableObjectBlock 
-            // ref={myRef}
+            // ref={el => refs.current = {...refs.current, [objectName]:el}}
             onClick={handleClick}
         >
             <ObjectIcon className='Icon'/>
