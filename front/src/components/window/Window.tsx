@@ -60,7 +60,7 @@ const Window = ({
                     windowName={windowName}
                     isActive={isActive}
                 />
-                <WindowMainPage />
+                <WindowMainPage windowType={windowType}/>
             </WindowBlock>
         </Draggable>
     );
