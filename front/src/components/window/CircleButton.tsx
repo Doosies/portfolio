@@ -1,9 +1,10 @@
-import { lighten } from 'polished';
-import React from 'react';
-import styled, { css } from 'styled-components';
-import { ButtonDoing, ButtonSize } from '../enum/buttonEnum';
-import { useAppDispatch } from '../modules/hooks';
-import { removeWindow } from '../modules/window';
+import { lighten } from "polished";
+import React from "react";
+import styled, { css } from "styled-components";
+import { ButtonDoing, ButtonSize } from "../../enum/buttonEnum";
+import { useAppDispatch } from "../../modules/hooks";
+import { removeWindow } from "../../modules/window";
+
 
 interface CircleButtonProps {
     color: string;
@@ -12,6 +13,7 @@ interface CircleButtonProps {
     doing: ButtonDoing;
     children?: React.ReactNode;
     windowId?: number;
+    isActive: boolean;
 }
 
 function getButtonSize (size: ButtonSize): string {
@@ -33,8 +35,8 @@ const CircleButtonBlock = styled.div<Omit<CircleButtonProps, 'doing' | 'handleBu
     display: flex;
     justify-content: center;
     
-    ${({size, color}) => css`
-        background-color: ${color};
+    ${({size, color, isActive}) => css`
+        background-color: ${isActive ? color : '#4B4C4B'};
         width: ${getButtonSize(size)};
         height: ${getButtonSize(size)};
 
@@ -44,8 +46,7 @@ const CircleButtonBlock = styled.div<Omit<CircleButtonProps, 'doing' | 'handleBu
     `}
     ${({color, isHover}) => isHover && css`
         background-color: ${color};
-    `}
-
+    `} 
 `
 const ChildBlock = styled.div`
     color: black;
@@ -54,7 +55,7 @@ const ChildBlock = styled.div`
 `;
 
 const CircleButton = ({
-    color, size, children, isHover, doing, windowId
+    color, size, children, isHover, doing, windowId, isActive,
 }:CircleButtonProps) => {
 
     const dispatch = useAppDispatch();
@@ -66,15 +67,15 @@ const CircleButton = ({
     const handleButtonClick = () => {
         switch (doing) {
             case ButtonDoing.close: {
-                dispatch(removeWindow(windowId))
+                dispatch(removeWindow(windowId));
                 break;
             }
             case ButtonDoing.minimize:{
-                console.log("minimize");
+                dispatch(removeWindow(windowId));
                 break;
             }
             case ButtonDoing.maxmize:{
-                console.log("maxmize");
+                dispatch(removeWindow(windowId));
                 break;
             }
             default: break;
@@ -88,6 +89,7 @@ const CircleButton = ({
             isHover={isHover}
             onClick={handleButtonClick}
             onMouseDown={handleMouseDown}
+            isActive={isActive}
         >
             <ChildBlock>
                 {isHover && children}

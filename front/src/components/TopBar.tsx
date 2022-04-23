@@ -1,11 +1,10 @@
 import React  from 'react';
 import styled from 'styled-components';
-import Time from './Time';
 import {GiPear} from 'react-icons/gi';
-import CurrentWindow from './CurrentWindow';
+import CurrentWindow from './window/CurrentWindow';
+import Time from './window/Time';
 
 const TopBarBlock = styled.div`
-    width: 100%;
     height: 40px;
     background-color: #3D3C3C;
     display: flex;

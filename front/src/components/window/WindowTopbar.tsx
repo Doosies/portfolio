@@ -1,34 +1,40 @@
 import React, {useState} from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import CircleButton from './CircleButton';
 import {FiMaximize2, FiMinus, } from 'react-icons/fi'
 import {AiOutlineClose} from 'react-icons/ai'
-import { ButtonDoing, ButtonSize } from '../enum/buttonEnum';
+import { ButtonDoing, ButtonSize } from '../../enum/buttonEnum';
+import { lighten } from 'polished';
 
 interface WindowTopbarProps {
     windowId?: number;
     windowName: string;
+    isActive: boolean;
 }
-const WindowTopbarBlock = styled.div`
+const WindowTopbarBlock = styled.div<{isActive: boolean}>`
     position: relative;
+    
     width: 100%;
+    /* width: 800px; */
     height: 50px;
-    background-color: #2d2d30;
 
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 
     display: flex;
-    /* justify-content: center; */
     align-items: center;
+
+    background-color: #2d2d30;
+    ${({isActive}) => isActive && css`
+        background-color: ${lighten(0.1,'#2d2d30')};
+    `}
 `;
 
 const WindowControllContainer = styled.div`
-    /* position: absolute; */
+    margin-left: 15px;
     height: 20px;
     width: 60px;
     height: 100%;
-    padding-left: 15px;
 
     display: flex;
     flex-grow: 0;
@@ -52,14 +58,14 @@ const circles = [
 ]
 
 const WindowTopbar = ({
-    windowId, windowName,
+    windowId, windowName, isActive
 }:WindowTopbarProps) => {
     const [isOnElement, setOnElement] = useState(false);
     const handleMouseMove = () => void setOnElement(true);
     const handleMouseLeave = () => void setOnElement(false);
 
     return (
-        <WindowTopbarBlock>
+        <WindowTopbarBlock isActive={isActive}>
             <WindowControllContainer 
                 onMouseMove={handleMouseMove} 
                 onMouseLeave={handleMouseLeave}
@@ -72,6 +78,7 @@ const WindowTopbar = ({
                         doing={el.doing}
                         key={`${el.color}+${el.doing}`}
                         windowId={windowId}
+                        isActive={isActive}
                     >
                         <el.icon strokeWidth={el.strokeWidth}/>
                     </CircleButton>

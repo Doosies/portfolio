@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import useServerTime from '../hooks/useServerTime';
+import useServerTime from '../../hooks/useServerTime';
 
 interface TimeProps {
     

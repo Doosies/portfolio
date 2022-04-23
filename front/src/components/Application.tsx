@@ -1,24 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 import { IconType } from 'react-icons/lib';
-import { useAppDispatch } from '../modules/hooks';
-import { addWindow, WindowState } from '../modules/window';
 import { ApplicationTypes } from '../enum/applicationTypes';
 
 interface ApplicationProps {
     applicationName: string;
     applicationType: ApplicationTypes;
     ApplicationIcon: IconType;
+    onClick: (e: React.MouseEvent<HTMLDivElement>, windowName: string, windowType: ApplicationTypes) => void;
 }
 
 const ApplicationBlock = styled.div`
 
-    margin: 20px;
-    /* padding: 5px; */
-
     background-color: transparent;
     color: white;
     border: 0;
+    padding:10px;
 
     display: flex;
     flex-direction: column;
@@ -45,30 +42,29 @@ const ApplicationBlock = styled.div`
             background-color: #0059D0;
         }
     }
+
+
+    @media screen and (max-width: 479px){
+        width: 40%;
+    }
+    @media screen and (min-width: 480px) {
+        width: 125px;
+    }   
 `
 
 const Application = ({
     ApplicationIcon,
     applicationName,
     applicationType,
+    onClick,
 }:ApplicationProps) => {
 
-    const dispatch = useAppDispatch();
-
-    // 힌번 클릭 했을 때
-    // 해당 애플리케이션을 열어줌
-    const handleClick = () => {
-        const window: WindowState = {
-            windowId: 0,
-            zindex: 0,
-            windowName: applicationName,
-            windowType: applicationType,
-        };
-        dispatch(addWindow(window));
-    }
 
     return (
-        <ApplicationBlock onClick={handleClick}>
+        <ApplicationBlock 
+            onClick={(e: React.MouseEvent<HTMLDivElement>) => {onClick(e, applicationName, applicationType)}}
+            // ref = {(el) => (refs.current as HTMLDivElement[])[refIdx] = el as HTMLDivElement}
+        >
             <ApplicationIcon className='Icon'/>
             <p>{applicationName}</p>
         </ApplicationBlock>
