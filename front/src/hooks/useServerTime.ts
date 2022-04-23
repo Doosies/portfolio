@@ -10,9 +10,16 @@ const useServerTime = () => {
         
     }, []);
 
+    const options: Intl.DateTimeFormatOptions = {
+        year: "numeric" , 
+        month: "2-digit" , 
+        day: "2-digit" , 
+    };
+
     return [
-        date.toLocaleDateString(), 
-        `${date.getHours()}시 ${date.getMinutes()}분`];
+        date.toLocaleDateString("ko-kr", options),
+        `${date.getHours()} : ${date.getMinutes()}`
+    ]
 }
 
 export default useServerTime;
