@@ -7,14 +7,11 @@ interface TimeProps {
 }
 
 const TimeBlock = styled.div`
-    width: 160px;
-    /* height: 100px; */
+    width: 180px;
+    padding-right: 15px;
+
     position: absolute;
     right: 0;
-    /* padding: 15px; */
-    /* padding-left: 15px; */
-    padding-right: 15px;
-    /* margin-right: 15px; */
 
     display: flex;
     justify-content: space-around;
