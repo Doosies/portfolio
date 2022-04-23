@@ -6,6 +6,7 @@ import CurrentWindow from './CurrentWindow';
 
 const TopBarBlock = styled.div`
     width: 100%;
+    height: 40px;
     background-color: #3D3C3C;
     display: flex;
     align-items: center;
