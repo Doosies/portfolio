@@ -6,13 +6,14 @@ interface WindowMainPageProps {
 }
 
 const WindowMainPageBlock = styled.div`
-    /* position: absolute; */
+    /* position: relative; */
     pointer-events: none;
     user-select: none;
     width: 100%;
     height: 100%;
 
     padding: 10px;
+    border-radius: 20px;
 `
 const WindowMainPage = () => {
     const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
