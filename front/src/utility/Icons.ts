@@ -10,6 +10,7 @@ function getIconFromAppType(appType: ApplicationTypes) {
         case ApplicationTypes.profile: return RiProfileLine;
         case ApplicationTypes.sendmail: return RiMailSendLine;
         case ApplicationTypes.terminal: return RiTerminalBoxLine;
+        case ApplicationTypes.internet: return RiTerminalBoxLine;
     }
 }
 

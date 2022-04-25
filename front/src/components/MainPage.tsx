@@ -24,7 +24,7 @@ const MainPageBlock = styled.div`
     align-items: center;
 
 `
-const ApplicationContainer = styled.div`
+const ApplicationContainer = React.memo(styled.div`
     padding: 10px;
     position: absolute;
     bottom: 25%;
@@ -32,10 +32,10 @@ const ApplicationContainer = styled.div`
     display: flex; flex-wrap: wrap;
     justify-content: center;
     align-content: center;
-`;
+`);
 
 const MainPage = () => {
-    const applications = useAppSelector(state => state.application.appList);
+    const applications = useAppSelector(state => state.application.appList).filter( el => el.applicationType !== ApplicationTypes.internet);
     const windows = useAppSelector(state => state.window.windowList);
     const dispatch = useAppDispatch();
 

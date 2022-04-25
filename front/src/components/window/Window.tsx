@@ -16,9 +16,10 @@ interface WindowProps {
 
 const WindowBlock = styled.div`
     /* position: absolute; */
-    background-color: #262628;
+    background-color: #1E1C1C;
     border-radius: 20px;
     box-shadow: -5px 5px 20px -10px black;
+    border: 0.1px solid #6D6C6D;
 
     /* left: 50%; */
     /* transform: translateX(-50%); */

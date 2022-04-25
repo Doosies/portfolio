@@ -16,7 +16,7 @@ const WindowMainPageBlock = styled.div`
     /* width: 100%; */
     /* height: 100%; */
     /* position: static; */
-    padding: 20px;
+    /* padding: 10px; */
     border-radius: 20px;
 
     @media screen and (max-width: 479px){
@@ -24,14 +24,14 @@ const WindowMainPageBlock = styled.div`
         width: 90vw;
         height: calc(90vh - 50px);
     }
-    @media screen and (min-width: 480px) and (max-width:1023px) {
+    @media screen and (min-width: 480px){// and (max-width:1023px) {
         width: 480px;
         height: calc(80vh - 50px);
     }
-    @media screen and (min-width: 1024px){
+    /* @media screen and (min-width: 1024px){
         width: 800px;
         height: calc(80vh - 50px);
-    }
+    } */
 `
 const WindowMainPage = ({
     windowType,

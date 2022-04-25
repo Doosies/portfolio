@@ -18,6 +18,7 @@ const WindowTopbarBlock = styled.div<{isActive: boolean}>`
     /* width: 800px; */
     height: 50px;
 
+    border-bottom: 0.5px solid #070707;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 

@@ -1,1 +1,1 @@
-export enum ApplicationTypes {'finder', 'terminal','profile','sendmail'};
+export enum ApplicationTypes {'finder', 'terminal','profile','sendmail', 'internet'};
