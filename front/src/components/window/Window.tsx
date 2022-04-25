@@ -15,23 +15,29 @@ interface WindowProps {
 }
 
 const WindowBlock = styled.div`
-
+    /* position: absolute; */
     background-color: #262628;
     border-radius: 20px;
     box-shadow: -5px 5px 20px -10px black;
 
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+        /* height: 90vh;
+        width: 90vw; */
+    
 
-    @media screen and (max-width: 1023px){
-        height: 85vh;
-        width: 85vw;
+    @media screen and (max-width: 479){
+        /* height: 90vh; */
+        /* width: 90vw; */
         @keyframes smoothAppear {
             from { opacity: 0; transform: translateY(50%) scale(0.1); }
             to { opacity: 1; transform: scale(1);}
         }
     }
-    @media screen and (min-width: 1024px) {
-        height: 80vh;
-        width: 800px;
+    @media screen and (min-width: 480px) {
+        /* height: 80vh; */
+        /* width: 80vw; */
+
         @keyframes smoothAppear {
             from { opacity: 0; transform: translateY(200px) scale(0.1); }
             to { opacity: 1; transform: scale(1);}

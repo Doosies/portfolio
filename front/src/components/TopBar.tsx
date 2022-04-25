@@ -5,6 +5,7 @@ import CurrentWindow from './window/CurrentWindow';
 import Time from './window/Time';
 
 const TopBarBlock = styled.div`
+    position: relative;
     height: 40px;
     background-color: #3D3C3C;
     display: flex;

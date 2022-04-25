@@ -12,23 +12,22 @@ interface MainPageProps {
 }
 
 const MainPageBlock = styled.div`
+    /* position: absolute; */
     width: 100%;
     height: 100%;
     padding:15px;
+    /* position: relative; */
 
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
 
-    /* text-align: center; */
 `
 const ApplicationContainer = styled.div`
-    width:100%;
     padding: 10px;
-
     position: absolute;
-    bottom: 20%;
+    bottom: 25%;
 
     display: flex; flex-wrap: wrap;
     justify-content: center;

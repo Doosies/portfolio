@@ -24,7 +24,7 @@ const ApplicationBlock = styled.div`
     transition: all ease-in-out 300ms;
 
     .Icon {
-        font-size: 90px;
+        font-size: 65px;
     }
     p {
         margin: 0;
@@ -48,7 +48,7 @@ const ApplicationBlock = styled.div`
         width: 40%;
     }
     @media screen and (min-width: 480px) {
-        width: 125px;
+        width: 95px;
     }   
 `
 

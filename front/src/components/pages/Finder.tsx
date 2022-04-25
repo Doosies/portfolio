@@ -11,7 +11,7 @@ const FinderBlock = styled.div`
 const Finder = () => {
     return (
         <FinderBlock>
-            
+            f
         </FinderBlock>
     );
 }

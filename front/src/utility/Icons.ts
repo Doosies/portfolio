@@ -4,7 +4,7 @@ import { ApplicationTypes } from "../enum/applicationTypes";
 
 import { RiFinderLine, RiProfileLine, RiMailSendLine, RiTerminalBoxLine } from "react-icons/ri";
 
-function getIconFromAppType(appType: ApplicationTypes):IconType {
+function getIconFromAppType(appType: ApplicationTypes) {
     switch (appType) {
         case ApplicationTypes.finder: return RiFinderLine;
         case ApplicationTypes.profile: return RiProfileLine;

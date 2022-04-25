@@ -11,27 +11,37 @@ interface WindowMainPageProps {
 }
 
 const WindowMainPageBlock = styled.div`
-    pointer-events: none;
-    user-select: none;
-    width: 100%;
-    height: 100%;
-
-    padding: 10px;
+    /* pointer-events: none; */
+    /* user-select: none; */
+    /* width: 100%; */
+    /* height: 100%; */
+    /* position: static; */
+    padding: 20px;
     border-radius: 20px;
+
+    @media screen and (max-width: 479px){
+        /* width: 90vw; */
+        width: 90vw;
+        height: calc(90vh - 50px);
+    }
+    @media screen and (min-width: 480px) and (max-width:1023px) {
+        width: 480px;
+        height: calc(80vh - 50px);
+    }
+    @media screen and (min-width: 1024px){
+        width: 800px;
+        height: calc(80vh - 50px);
+    }
 `
 const WindowMainPage = ({
     windowType,
 }:WindowMainPageProps) => {
-    const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-        // 상위 노드로부터의 이벤트 캡쳐링 방지
-        e.stopPropagation();
-    }
     return (
-        <WindowMainPageBlock onMouseDown={handleMouseDown}>
-            {windowType === ApplicationTypes.finder && <Profile />}
+        <WindowMainPageBlock>
+            {windowType === ApplicationTypes.profile && <Profile />}
             {windowType === ApplicationTypes.finder && <Finder />}
-            {windowType === ApplicationTypes.finder && <SendMail />}
-            {windowType === ApplicationTypes.finder && <Terminal />}
+            {windowType === ApplicationTypes.sendmail && <SendMail />}
+            {windowType === ApplicationTypes.terminal && <Terminal />}
         </WindowMainPageBlock>
     );
 }

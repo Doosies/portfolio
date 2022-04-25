@@ -12,7 +12,9 @@ interface DraggableProps {
 
 const DraggableBlock = styled.div`
     position: absolute;
-    overflow: hidden;
+    /* overflow: hidden; */
+    /* width:100%; */
+    /* height:100%; */
 `;
 
 const Draggable = ({
