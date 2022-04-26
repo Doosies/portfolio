@@ -51,8 +51,8 @@ const Profile = () => {
             setAnimationRunning(true)
             setNameIdx(idx => idx < nameArr.length-1 ? idx+1 : 0);
             setTimeout(()=>{
-                console.log("애니메이션 끝");
-                setAnimationRunning(false);
+                // console.log("애니메이션 끝");
+                // setAnimationRunning(false);
             },3000);
         },4000);
         return () => clearTimeout(tick);
