@@ -40,7 +40,9 @@ const nameArr = [
 const Profile = () => {
     const [nameIdx, setNameIdx] = useState(0);
     const animationRef = useRef<HTMLDivElement>(null);
-    useAnimation(animationRef, 'animate', 4000, 3000, ()=>{
+    const [isAnimationRunning,setAnimationRunning] = useState(false);
+
+    useAnimation(setAnimationRunning, 'animate', 4000, 3000, ()=>{
         setNameIdx(idx => idx < nameArr.length-1 ? idx+1 : 0);
     }, []);
     console.log('렌더링 프로필');
@@ -54,7 +56,7 @@ const Profile = () => {
             onClick={handleMouseDown} 
         >
             <Name >
-                <p className='name' ref={animationRef}>
+                <p className={`${isAnimationRunning ? 'animate' : ''} name`}>
                     {nameArr[nameIdx]}
                 </p>
                 <p>
