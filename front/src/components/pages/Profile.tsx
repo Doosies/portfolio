@@ -1,4 +1,4 @@
-import React, { RefObject, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useAnimation } from '../../hooks/useAnimation';
 

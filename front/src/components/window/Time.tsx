@@ -1,10 +1,7 @@
-import React, {useState} from 'react';
+import React, {} from 'react';
 import styled from 'styled-components';
 import useServerTime from '../../hooks/useServerTime';
 
-interface TimeProps {
-    
-}
 
 const TimeBlock = styled.div`
     width: 180px;

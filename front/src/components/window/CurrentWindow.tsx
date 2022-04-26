@@ -2,10 +2,6 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import { useAppSelector } from '../../modules/hooks';
 
-interface CurrentWindowProps {
-    
-}
-
 const CurrentWindowBlock = styled.div`
     padding: 10px;
 `

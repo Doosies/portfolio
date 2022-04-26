@@ -51,7 +51,7 @@ const WindowBlock = styled.div`
 const Window = ({
     windowName, windowType, windowId, isActive
 }:WindowProps) => {
-    const [animation, setAnimation] = useState('smoothAppear 300ms');
+    const [animation] = useState('smoothAppear 300ms');
     const window = useAppSelector(state => state.window.windowList.find( el => el.windowId === windowId));
     const dispatch = useAppDispatch();
     const handleDown = () => { dispatch(mouseDownWindow(windowId)); }

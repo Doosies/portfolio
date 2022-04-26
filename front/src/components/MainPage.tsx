@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {  } from 'react';
 import styled from 'styled-components';
 import Application from './Application';
 import { useAppDispatch, useAppSelector } from '../modules/hooks';
@@ -7,9 +7,6 @@ import { ApplicationTypes } from '../enum/applicationTypes';
 import { addWindow, WindowState } from '../modules/window';
 import Window from './window/Window';
 
-interface MainPageProps {
-    
-}
 
 const MainPageBlock = styled.div`
     /* position: absolute; */
