@@ -35,9 +35,7 @@ const NameDetail = styled.div`
 `;
 
 const nameArr = [
-    <p>송민형</p>,
-    <p>song_MinHyung</p>,
-    <p>宋旻炯</p>,
+    '송민형', 'song_MinHyung', '宋旻炯'
 ];
 const Profile = () => {
     const [nameIdx, setNameIdx] = useState(0);
