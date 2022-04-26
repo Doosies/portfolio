@@ -9,6 +9,7 @@ export const useAnimation = (
     callback: Function, 
     deps?: React.DependencyList | undefined,
 ): void => {
+    console.log('in');
     useEffect(()=>{
         console.log('use effect');
         const tick = () => setInterval(()=>{
