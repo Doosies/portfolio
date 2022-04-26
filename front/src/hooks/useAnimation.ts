@@ -3,11 +3,11 @@ import React, { useEffect } from "react";
 export const useAnimation = (
     // ref: React.RefObject<HTMLDivElement>,
     setAnimationRunning: React.Dispatch<React.SetStateAction<boolean>>,
-    animationClassName: string,
-    delayBetweenAnimaion: number,
+    // animationClassName: string,
     animationTime: number,
+    delayBetweenAnimaion: number,
     callback: Function, 
-    deps?: React.DependencyList | undefined,
+    // deps?: React.DependencyList | undefined,
 ): void => {
     console.log('in');
     useEffect(()=>{
