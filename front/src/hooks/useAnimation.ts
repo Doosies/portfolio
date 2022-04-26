@@ -20,7 +20,8 @@ export const useAnimation = (
                 ref.current?.classList.remove(animationClassName);
             },animationTime);
         },delayBetweenAnimaion);
+        // tick();
         return () =>{tick();}
-    },deps);
+    },[]);
 
 }
