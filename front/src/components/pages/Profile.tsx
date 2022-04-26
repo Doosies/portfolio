@@ -46,16 +46,16 @@ const Profile = () => {
     // });
     useEffect(()=>{
         console.log('use effect');
-        const tick = setInterval(()=>{
-            console.log("애니메이션 시작");
-            setAnimationRunning(true)
-            setNameIdx(idx => idx < nameArr.length-1 ? idx+1 : 0);
-            setTimeout(()=>{
-                // console.log("애니메이션 끝");
-                // setAnimationRunning(false);
-            },3000);
-        },4000);
-        return () => clearTimeout(tick);
+        // const tick = setInterval(()=>{
+        //     console.log("애니메이션 시작");
+        //     setAnimationRunning(true)
+        //     setNameIdx(idx => idx < nameArr.length-1 ? idx+1 : 0);
+        //     setTimeout(()=>{
+        //         console.log("애니메이션 끝");
+        //         setAnimationRunning(false);
+        //     },3000);
+        // },4000);
+        // return () => clearTimeout(tick);
     },[]);
     
     const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
