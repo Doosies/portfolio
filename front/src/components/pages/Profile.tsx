@@ -43,7 +43,7 @@ const Profile = () => {
     useAnimation(animationRef, 'animate', 4000, 3000, ()=>{
         setNameIdx(idx => idx < nameArr.length-1 ? idx+1 : 0);
     }, []);
-
+    console.log('렌더링 프로필');
     const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
         // 상위 노드로부터의 이벤트 캡쳐링 방지
         e.stopPropagation();
