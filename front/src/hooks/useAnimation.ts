@@ -12,7 +12,7 @@ export const useAnimation = (
     console.log('in');
     useEffect(()=>{
         console.log('use effect');
-        const tick = () => setInterval(()=>{
+        const tick = setInterval(()=>{
             console.log("애니메이션 시작");
             // ref.current?.classList.add(animationClassName);
             setAnimationRunning(true)
@@ -26,7 +26,7 @@ export const useAnimation = (
             },animationTime);
         },delayBetweenAnimaion);
         // tick();
-        return () =>{tick();}
+        return () => clearInterval(tick);
     },[]);
 
 }
