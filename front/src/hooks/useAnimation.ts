@@ -11,6 +11,12 @@ export const useAnimation = (
 ): void => {
     console.log('in');
     useEffect(()=>{
+        // setAnimationRunning(true);
+        // const tick = setTimeout(()=>{
+        //     callback();
+        // }, delayBetweenAnimaion);
+        // setAnimationRunning(false);
+
         console.log('use effect');
         const tick = setInterval(()=>{
             console.log("애니메이션 시작");
@@ -25,8 +31,7 @@ export const useAnimation = (
                 setAnimationRunning(false);
             },animationTime);
         },delayBetweenAnimaion);
-        // tick();
-        return () => clearInterval(tick);
+        return () => clearTimeout(tick);
     },[]);
 
 }

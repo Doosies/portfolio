@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useAnimation } from '../../hooks/useAnimation';
 
@@ -41,10 +41,23 @@ const Profile = () => {
     const [nameIdx, setNameIdx] = useState(0);
     const [isAnimationRunning,setAnimationRunning] = useState(false);
 
-    useAnimation(setAnimationRunning, 'animate', 4000, 3000, ()=>{
-        setNameIdx(idx => idx < nameArr.length-1 ? idx+1 : 0);
-    });
-    console.log('렌더링 프로필');
+    // useAnimation(setAnimationRunning, 'animate', 4000, 3000, ()=>{
+    //     setNameIdx(idx => idx < nameArr.length-1 ? idx+1 : 0);
+    // });
+    useEffect(()=>{
+        console.log('use effect');
+        const tick = setInterval(()=>{
+            console.log("애니메이션 시작");
+            setAnimationRunning(true)
+            setNameIdx(idx => idx < nameArr.length-1 ? idx+1 : 0);
+            setTimeout(()=>{
+                console.log("애니메이션 끝");
+                setAnimationRunning(false);
+            },3000);
+        },4000);
+        return () => clearTimeout(tick);
+    },[]);
+    
     const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
         // 상위 노드로부터의 이벤트 캡쳐링 방지
         e.stopPropagation();
