@@ -9,6 +9,7 @@ export const useAnimation = (
     deps?: React.DependencyList | undefined,
 ): void => {
     useEffect(()=>{
+        console.log('use effect');
         const tick = () => setInterval(()=>{
             console.log("애니메이션 시작");
             ref.current?.classList.add(animationClassName);
