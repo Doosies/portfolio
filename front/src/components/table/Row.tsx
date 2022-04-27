@@ -18,7 +18,7 @@ const RowBlock = styled.div`
 
     /* 모바일에선 hover효과 적용 안됨 */
     @media (hover: hover) {
-	    &:hover { background-color: #265cff; 
+	    &:hover { background-color: #323b89; 
     }
 }
 `
@@ -55,8 +55,12 @@ const title = ['프로젝트 이름', '마지막 수정일', '기술 스택']
 const Row = ({
     item,
 }: RowProps) => {
+
+    const handleClick = () => {
+        console.log("눌렀어!", item);
+    }
     return (
-        <RowBlock>
+        <RowBlock onClick={handleClick}>
             <ImageContainer>
                 <img alt="img" src="img/test.png" style={{width:'100%', height: '100%'}}/>
             </ImageContainer>
