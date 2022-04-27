@@ -10,6 +10,8 @@ interface ProfileNameProps {
 const ProfileNameBlock = styled.div`
     text-align: center;
     user-select: none;
+    height: 100px;
+    
 
     .animate{   
         animation: fadeInDown 2s ease-out 1;
