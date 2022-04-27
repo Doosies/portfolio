@@ -16,11 +16,11 @@ const ProfileNameBlock = styled.div`
     }
     /* 최초 이름에만 실행되는 클래스 */
     .animateStarct {
-        animation: fadeIn 5s ease-out;
+        animation: fadeIn 5.5s ease-out;
     }
     .name {
         /* height: 40px; */
-        font-size: 40px;height: 50px; 
+        font-size: 40px;
         animation-fill-mode: forwards;
     }
     .nameDetail {
