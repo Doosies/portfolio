@@ -40,7 +40,7 @@ const ApplicationBlock = styled.div`
         }
         p {
             /* background-color: #0059D0;b */
-            background-color: #265cff;
+            background-color: #323b89;
         }
     }
 
