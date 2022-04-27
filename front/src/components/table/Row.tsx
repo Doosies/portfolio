@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import styled, { css } from 'styled-components';
+
+import styled, {  } from 'styled-components';
 import { FinderItem } from './Table';
 
 interface RowProps {
@@ -16,9 +16,11 @@ const RowBlock = styled.div`
     display: flex;
     &:nth-child(2n+2) { background-color: #292727; }
 
-    &:hover {
-        background-color: #0057CF;
+    /* 모바일에선 hover효과 적용 안됨 */
+    @media (hover: hover) {
+	    &:hover { background-color: #265cff; 
     }
+}
 `
 
 const ImageContainer = styled.div`
@@ -42,12 +44,10 @@ const Detail = styled.div`
         font-size: 1rem;
         font-weight: bold;
         color: #d1d1d1;
-        /* padding: 1px; */
     }
     .body {
         font-size: 0.9rem;
         padding-left: 0.6rem;
-        /* padding: 1px; */
     }
 `;
 

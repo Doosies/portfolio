@@ -1,9 +1,5 @@
-import React, {} from 'react';
-import styled from 'styled-components';
 
-interface TerminalProps {
-    
-}
+import styled from 'styled-components';
 
 const TerminalBlock = styled.div`
     

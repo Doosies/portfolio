@@ -39,7 +39,8 @@ const ApplicationBlock = styled.div`
             border: 0.1px solid white;
         }
         p {
-            background-color: #0059D0;
+            /* background-color: #0059D0;b */
+            background-color: #265cff;
         }
     }
 

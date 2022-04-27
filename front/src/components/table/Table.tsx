@@ -1,10 +1,8 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import styled from 'styled-components';
 import Row from './Row';
 
-interface TableProps {
-    
-}
+
 export interface FinderItem {
     text: string;
     date: string;
@@ -35,7 +33,7 @@ const TableBody = styled.div`
 `;
 
 const Table = () => {
-    const [table, setTable] = useState<FinderItem[]>([
+    const [table] = useState<FinderItem[]>([
         {text: '핸드폰 페이지', date: '21.01.23',stck: 'javascript, html, php', imagePath: ''},
         {text: '카운터&투두리스트', date: '21.02.27',stck: 'javascript, react, redux', imagePath: ''},
         {text: '관리자 페이지', date: '21.04.24',stck: 'javascript, react, spring, redux', imagePath: ''},
