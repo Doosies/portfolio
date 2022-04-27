@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useAnimation } from '../../hooks/useAnimation';
-
+import ProfileContents from './profile/ProfileContents';
 import ProfileName from './profile/ProfileName';
 import ProfileNameDetail from './profile/ProfileNameDetail';
 
@@ -12,7 +12,7 @@ const ProfileBlock = styled.div`
     padding: 20px;
     padding-top: 50px;
     overflow-y: auto;
-
+    user-select: none;
 
      @keyframes fadeIn {
          0%  { opacity: 0; }
@@ -26,22 +26,13 @@ const ProfileBlock = styled.div`
      @keyframes downAnimation {
          0%   {transform: translateY(-40%);}
          50%  {transform: translateY(0%);}
-         100% {transform: translateY(0%);font-size: 16px;}
+         100% {transform: translateY(0%);font-size: 14.5px;}
 
      }
      @keyframes fadefadeInDownIn10 {
          0%   { opacity: 0; transform: translateY(-10%); }
          100% { opacity: 1; transform: translateY(0%); }
      }
-`;
-
-const Content = styled.div`
-    @keyframes fadeIn {
-        0%  { opacity: 0; }
-        80% { opacity: 0; }
-        100% { opacity: 1;}
-    }
-    padding-top: 30px;
 `;
 
 const nameArr = [
@@ -74,20 +65,7 @@ const Profile = () => {
                 {nameArr[nameIdx]}
             </ProfileName>
             <ProfileNameDetail onAnimationEnd={handleEndAnimation}/>
-            <Content>
-                내요요요요요ㅛ요요여ㅑㄹ뇨랴ㅕㅁ뇨려ㅑㅁㅇㄴ룜ㅇ녀료
-                내요요요요요ㅛ요요여ㅑㄹ뇨랴ㅕㅁ뇨려ㅑㅁㅇㄴ룜ㅇ녀료
-                내요요요요요ㅛ요요여ㅑㄹ뇨랴ㅕㅁ뇨려ㅑㅁㅇㄴ룜ㅇ녀료
-                내요요요요요ㅛ요요여ㅑㄹ뇨랴ㅕㅁ뇨려ㅑㅁㅇㄴ룜ㅇ녀료
-                내요요요요요ㅛ요요여ㅑㄹ뇨랴ㅕㅁ뇨려ㅑㅁㅇㄴ룜ㅇ녀료
-                내요요요요요ㅛ요요여ㅑㄹ뇨랴ㅕㅁ뇨려ㅑㅁㅇㄴ룜ㅇ녀료
-                내요요요요요ㅛ요요여ㅑㄹ뇨랴ㅕㅁ뇨려ㅑㅁㅇㄴ룜ㅇ녀료
-                내요요요요요ㅛ요요여ㅑㄹ뇨랴ㅕㅁ뇨려ㅑㅁㅇㄴ룜ㅇ녀료
-                내요요요요요ㅛ요요여ㅑㄹ뇨랴ㅕㅁ뇨려ㅑㅁㅇㄴ룜ㅇ녀료
-                내요요요요요ㅛ요요여ㅑㄹ뇨랴ㅕㅁ뇨려ㅑㅁㅇㄴ룜ㅇ녀료
-                내요요요요요ㅛ요요여ㅑㄹ뇨랴ㅕㅁ뇨려ㅑㅁㅇㄴ룜ㅇ녀료
-                내요요요요요ㅛ요요여ㅑㄹ뇨랴ㅕㅁ뇨려ㅑㅁㅇㄴ룜ㅇ녀료
-            </Content>
+            <ProfileContents />
 
         </ProfileBlock>
     );
