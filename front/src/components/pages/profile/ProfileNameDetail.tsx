@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {} from 'react';
 import styled from 'styled-components';
 
 interface ProfileNameDetailProps {
@@ -12,6 +12,8 @@ const ProfileNameDetailBlock = styled.div`
 
     font-size: 23px; 
     transform: translateY(-40%);
+    user-select: none;
+
     animation: downAnimation 1s ease-in-out 4s;
     animation-fill-mode: forwards;
 
