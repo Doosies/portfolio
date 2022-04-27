@@ -2,10 +2,11 @@ import React, {  } from 'react';
 import styled from 'styled-components';
 import Application from './Application';
 import { useAppDispatch, useAppSelector } from '../modules/hooks';
-import getIconFromAppType from '../utility/Icons';
+// import getIconFromAppType from '../utility/Icons';
 import { ApplicationTypes } from '../enum/applicationTypes';
 import { addWindow, WindowState } from '../modules/window';
 import Window from './window/Window';
+import { getIconFromAppType } from '../utility/Icons';
 
 
 const MainPageBlock = styled.div`

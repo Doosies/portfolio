@@ -2,16 +2,20 @@
 import { ApplicationTypes } from "../enum/applicationTypes";
 
 
-import { RiFinderLine, RiProfileLine, RiMailSendLine, RiTerminalBoxLine } from "react-icons/ri";
+import { RiFinderLine, RiProfileLine, RiMailSendLine, RiTerminalBoxLine, RiNumber1 } from "react-icons/ri";
+import { IconType } from "react-icons";
 
-function getIconFromAppType(appType: ApplicationTypes) {
-    switch (appType) {
-        case ApplicationTypes.finder: return RiFinderLine;
-        case ApplicationTypes.profile: return RiProfileLine;
-        case ApplicationTypes.sendmail: return RiMailSendLine;
-        case ApplicationTypes.terminal: return RiTerminalBoxLine;
-        case ApplicationTypes.internet: return RiTerminalBoxLine;
-    }
+export function getIconFromAppType(appType: ApplicationTypes ): IconType {
+    // if (appType as ApplicationTypes) {
+        switch (appType) {
+            case ApplicationTypes.finder: return RiFinderLine;
+            case ApplicationTypes.profile: return RiProfileLine;
+            case ApplicationTypes.sendmail: return RiMailSendLine;
+            case ApplicationTypes.terminal: return RiTerminalBoxLine;
+            case ApplicationTypes.internet: return RiTerminalBoxLine;
+        }
+    // }
 }
+export function getIconFromString() {
 
-export default getIconFromAppType;
+}
