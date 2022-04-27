@@ -16,6 +16,8 @@ export function getIconFromAppType(appType: ApplicationTypes ): IconType {
         }
     // }
 }
-export function getIconFromString() {
-
+export function getIconFromString(showString: string, iconName: string, color: string): string {
+    return (`
+        "https://img.shields.io/badge/${showString}-${color}style=for-the-badge&logo=${iconName}}&logoColor=white
+    `);
 }
