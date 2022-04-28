@@ -10,7 +10,8 @@ interface ProfileNameProps {
 const ProfileNameBlock = styled.div`
     text-align: center;
     user-select: none;
-    height: 100px;
+    padding-top: 50px;
+    /* height: 100px; */
     
 
     .animate{   
@@ -24,6 +25,7 @@ const ProfileNameBlock = styled.div`
         /* height: 40px; */
         font-size: 40px;
         animation-fill-mode: forwards;
+        margin: 0;
     }
     .nameDetail {
         

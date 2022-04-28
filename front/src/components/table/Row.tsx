@@ -24,20 +24,20 @@ const RowBlock = styled.div`
 `
 
 const ImageContainer = styled.div`
-    padding: 0.5rem;
+    padding: 0.8rem;
     width: 10rem;
     height: 100%;
     
 `;
 const DetailContainer = styled.div`
     width: 100%;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
 `;
 const Detail = styled.div`
-    padding-left: 0.5rem;
-    padding-bottom: 0.6rem;
+    padding: 0.8rem;
     
     p {margin: 0;}
     .title {
@@ -62,17 +62,17 @@ const Row = ({
     return (
         <RowBlock onClick={handleClick}>
             <ImageContainer>
-                <img alt="img" src="img/test.png" style={{width:'100%', height: '100%'}}/>
+                <img alt="img" src={`img/${item.imagePath}.png`} style={{width:'100%', height: '100%'}}/>
             </ImageContainer>
             <DetailContainer>
                 <Detail>
                     <p className='title'>{title[0]}</p>
                     <p className='body'>{item.text}</p>
                 </Detail>    
-                <Detail>
+                {/* <Detail>
                     <p className='title'>{title[1]}</p>
                     <p className='body'>{item.date}</p>
-                </Detail>    
+                </Detail>     */}
                 <Detail>
                     <p className='title'>{title[2]}</p>
                     <p className='body'>{item.stck}</p>

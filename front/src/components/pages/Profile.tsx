@@ -24,14 +24,21 @@ const ProfileBlock = styled.div`
          40% { opacity: 1; transform: translateY(0); }
      }
      @keyframes downAnimation {
-         0%   {transform: translateY(-40%);}
-         50%  {transform: translateY(0%);}
-         100% {transform: translateY(0%);font-size: 14.5px;}
+         0%   {transform: translateY(-10%)}
+         /* 50%  {transform: translateY(0%); } */
+         100% {transform: translateY(0%) scale(0.5);}
 
      }
      @keyframes fadefadeInDownIn10 {
-         0%   { opacity: 0; transform: translateY(-10%); }
+         0%   { opacity: 0; transform: translateY(-10%);}
          100% { opacity: 1; transform: translateY(0%); }
+     }
+     @keyframes fadefadeInDownIn10Hello {
+         0%   { opacity: 0; transform: translateY(-10%);}
+         7%   { opacity: 1; transform: translateY(0%); }
+         39%  { opacity: 1; transform: translateY(0%);}
+         40%  { display: none;}
+         100% { display: none;}
      }
 `;
 

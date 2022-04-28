@@ -34,11 +34,11 @@ const TableBody = styled.div`
 
 const Table = () => {
     const [table] = useState<FinderItem[]>([
-        {text: '핸드폰 페이지', date: '21.01.23',stck: 'javascript, html, php', imagePath: ''},
-        {text: '카운터&투두리스트', date: '21.02.27',stck: 'javascript, react, redux', imagePath: ''},
-        {text: '관리자 페이지', date: '21.04.24',stck: 'javascript, react, spring, redux', imagePath: ''},
-        {text: '지도 페이지', date: '22.02.10',stck: 'typescript, react, redux', imagePath: ''},
-        {text: 'blog.songminhyung.com', date: '22.04.25',stck: 'typscript, react, redux-toolkit', imagePath: ''},
+        {text: '핸드폰 페이지', date: '21.01.23',stck: 'javascript, html, php', imagePath: 'project01'},
+        {text: '카운터&투두리스트', date: '21.02.27',stck: 'javascript, react, redux', imagePath: 'project02'},
+        {text: '관리자 페이지', date: '21.04.24',stck: 'javascript, react, spring, redux', imagePath: 'project03'},
+        {text: '지도 페이지', date: '22.02.10',stck: 'typescript, react, redux', imagePath: 'project04'},
+        {text: 'blog.songminhyung.com', date: '22.04.25',stck: 'typscript, react, redux-toolkit', imagePath: 'project05'},
     ]);
 
     return (

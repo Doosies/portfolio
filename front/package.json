@@ -12,12 +12,14 @@
     "@types/react": "^18.0.5",
     "@types/react-dom": "^18.0.1",
     "@types/react-redux": "^7.1.24",
+    "@types/react-router-dom": "^5.3.3",
     "polished": "^4.2.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-draggable": "^4.4.4",
     "react-icons": "^4.3.1",
     "react-redux": "^8.0.1",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "serve": "^13.0.2",
@@ -27,7 +29,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "PUBLIC_URL=./ react-scripts build && cp -R build ./reactApps",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

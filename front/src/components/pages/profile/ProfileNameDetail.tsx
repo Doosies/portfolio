@@ -8,18 +8,18 @@ interface ProfileNameDetailProps {
 const ProfileNameDetailBlock = styled.div`
     text-align: center;
     width: 100%;
-    height: 180px;
+    /* height: 180px; */
 
     font-size: 30px; 
     transform: translateY(-40%);
 
-    animation: downAnimation 1s ease-in-out 4s;
-    animation-fill-mode: forwards;
+    animation: downAnimation 1s 4s;
+    animation-fill-mode: both;
 
     p {
         opacity: 0;
         margin: 0;
-        &:nth-child(2){ animation: fadefadeInDownIn10 0.7s; animation-fill-mode:forwards;}
+        &:nth-child(2){ animation: fadefadeInDownIn10Hello 5s; animation-fill-mode:forwards;}
         &:nth-child(3){ animation: fadefadeInDownIn10 0.7s ease-in-out 1.4s; animation-fill-mode:forwards;}
         &:nth-child(4){ animation: fadefadeInDownIn10 0.7s ease-in-out 2.1s; animation-fill-mode:forwards;}
 
