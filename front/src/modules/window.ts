@@ -8,6 +8,8 @@ export type WindowState = {
     zindex: number;
     isActive: boolean;
     animationPosition: {x: number, y: number};
+    isFullScreen?: boolean;
+    windowPath?: string;
 }
 
 const initialWindow: {windowList: WindowState[], activeWindowName: string, nextId: number} = {

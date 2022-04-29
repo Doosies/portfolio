@@ -53,7 +53,6 @@ const MainPage = () => {
         dispatch(addWindow(window));
 
     }
-    // const appRefs = useRef<HTMLDivElement[]>([]);
     
     return (
         <MainPageBlock>
@@ -72,9 +71,11 @@ const MainPage = () => {
                 <Window 
                     // position = {{x:0,y:0}}//{getApplicationPosition(appRefs, el.windowType)}
                     windowName={el.windowName}
+                    fullScreen={el.isFullScreen}
                     windowType={el.windowType}
                     windowId={el.windowId}
                     isActive={el.isActive}
+                    windowPath={el.windowPath}
                     key={`window:${el.windowId}${el.windowType}`}
                 />
             )}

@@ -29,6 +29,7 @@ const Title = styled.div`
 `;
 const Content = styled.div`
     font-size: 13px;
+    user-select: none;
 `;
 
 const ProfileContents = () => {
@@ -45,8 +46,8 @@ const ProfileContents = () => {
                         <StackIcon showString='mysql' iconName='mysql' color='4479A1'/>
                     </div>
                     <div>
-                        <StackIcon showString='javascript' iconName='java' color='F7DF1E'/>
                         <StackIcon showString='typescript' iconName='typescript' color='3178C6'/>
+                        <StackIcon showString='javascript' iconName='java' color='F7DF1E'/>
                     </div>
                     <div> 
                         <StackIcon showString='html' iconName='html5' color='E34F26'/>
