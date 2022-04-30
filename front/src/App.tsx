@@ -15,7 +15,7 @@ const AppBlock = styled.div`
 `
 
 const AppRoutes = () => {
-  const routes = useRoutes([
+const routes = useRoutes([
     { path: '/main', element: <AppBlock> <TopBar /><MainPage /></AppBlock>},
   ]);
   return routes;
