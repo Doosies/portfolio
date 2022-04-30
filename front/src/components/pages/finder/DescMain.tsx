@@ -35,7 +35,7 @@ const Img = styled.img`
 const LinkContainer = styled.div`
     text-align: right;
     display: flex;
-    justify-content: end;
+    justify-content: center;
 `;
 const Text = styled.div`
     margin-top: 20px;
