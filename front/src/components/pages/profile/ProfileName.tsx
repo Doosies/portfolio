@@ -11,7 +11,7 @@ const ProfileNameBlock = styled.div`
     text-align: center;
     user-select: none;
     padding-top: 50px;
-    /* height: 100px; */
+    height: 90px;
     
 
     .animate{   
