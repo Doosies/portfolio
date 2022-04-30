@@ -53,9 +53,12 @@ const WindowTextContainer = styled.div`
     user-select: none;
 `;
 const circles = [
+    // {color: '#FF5F57', size: ButtonSize.small, doing: ButtonDoing.close, strokeWidth: 90, icon: AiOutlineClose},
+    // {color: '#FEBC30', size: ButtonSize.small, doing: ButtonDoing.minimize, strokeWidth: 5, icon: FiMinus},
+    // {color: '#25C93E', size: ButtonSize.small, doing: ButtonDoing.maxmize, strokeWidth: 2.8, icon: FiMaximize2},
     {color: '#FF5F57', size: ButtonSize.small, doing: ButtonDoing.close, strokeWidth: 90, icon: AiOutlineClose},
-    {color: '#FEBC30', size: ButtonSize.small, doing: ButtonDoing.minimize, strokeWidth: 5, icon: FiMinus},
-    {color: '#25C93E', size: ButtonSize.small, doing: ButtonDoing.maxmize, strokeWidth: 2.8, icon: FiMaximize2},
+    {color: '#FEBC30', size: ButtonSize.small, doing: ButtonDoing.minimize, strokeWidth: 5, icon: AiOutlineClose},
+    {color: '#25C93E', size: ButtonSize.small, doing: ButtonDoing.maxmize, strokeWidth: 2.8, icon: AiOutlineClose},
 ]
 
 const WindowTopbar = ({
