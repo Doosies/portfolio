@@ -13,7 +13,7 @@ type ApplicationState = {
 const initialStateApplication:{appList:ApplicationState[], appCounter: number}  = {
     appList: [
         { applicationName: '프로필', applicationId: 1, applicationType: ApplicationTypes.profile },
-        { applicationName: '탐색기', applicationId: 2, applicationType: ApplicationTypes.finder},
+        { applicationName: '프로젝트', applicationId: 2, applicationType: ApplicationTypes.finder},
         { applicationName: '메일', applicationId: 3, applicationType: ApplicationTypes.sendmail},
         // { applicationName: '터미널', applicationId: 4, applicationType: ApplicationTypes.terminal},
         { applicationName: '인터넷', applicationId: 5, applicationType: ApplicationTypes.internet},
