@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "포트폴리오 앱",
+  "name": "송민형 포트폴리오",
   "icons": [
     {
       "src": "favicon.ico",
@@ -12,11 +12,6 @@
       "type": "image/png",
       "sizes": "192x192"
     },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
   ],
   "start_url": ".",
   "display": "standalone",
