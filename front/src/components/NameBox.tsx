@@ -21,6 +21,7 @@ const NameBoxBlock = styled.div<{height: string}>`
     &:nth-child(1){flex: 1;}
     &:nth-child(2){flex: 1;}
     &:nth-child(3){flex: 5;}
+
 `
 const Line = styled.div`
     position: absolute;
