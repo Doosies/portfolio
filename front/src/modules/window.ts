@@ -14,7 +14,7 @@ export type WindowState = {
 
 const initialWindow: {windowList: WindowState[], activeWindowName: string, nextId: number} = {
     windowList: [],
-    activeWindowName: '탐색기',
+    activeWindowName: 'Project',
     nextId: 1,
 }
 // let nextId = 1;
@@ -40,7 +40,7 @@ export const windowSlice = createSlice({
                 state.windowList = state.windowList.filter( el => el.windowId !== action.payload);
             }
             --state.nextId;
-            state.activeWindowName = "탐색기";
+            state.activeWindowName = "Project";
         },
         moveWindow: (state, action: PayloadAction<{id: number, x: number, y: number}>) => {
             

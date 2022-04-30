@@ -21,32 +21,16 @@ const ProfileBlock = styled.div`
      }
      @keyframes fadeInDown {
          0%  { opacity: 0; transform: translateY(-40%); }
-         40% { opacity: 1; transform: translateY(0); }
+         40% { opacity: 1; transform: translateY(0);}
      }
      @keyframes downAnimation {
          0%   {transform: translateY(-10%)}
-         /* 50%  {transform: translateY(0%); } */
-         100% {transform: translateY(0%) scale(0.5);}
+         100% {transform: translateY(0) scale(0); font-size:0.5rem;}
 
      }
      @keyframes fadefadeInDownIn10 {
          0%   { opacity: 0; transform: translateY(-10%);}
          100% { opacity: 1; transform: translateY(0%); }
-     }
-     @keyframes fadefadeInDownIn10Hello {
-         0%   { opacity: 0; transform: translateY(-10%);}
-         7%   { opacity: 1; transform: translateY(0%); }
-         20%  { opacity: 1; transform: translateY(0%);}
-         21%  { display: none;}
-         100% { display: none;}
-     }
-     @keyframes fadefadeInDownIn10HelloFirst {
-         0%   { opacity: 0; transform: translateY(-10%);}
-         100% { opacity: 1; transform: translateY(100%); }
-     }
-     @keyframes fadefadeInDownIn10HelloLast {
-         0%   { opacity: 0; transform: translateY(-10%);}
-         100% { opacity: 1; transform: translateY(100%); }
      }
 `;
 
@@ -79,7 +63,10 @@ const Profile = () => {
             >
                 {nameArr[nameIdx]}
             </ProfileName>
-            <ProfileNameDetail onAnimationEnd={handleEndAnimation}/>
+            <ProfileNameDetail 
+                onAnimationEnd={handleEndAnimation}
+                endAnimationCnt = {endAnimationCnt.current}
+            />
             <ProfileContents />
 
         </ProfileBlock>
