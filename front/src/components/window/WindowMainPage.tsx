@@ -38,7 +38,7 @@ const WindowMainPage = ({
     windowType, windowId, windowPath,
 }:WindowMainPageProps) => {
     // const window
-    console.log(windowPath);
+    // console.log(windowPath);
     return (
         <WindowMainPageBlock windowType={windowType}>
             {windowType === ApplicationTypes.profile && <Profile />}

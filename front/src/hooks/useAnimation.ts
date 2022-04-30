@@ -12,7 +12,7 @@ export const useAnimation = (
     // console.log('in');
     useEffect(()=>{
 
-        console.log('use effect');
+        // console.log('use effect');
         const tick = setInterval(()=>{
             // console.log("애니메이션 시작");
             setAnimationRunning(true)

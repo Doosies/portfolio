@@ -34,7 +34,7 @@ const ProfileNameDetailBlock = styled.div`
 const ProfileNameDetail = ({
     onAnimationEnd
 }:ProfileNameDetailProps) => {
-    console.log("디테일");
+    // console.log("디테일");
     return (
         <ProfileNameDetailBlock 
             onAnimationEnd={onAnimationEnd}

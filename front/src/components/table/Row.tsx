@@ -62,7 +62,7 @@ const Row = ({
     const dispatch = useAppDispatch();
 
     const handleClick = () => {
-        console.log("눌렀어!", item);
+        // console.log("눌렀어!", item);
         const newWindow: WindowState = {
             animationPosition: {x: 0, y: 0},
             isActive: true,
