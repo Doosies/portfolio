@@ -29,7 +29,7 @@ const WindowMainPageBlock = styled.div<{windowType: ApplicationTypes}>`
     @media screen and (min-width: 1000px){
         ${({windowType}) => windowType === ApplicationTypes.internet
         ? css `width: 1000px;  height: calc(90vh - 50px);`
-        : css `width: 480px; height: calc(80vh - 50px);`
+        : css `width: 480px;   height: calc(80vh - 50px);`
         }
     }
 `
@@ -43,7 +43,7 @@ const WindowMainPage = ({
         <WindowMainPageBlock windowType={windowType}>
             {windowType === ApplicationTypes.profile && <Profile />}
             {windowType === ApplicationTypes.finder && <Finder />}
-            {windowType === ApplicationTypes.sendmail && <SendMail />}
+            {windowType === ApplicationTypes.sendmail && <SendMail windowId={windowId}/>}
             {windowType === ApplicationTypes.terminal && <Terminal />}
             {windowType === ApplicationTypes.internet && <Internet windowPath={windowPath}/>}
         </WindowMainPageBlock>

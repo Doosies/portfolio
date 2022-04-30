@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { sendMail } from '../../api/sendMail';
+import Modal from '../../Modal';
+import { useAppDispatch } from '../../modules/hooks';
+import { removeWindow } from '../../modules/window';
+import ModalPortal from '../../Portal';
 import NameBox from '../NameBox';
 
+interface SendMailProps {
+    windowId: number;
+}
 const SendMailBlock = styled.div`
     width: 100%;
     height: 100%;
@@ -42,19 +49,17 @@ const InputButton = styled.button`
     color: white;
 `;
 
-const Text = styled.div`
-    position: absolute;
-    padding: 0;
-    z-index: 1000;
-    background-color: white;
-
-`;
-const SendMail = () => {
+const SendMail = ({
+    windowId, 
+}:SendMailProps) => {
     const [texts, setText] = useState({
         contact: '',
         title: '',
         detail: '',
     });
+    const dispatch = useAppDispatch();
+
+
     const handleChangeText = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setText( state => ({
             ...state,
@@ -64,7 +69,8 @@ const SendMail = () => {
     const handleClickSendButton = async () => {
         const res = await sendMail(texts);
         if (res.status === 200 && res.text === "OK") {
-            console.log("전송에 성공했습니다.");
+            alert("메일 전송에 성공했습니다. 확인을 누르면 창이 닫힙니다.");
+            dispatch(removeWindow(windowId));
         }
     }
     return (
@@ -85,7 +91,6 @@ const SendMail = () => {
                     </InputButton>
                 </Contents>
             </NameBox>
-            <Text />
         </SendMailBlock>
     );
 }
