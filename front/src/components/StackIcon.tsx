@@ -4,6 +4,8 @@ interface StackIconProps {
     showString: string, 
     iconName: string, 
     color: string
+    logoColor: string;
+    iconOnly?: boolean;
 }
 
 const StackIconBlock = styled.img`
@@ -11,12 +13,13 @@ const StackIconBlock = styled.img`
     padding-right: 2px;
 `
 const StackIcon = ({
-    showString, iconName, color,
+    showString, iconName, color, logoColor, iconOnly
 }:StackIconProps) => {
-    return (
-        <StackIconBlock 
-            src={`https://img.shields.io/badge/${showString}-${color}?style=for-the-badge&logo=${iconName}&logoColor=black`} alt={showString}/>
-    );
+    if (iconOnly) {return <div>아이콘</div>;}
+    else {
+        return <StackIconBlock 
+            src={`https://img.shields.io/badge/${showString}-${color}?style=for-the-badge&logo=${iconName}&logoColor=${logoColor}`} alt={showString}/>
+    }
 }
 
 export default StackIcon;

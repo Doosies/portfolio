@@ -24,7 +24,7 @@ const WindowBlock = styled.div<{fullScreen?: boolean}>`
 
     // 만약 전체창이면
     ${({fullScreen}) => fullScreen && css `
-        width: 90vw;
+        width: 100%;
         height: 90vh;
     `}
     @media screen and (max-width: 479){

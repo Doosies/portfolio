@@ -12,6 +12,7 @@ interface RowProps {
 const RowBlock = styled.div`
     width: 100%;
     height: 150px;
+    user-select: none;
     /* margin-bottom: 2rem; */
 
     border-radius: 10px;
@@ -42,7 +43,7 @@ const DetailContainer = styled.div`
 const Detail = styled.div`
     padding: 0.8rem;
     
-    p {margin: 0;}
+    p {margin: 0; }
     .title {
         font-size: 1rem;
         font-weight: bold;

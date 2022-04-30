@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Router, Routes, useRoutes } from 'react-router-dom';
+import { BrowserRouter, useRoutes } from 'react-router-dom';
 import styled from 'styled-components';
 import MainPage from './components/MainPage';
 import TopBar from './components/TopBar';

@@ -41,17 +41,17 @@ const ProfileContents = () => {
                 </Title>
                 <Content>
                     <div>
-                        <StackIcon showString='react' iconName='react' color='61DAFB'/>
-                        <StackIcon showString='redux' iconName='redux' color='764ABC'/>                
-                        <StackIcon showString='mysql' iconName='mysql' color='4479A1'/>
+                        <StackIcon showString='react' iconName='react' color='61DAFB' logoColor='white'/>
+                        <StackIcon showString='redux' iconName='redux' color='764ABC' logoColor='white'/>                
+                        <StackIcon showString='mysql' iconName='mysql' color='4479A1' logoColor='white'/>
                     </div>
                     <div>
-                        <StackIcon showString='typescript' iconName='typescript' color='3178C6'/>
-                        <StackIcon showString='javascript' iconName='java' color='F7DF1E'/>
+                        <StackIcon showString='typescript' iconName='typescript' color='3178C6' logoColor='white'/>
+                        <StackIcon showString='javascript' iconName='java' color='F7DF1E' logoColor='white'/>
                     </div>
                     <div> 
-                        <StackIcon showString='html' iconName='html5' color='E34F26'/>
-                        <StackIcon showString='css' iconName='css3' color='1572B6'/>
+                        <StackIcon showString='html' iconName='html5' color='E34F26' logoColor='white'/>
+                        <StackIcon showString='css' iconName='css3' color='1572B6' logoColor='white'/>
                     </div>
                 </Content>
             </Container>
