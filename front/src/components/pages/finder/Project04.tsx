@@ -32,7 +32,7 @@ const Project04 = () => {
                 기술스택: react, typescript<br />
             </DescMain>
             {descSubs.map((text, i) => 
-                <DescSub imgPath={`img/project04_sub0${i+1}.png`}>
+                <DescSub imgPath={`img/project04_sub0${i+1}.png`} key={text}>
                     {text}
                 </DescSub>
             )}
