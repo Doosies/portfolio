@@ -9,7 +9,11 @@ const Project05Block = styled.div`
 `
 
 const descSubs = [
-    '한줄 혹은 여러줄에 걸쳐 주소를 입력하면 화면에 위치가 표시됩니다.',
+    <p>여러개의 어플리케이션을 띄울 수 있으며<br/>나중에 클릭한 창이 제일 위로 올라옵니다.</p>,
+    <p>프로필을 누르면 간단한 자기소개가 나오며<br/>최 상단의 이름이 일정 시간마다 바뀝니다.</p>,
+    <p>탐색기를 누르면 포트폴리오 목록이 나오며<br/> 목록을 클릭하면 인터넷 창이 뜨는것처럼 상세정보가 나옵니다.'</p>,
+    <p>메일을 누르면 메일을 쓰고서 제게 전송할 수 있습니다.</p>
+
 ]
 const Project05 = () => {
     return (
@@ -30,7 +34,7 @@ const Project05 = () => {
                 기술스택: react, typescript, redux-toolkit<br />
             </DescMain>
             {descSubs.map((text, i) => 
-                <DescSub imgPath={`img/project05_sub0${i+1}.png`} key={text}>
+                <DescSub imgPath={`img/project05_sub0${i+1}.png`} key={`prjt05_${i}`}>
                     {text}
                 </DescSub>
             )}
