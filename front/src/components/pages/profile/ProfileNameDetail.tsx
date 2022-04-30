@@ -23,8 +23,8 @@ const ProfileNameDetailBlock = styled.div`
         &:nth-child(3){ animation: fadefadeInDownIn10 0.7s ease-in-out 1.4s; animation-fill-mode:forwards;}
         &:nth-child(4){ animation: fadefadeInDownIn10 0.7s ease-in-out 2.1s; animation-fill-mode:forwards;}
 
-        &:first-child  { animation: fadefadeInDownIn10 0.7s ease-in-out 2.8s; animation-fill-mode:forwards;}
-        &:last-child  { animation: fadefadeInDownIn10 0.5s ease-in-out 2.8s; animation-fill-mode:forwards;}
+        &:first-child  { animation: fadefadeInDownIn10HelloFirst 0.7s ease-in-out 2.8s; animation-fill-mode:forwards;}
+        &:last-child  { animation: fadefadeInDownIn10HelloLast 0.5s ease-in-out 2.8s; animation-fill-mode:forwards;}
 
     }
     .oStyle {padding: 0;height: 20px;padding: 5px;}
