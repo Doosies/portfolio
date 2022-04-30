@@ -36,7 +36,7 @@ const project03 = () => {
                 기술스택: react, typescript, redux, spring, sql<br />
             </DescMain>
             {descSubs.map((text, i) => 
-                <DescSub imgPath={`/img/project03_sub0${i+1}.png`}>
+                <DescSub imgPath={`img/project03_sub0${i+1}.png`}>
                     {text}
                 </DescSub>
             )}

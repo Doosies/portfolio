@@ -36,7 +36,7 @@ const Project02 = () => {
                 기술스택: react, javascript, redux<br />
             </DescMain>
             {descSubs.map((text, i) => 
-                <DescSub imgPath={`/img/project02_sub0${i+1}.png`}>
+                <DescSub imgPath={`img/project02_sub0${i+1}.png`}>
                     {text}
                 </DescSub>
             )}
