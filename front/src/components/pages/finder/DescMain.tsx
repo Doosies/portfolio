@@ -15,10 +15,10 @@ const DescMainBlock = styled.div`
     .title {
         padding: 0;
         margin: 0;
-        margin-top: 2rem;
+        margin-top: 1.8rem;
         
         text-align: center;
-        font-size:2rem;
+        font-size:1.7rem;
     }
     /* text-align: center; */
     display: flex;
