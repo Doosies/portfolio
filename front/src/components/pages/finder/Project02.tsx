@@ -25,7 +25,7 @@ const Project02 = () => {
                 githubLink='https://github.com/Doosies/router-study'
                 pageLink='https://songminhyung.com/cnd'
             >
-                처음에 자바스크립트오 html로만 개발을 하다보니<br/>
+                처음에 자바스크립트와 html로만 개발을 하다보니<br/>
                 확장성에 한계를 느껴 리액트 프레임워크 학습을 목표로<br/>
                 제작하게된 카운터, 투두리스트 페이지입니다.<br/>
                 기능은 다른 투두리스트 앱과 동일하게 일정의 추가,삭제<br/>
