@@ -32,7 +32,7 @@ const Project01 = () => {
                 데이터는 모두 액셀파일에서 로딩 후 화면에 그려줬습니다.<br/>
                 그리고 사용자가 핸드폰 구매 페이지 작성을 완료하면<br/>
                 작성된 정보는 핸드폰 판매자의 메일로 전송됩니다.,<br/><br/>
-                소요기간: 2달<br />
+                소요기간: 3주<br />
                 기술스택: html, css, javascript, php<br />
             </DescMain>
             {descSubs.map((text, i) => 
