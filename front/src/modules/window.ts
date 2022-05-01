@@ -40,7 +40,7 @@ export const windowSlice = createSlice({
                 state.windowList = state.windowList.filter( el => el.windowId !== action.payload);
             }
             --state.nextId;
-            state.activeWindowName = "Project";
+            state.activeWindowName = "프로젝트";
         },
         moveWindow: (state, action: PayloadAction<{id: number, x: number, y: number}>) => {
             
