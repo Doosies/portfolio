@@ -40,7 +40,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "PUBLIC_URL=./ react-scripts build && cp -R build ./main",
+    "build": "PUBLIC_URL=./ react-scripts build", //&& cp -R build ./main",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
