@@ -25,7 +25,7 @@ const ProfileBlock = styled.div`
      }
      @keyframes downAnimation {
          0%   {transform: translateY(-10%)}
-         100% {transform: translateY(0) scale(0); font-size:0.5rem;}
+         100% {transform: translateY(0) scale(0.5);}
 
      }
      @keyframes fadefadeInDownIn10 {

@@ -14,7 +14,7 @@ export type WindowState = {
 
 const initialWindow: {windowList: WindowState[], activeWindowName: string, nextId: number} = {
     windowList: [],
-    activeWindowName: 'Project',
+    activeWindowName: '탐색기',
     nextId: 1,
 }
 // let nextId = 1;
