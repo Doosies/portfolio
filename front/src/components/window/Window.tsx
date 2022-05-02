@@ -66,6 +66,7 @@ const Window = ({
                     windowType={windowType}
                     windowId={windowId}
                     windowPath={windowPath}
+                    isFullScreen={fullScreen}
                 />
             </WindowBlock>
         </Draggable>

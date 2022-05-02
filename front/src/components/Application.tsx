@@ -44,13 +44,12 @@ const ApplicationBlock = styled.div`
         }
     }
 
-    width: 33%;
-    /* @media screen and (max-width: 479px){
-        width: 40%;
+    @media screen and (max-width: 479px){
+        width: 34%;
     }
     @media screen and (min-width: 480px) {
-        width: 95px;
-    }    */
+        width: 25%;
+    }   
 `
 
 const Application = ({

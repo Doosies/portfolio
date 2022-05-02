@@ -24,6 +24,7 @@ const MainPageBlock = styled.div`
 
 `
 const ApplicationContainer = styled.div`
+    width: 25rem;
     padding: 10px;
     position: absolute;
     bottom: 25%;
@@ -50,6 +51,7 @@ const MainPage = () => {
             windowType,
             isActive: true,
             animationPosition: {x: e.clientX, y: e.clientY},
+            isFullScreen: windowType === ApplicationTypes.board ? true : false,
         };
         dispatch(addWindow(window));
 
@@ -70,7 +72,6 @@ const MainPage = () => {
             </ApplicationContainer>
             {windows.map((el,i) => 
                 <Window 
-                    // position = {{x:0,y:0}}//{getApplicationPosition(appRefs, el.windowType)}
                     windowName={el.windowName}
                     fullScreen={el.isFullScreen}
                     windowType={el.windowType}
