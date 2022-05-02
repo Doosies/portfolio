@@ -6,14 +6,16 @@ import Profile from '../pages/Profile';
 import SendMail from '../pages/SendMail';
 import Terminal from '../pages/Terminal';
 import Internet from '../pages/Internet'
+import BoardListPage from '../pages/BoardListPage';
 
 interface WindowMainPageProps {
     windowType: ApplicationTypes;
     windowId: number;
     windowPath?: string;
+    isFullScreen?: boolean;
 }
 
-const WindowMainPageBlock = styled.div<{windowType: ApplicationTypes}>`
+const WindowMainPageBlock = styled.div<{isFullScreen?: boolean}>`
     border-radius: 20px;
 
     @media screen and (max-width: 479px){
@@ -21,13 +23,13 @@ const WindowMainPageBlock = styled.div<{windowType: ApplicationTypes}>`
         height: calc(90vh - 50px);
     }
     @media screen and (min-width: 480px){
-        ${({windowType}) => windowType === ApplicationTypes.internet
+        ${({isFullScreen}) => isFullScreen
         ? css `width: 80vw;  height: calc(90vh - 50px);`
         : css `width: 480px; height: calc(80vh - 50px);`
         }
     }
     @media screen and (min-width: 1000px){
-        ${({windowType}) => windowType === ApplicationTypes.internet
+        ${({isFullScreen}) => isFullScreen
         ? css `width: 1000px;  height: calc(90vh - 50px);`
         : css `width: 480px;   height: calc(80vh - 50px);`
         }
@@ -35,17 +37,18 @@ const WindowMainPageBlock = styled.div<{windowType: ApplicationTypes}>`
 `
 
 const WindowMainPage = ({
-    windowType, windowId, windowPath,
+    windowType, windowId, windowPath, isFullScreen
 }:WindowMainPageProps) => {
     // const window
     // console.log(windowPath);
     return (
-        <WindowMainPageBlock windowType={windowType}>
+        <WindowMainPageBlock isFullScreen={isFullScreen}>
             {windowType === ApplicationTypes.profile && <Profile />}
             {windowType === ApplicationTypes.finder && <Finder />}
             {windowType === ApplicationTypes.sendmail && <SendMail windowId={windowId}/>}
             {windowType === ApplicationTypes.terminal && <Terminal />}
             {windowType === ApplicationTypes.internet && <Internet windowPath={windowPath}/>}
+            {windowType === ApplicationTypes.board && <BoardListPage/>}
         </WindowMainPageBlock>
     );
 }
