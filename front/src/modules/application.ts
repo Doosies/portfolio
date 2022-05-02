@@ -17,6 +17,7 @@ const initialStateApplication:{appList:ApplicationState[], appCounter: number}  
         { applicationName: '메일', applicationId: 3, applicationType: ApplicationTypes.sendmail},
         // { applicationName: '터미널', applicationId: 4, applicationType: ApplicationTypes.terminal},
         { applicationName: '인터넷', applicationId: 5, applicationType: ApplicationTypes.internet},
+        { applicationName: '게시판', applicationId: 6, applicationType: ApplicationTypes.board},        
     ],
     appCounter: 4,
 }

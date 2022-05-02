@@ -2,7 +2,7 @@
 import { ApplicationTypes } from "../enum/applicationTypes";
 
 
-import { RiFinderLine, RiProfileLine, RiMailSendLine, RiTerminalBoxLine, RiNumber1 } from "react-icons/ri";
+import { RiFinderLine, RiProfileLine, RiMailSendLine, RiTerminalBoxLine, RiNumber1, RiBookOpenLine } from "react-icons/ri";
 import { IconType } from "react-icons";
 
 export function getIconFromAppType(appType: ApplicationTypes ): IconType {
@@ -13,6 +13,7 @@ export function getIconFromAppType(appType: ApplicationTypes ): IconType {
             case ApplicationTypes.sendmail: return RiMailSendLine;
             case ApplicationTypes.terminal: return RiTerminalBoxLine;
             case ApplicationTypes.internet: return RiTerminalBoxLine;
+            case ApplicationTypes.board: return RiBookOpenLine;
         }
     // }
 }
