@@ -5,8 +5,8 @@ import Finder from '../pages/Finder';
 import Profile from '../pages/Profile';
 import SendMail from '../pages/SendMail';
 import Terminal from '../pages/Terminal';
-import Internet from '../pages/Internet'
-import BoardListPage from '../pages/BoardListPage';
+import Internet from '../pages/Internet';
+import Board from '../pages/Board';
 
 interface WindowMainPageProps {
     windowType: ApplicationTypes;
@@ -48,7 +48,7 @@ const WindowMainPage = ({
             {windowType === ApplicationTypes.sendmail && <SendMail windowId={windowId}/>}
             {windowType === ApplicationTypes.terminal && <Terminal />}
             {windowType === ApplicationTypes.internet && <Internet windowPath={windowPath}/>}
-            {windowType === ApplicationTypes.board && <BoardListPage/>}
+            {windowType === ApplicationTypes.board && <Board/>}
         </WindowMainPageBlock>
     );
 }
