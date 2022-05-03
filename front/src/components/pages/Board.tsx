@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
+import { FiEdit } from 'react-icons/fi';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../modules/hooks';
 import { addRouteWindow, RoutePages } from '../../modules/route';
+import BoardEditPage from './boardPages/BoardEditPage';
 import BoardMainPage from './boardPages/BoardMainPage';
 import SIgnInPage from './boardPages/SIgnInPage';
 import SignUpPage from './boardPages/SignUpPage';
@@ -28,6 +30,7 @@ const Board = ({
         case RoutePages.Main : return <BoardMainPage windowId ={windowId}/>
         case RoutePages.SignIn : return <SIgnInPage windowId ={windowId}/>
         case RoutePages.SignUp : return <SignUpPage windowId ={windowId}/>
+        case RoutePages.Edit : return <BoardEditPage windowId ={windowId}/>
         default: {
             
             return <div>

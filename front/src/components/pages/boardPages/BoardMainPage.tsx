@@ -1,7 +1,5 @@
-import React, {useState} from 'react';
+import React, {} from 'react';
 import styled from 'styled-components';
-import BoardBottom from '../board/BoardBottom';
-import BoardRow from '../board/BoardRow';
 import BoardList from '../board/BoardList';
 import { useAppDispatch, useAppSelector } from '../../../modules/hooks';
 import { changeRoute, RoutePages } from '../../../modules/route';
@@ -18,8 +16,6 @@ const BoardMainPageBlock = styled.div`
 
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    /* justify-content: center; */
 
     overflow-y: auto;
 
@@ -37,11 +33,6 @@ const Content = styled.div`
     height: 100%;
     
 `;
-const SignInButton = styled.button`
-    /* position: absolute; */
-    position: absolute;
-    right: 0;
-`;
 
 
 const BoardMainPage = ({
@@ -57,7 +48,7 @@ const BoardMainPage = ({
         <BoardMainPageBlock>
             <Top>
                 <Button width ={'100px'} onClick={handleClickSignIn}>
-                    로그인!
+                    로그인
                 </Button>
             </Top>
             <Content>

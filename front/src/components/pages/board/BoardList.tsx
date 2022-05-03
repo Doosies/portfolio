@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import { useAppDispatch } from '../../../modules/hooks';
+import { changeRoute, RoutePages } from '../../../modules/route';
 import Button from '../../Button';
 import BoardBottom from './BoardBottom';
 import BoardRow from './BoardRow';
@@ -53,10 +55,18 @@ const board = [
 const BoardList = ({
     windowId, 
 }:BoardListProps) => {
+    const dispatch = useAppDispatch();
+
+    const handleClickEdit = () => {
+        dispatch(changeRoute({route: RoutePages.Edit, windowId}));
+    }
+
     return (
         <BoardListBlock>
             <ListTop>
-                <Button width='100px'>게시글 작성</Button>
+                <Button width='100px' onClick={handleClickEdit}>
+                    게시글 작성
+                </Button>
             </ListTop>
             <BoardRow 
                     title="제목"
