@@ -1,21 +1,41 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
-import { useAppSelector } from '../../modules/hooks';
+import { useAppDispatch, useAppSelector } from '../../modules/hooks';
+import { addRouteWindow, RoutePages } from '../../modules/route';
 import BoardMainPage from './boardPages/BoardMainPage';
+import SIgnInPage from './boardPages/SIgnInPage';
+import SignUpPage from './boardPages/SignUpPage';
 
 interface BoardProps {
-    
+    windowId: number;
 }
 
 const BoardBlock = styled.div`
     
 `
-const Board = () => {
-    const router = useAppSelector(state => state.route.nowRoute);
-    const a = '';
-    switch (router) {
-        case 'main' : return <BoardMainPage/>
-        default: return <div>오류</div>
+const Board = ({
+    windowId, 
+}:BoardProps) => {
+    const routePage = useAppSelector(state => state.route.find( el => el.windowId === windowId)?.nowRoute);
+    const dispatch = useAppDispatch();
+
+    useEffect(()=>{
+        dispatch(addRouteWindow({route: RoutePages.Main, windowId }));
+        console.log("board 생성");
+    },[]);
+    
+    switch (routePage) {
+        case RoutePages.Main : return <BoardMainPage windowId ={windowId}/>
+        case RoutePages.SignIn : return <SIgnInPage windowId ={windowId}/>
+        case RoutePages.SignUp : return <SignUpPage windowId ={windowId}/>
+        default: {
+            
+            return <div>
+                <p>오류페이지입니다.</p>
+                <p>window id: {windowId}</p>
+                <p>route page: : {routePage}</p>
+            </div>
+        }
     }
 }
 

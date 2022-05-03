@@ -5,11 +5,16 @@ import {FiMaximize2, FiMinus, } from 'react-icons/fi'
 import {AiOutlineClose} from 'react-icons/ai'
 import { ButtonDoing, ButtonSize } from '../../enum/buttonEnum';
 import { lighten } from 'polished';
+import { ApplicationTypes } from '../../enum/applicationTypes';
+import { useAppDispatch } from '../../modules/hooks';
+import { removeWindow } from '../../modules/window';
+import { removeRouteWindow } from '../../modules/route';
 
 interface WindowTopbarProps {
-    windowId?: number;
+    windowId: number;
     windowName: string;
     isActive: boolean;
+    windowType: ApplicationTypes,
 }
 const WindowTopbarBlock = styled.div<{isActive: boolean}>`
     position: relative;
@@ -62,11 +67,33 @@ const circles = [
 ]
 
 const WindowTopbar = ({
-    windowId, windowName, isActive
+    windowId, windowName, isActive, windowType,
 }:WindowTopbarProps) => {
+    const dispatch = useAppDispatch();
     const [isOnElement, setOnElement] = useState(false);
     const handleMouseMove = () => void setOnElement(true);
     const handleMouseLeave = () => void setOnElement(false);
+
+    const handleClickControllButton = (doing: ButtonDoing) => {
+        switch (doing) {
+            case ButtonDoing.close: {
+                if (windowType === ApplicationTypes.board){
+                    dispatch(removeRouteWindow(windowId));
+                }
+                dispatch(removeWindow(windowId));
+                break;
+            }
+            case ButtonDoing.minimize:{
+                dispatch(removeWindow(windowId));
+                break;
+            }
+            case ButtonDoing.maxmize:{
+                dispatch(removeWindow(windowId));
+                break;
+            }
+            default: break;
+        }
+    }
 
     return (
         <WindowTopbarBlock isActive={isActive}>
@@ -83,6 +110,7 @@ const WindowTopbar = ({
                         key={`${el.color}+${el.doing}`}
                         windowId={windowId}
                         isActive={isActive}
+                        onClick={handleClickControllButton}
                     >
                         <el.icon strokeWidth={el.strokeWidth}/>
                     </CircleButton>

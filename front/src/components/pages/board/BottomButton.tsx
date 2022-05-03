@@ -1,28 +1,41 @@
 import React, {useState} from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface BottomButtonProps {
-    children: React.ReactNode;
+    value: number;
+    isThisPage: boolean;
+    onClick: (selectPageNum: number) => void;
 }
 
-const BottomButtonBlock = styled.div`
+const BottomButtonBlock = styled.div<{isThisPage: boolean}>`
     width: 30px;
     height: 30px;
     padding: 5px;
     border-radius: 20px;
-    background-color: white;
-    color:#1E1C1C;
+
+    ${({isThisPage})=> isThisPage && css`
+        color:#1E1C1C;
+        background-color: white;
+    `}
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+
+    @media (hover: hover) {
+	    &:hover { background-color: #323b89; cursor: pointer;}
+    }
 `
 const BottomButton = ({
-    children, 
+    value, onClick, isThisPage,
 }:BottomButtonProps) => {
     return (
-        <BottomButtonBlock>
-            {children}
+        <BottomButtonBlock 
+            onClick={() => onClick(value)} 
+            isThisPage={isThisPage}
+        >
+            {value}
         </BottomButtonBlock>
     );
 }

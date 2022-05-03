@@ -61,6 +61,7 @@ const Window = ({
                     windowId={windowId}
                     windowName={windowName}
                     isActive={isActive}
+                    windowType={windowType}
                 />
                 <WindowMainPage 
                     windowType={windowType}

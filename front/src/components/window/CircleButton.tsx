@@ -14,6 +14,7 @@ interface CircleButtonProps {
     children?: React.ReactNode;
     windowId?: number;
     isActive: boolean;
+    onClick: (doing: ButtonDoing) => void;
 }
 
 function getButtonSize (size: ButtonSize): string {
@@ -55,39 +56,39 @@ const ChildBlock = styled.div`
 `;
 
 const CircleButton = ({
-    color, size, children, isHover, doing, windowId, isActive,
+    color, size, children, isHover, doing, windowId, isActive, onClick
 }:CircleButtonProps) => {
 
-    const dispatch = useAppDispatch();
+    // const dispatch = useAppDispatch();
 
     const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
         // 상위 노드로부터의 이벤트 캡쳐링 방지
         e.stopPropagation();
     }
-    const handleButtonClick = () => {
-        switch (doing) {
-            case ButtonDoing.close: {
-                dispatch(removeWindow(windowId));
-                break;
-            }
-            case ButtonDoing.minimize:{
-                dispatch(removeWindow(windowId));
-                break;
-            }
-            case ButtonDoing.maxmize:{
-                dispatch(removeWindow(windowId));
-                break;
-            }
-            default: break;
-        }
-    }
+    // const handleButtonClick = () => {
+    //     switch (doing) {
+    //         case ButtonDoing.close: {
+    //             dispatch(removeWindow(windowId));
+    //             break;
+    //         }
+    //         case ButtonDoing.minimize:{
+    //             dispatch(removeWindow(windowId));
+    //             break;
+    //         }
+    //         case ButtonDoing.maxmize:{
+    //             dispatch(removeWindow(windowId));
+    //             break;
+    //         }
+    //         default: break;
+    //     }
+    // }
 
     return (
         <CircleButtonBlock 
             size={size} 
             color={color} 
             isHover={isHover}
-            onClick={handleButtonClick}
+            onClick={() =>{onClick(doing)} }
             onMouseDown={handleMouseDown}
             isActive={isActive}
         >

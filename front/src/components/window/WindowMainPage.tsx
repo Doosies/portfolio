@@ -48,7 +48,7 @@ const WindowMainPage = ({
             {windowType === ApplicationTypes.sendmail && <SendMail windowId={windowId}/>}
             {windowType === ApplicationTypes.terminal && <Terminal />}
             {windowType === ApplicationTypes.internet && <Internet windowPath={windowPath}/>}
-            {windowType === ApplicationTypes.board && <Board/>}
+            {windowType === ApplicationTypes.board && <Board windowId={windowId}/>}
         </WindowMainPageBlock>
     );
 }

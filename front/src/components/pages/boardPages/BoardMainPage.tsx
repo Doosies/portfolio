@@ -3,9 +3,12 @@ import styled from 'styled-components';
 import BoardBottom from '../board/BoardBottom';
 import BoardRow from '../board/BoardRow';
 import BoardList from '../board/BoardList';
+import { useAppDispatch, useAppSelector } from '../../../modules/hooks';
+import { changeRoute, RoutePages } from '../../../modules/route';
+import Button from '../../Button';
 
 interface BoardMainPageProps {
-    
+    windowId: number;
 }
 
 const BoardMainPageBlock = styled.div`
@@ -26,6 +29,8 @@ const Top = styled.div`
     position: relative;
     width: 100%;
     height: 30px;
+    display: flex;
+    justify-content: flex-end;
 `;
 const Content = styled.div`
     width: 100%;
@@ -39,14 +44,24 @@ const SignInButton = styled.button`
 `;
 
 
-const BoardMainPage = () => {
+const BoardMainPage = ({
+    windowId
+}:BoardMainPageProps) => {
+    const nowRoute = useAppSelector(state => state.route.find( el => el.windowId === windowId)?.nowRoute);
+    const dispatch = useAppDispatch();
+
+    const handleClickSignIn = () => {
+        dispatch(changeRoute({route: RoutePages.SignIn, windowId}));
+    }
     return (
         <BoardMainPageBlock>
             <Top>
-                <SignInButton>로그인!</SignInButton>
+                <Button width ={'100px'} onClick={handleClickSignIn}>
+                    로그인!
+                </Button>
             </Top>
             <Content>
-                <BoardList />
+                <BoardList windowId={windowId}/>
             </Content>
         </BoardMainPageBlock>
     );
