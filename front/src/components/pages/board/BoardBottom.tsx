@@ -76,7 +76,6 @@ const BoardBottom = ({
         }
         return buttons;
     }
-    console.log(buttonState.nowPage);
     return (
         <BoardBottomBlock>
             <ButtonContainer>

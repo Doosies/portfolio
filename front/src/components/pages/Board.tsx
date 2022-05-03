@@ -24,7 +24,6 @@ const Board = ({
 
     useEffect(()=>{
         dispatch(addRouteWindow({route: RoutePages.Main, windowId }));
-        console.log("board 생성");
     },[]);
     
     switch (routePage) {
