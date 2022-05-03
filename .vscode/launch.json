@@ -5,11 +5,50 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Launch BackfolApplication",
+            "request": "launch",
+            "mainClass": "com.song.backfol.BackfolApplication",
+            "projectName": "backfol"
+        },
+        {
+            "type": "java",
+            "name": "Launch PofolApplication",
+            "request": "launch",
+            "mainClass": "com.smh.pofol.PofolApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "Launch PfApplication",
+            "request": "launch",
+            "mainClass": "com.ppap.pf.PfApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "Launch SktelApplication",
+            "request": "launch",
+            "mainClass": "com.ppap.sktel.SktelApplication",
+            "projectName": "sktel"
+        },
+        {
             "type": "pwa-chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:8080",
             "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SktelApplication<sktel (2)>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.ppap.sktel.SktelApplication",
+            "projectName": "sktel (2)",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
