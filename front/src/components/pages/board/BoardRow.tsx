@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import styled, { css } from 'styled-components';
+import { BoardInfos } from './BoardList';
 
 interface BoardRowProps {
-    title: string;
-    nickname: string;
+    onClick?: (boardInfos: BoardInfos, isTop?: boolean) => void;
+    boardInfos: BoardInfos,
     isTop?:boolean;
 }
 
@@ -57,18 +58,18 @@ const Text = styled.div<{isTop?: boolean}>`
 `;
 
 const BoardRow = ({
-    title, nickname, isTop, 
+    boardInfos, isTop, onClick
 }:BoardRowProps) => {
     return (
-        <BoardRowBlock isTop={isTop}>
+        <BoardRowBlock isTop={isTop} onClick={()=>{onClick && onClick(boardInfos, isTop)}}>
             <Column isTop={isTop} >
                 <Text className='title' >
-                    {title}    
+                    {boardInfos.title}    
                 </Text>
             </Column>
             <Column isTop={isTop} >
                 <Text>
-                    {nickname} 
+                    {boardInfos.nickname} 
                 </Text>
             </Column>
         </BoardRowBlock>

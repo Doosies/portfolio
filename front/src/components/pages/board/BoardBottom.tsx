@@ -8,15 +8,11 @@ interface BoardBottomProps {
     nowPage: number;
     windowId: number;
 }
-interface ButtonState {
-    startIndex: number;
-    endIndex: number;
-    nowPage: number;
-}
 
 const BoardBottomBlock = styled.div`
     width: 100%;
-    flex: 1;
+    height: 80px;
+    /* flex: 1; */
     display: flex;
 `
 const ButtonContainer = styled.div`

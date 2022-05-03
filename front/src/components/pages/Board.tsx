@@ -3,6 +3,7 @@ import { FiEdit } from 'react-icons/fi';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../modules/hooks';
 import { addRouteWindow, RoutePages } from '../../modules/route';
+import BoardContentsPage from './boardPages/BoardContentsPage';
 import BoardEditPage from './boardPages/BoardEditPage';
 import BoardMainPage from './boardPages/BoardMainPage';
 import SIgnInPage from './boardPages/SIgnInPage';
@@ -31,6 +32,7 @@ const Board = ({
         case RoutePages.SignIn : return <SIgnInPage windowId ={windowId}/>
         case RoutePages.SignUp : return <SignUpPage windowId ={windowId}/>
         case RoutePages.Edit : return <BoardEditPage windowId ={windowId}/>
+        case RoutePages.Contents : return <BoardContentsPage windowId ={windowId}/>
         default: {
             
             return <div>
