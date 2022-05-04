@@ -37,9 +37,16 @@ const BottomButtonContainer = styled.div`
     width: 200px;
     padding: 10px;
     border-top: 0.1px solid white;
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     gap: 5px;
+`;
+const BottomButtonTop = styled.div`
+    width: 100%;
+    display: flex;
+`;
+const ButtomButtonButtom = styled.div`
+    width: 100%;
 `;
 
 const SIgnInPage = ({
@@ -50,16 +57,28 @@ const SIgnInPage = ({
     const handleClickSignUp = () => {
         dispatch(changeRoute({route:RoutePages.SignUp, windowId}));
     }
+    const handleClickGoHome = () => {
+        dispatch(changeRoute({route:RoutePages.Main, windowId}));
+    }
     return (
         <SIgnInPageBlock>
             <Title>로그인</Title>
             <Input placeholder='아이디'/>
             <Input placeholder='비밀번호'/>
             <BottomButtonContainer>
-                <Button>로그인</Button>
-                <Button onClick={handleClickSignUp}>
-                    회원가입
-                </Button>
+                <BottomButtonTop>
+                    <Button>
+                        로그인
+                    </Button>
+                    <Button onClick={handleClickSignUp}>
+                        회원가입
+                    </Button>
+                </BottomButtonTop>
+                <ButtomButtonButtom>
+                    <Button onClick={handleClickGoHome}>
+                        홈화면
+                    </Button>
+                </ButtomButtonButtom>
             </BottomButtonContainer>
         </SIgnInPageBlock>
     );

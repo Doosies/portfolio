@@ -1,4 +1,4 @@
-package com.song.backfol.phoneInfo;
+package com.song.backfol.domain.phoneInfo;
 
 import java.sql.Date;
 

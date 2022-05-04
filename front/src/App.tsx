@@ -1,8 +1,6 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { BrowserRouter, useRoutes } from 'react-router-dom';
 import styled from 'styled-components';
-import { sendMail } from './api/sendMail';
 import MainPage from './components/MainPage';
 import TopBar from './components/TopBar';
 

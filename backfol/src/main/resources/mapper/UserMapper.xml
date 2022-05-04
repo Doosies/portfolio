@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.song.backfol.domain.signup.UserMapper">
+    <insert id="createUser" parameterType="com.song.backfol.domain.signup.UserVo">
+      INSERT INTO TB_USER
+      (USER_ID, USER_PW, USER_AUTH, APPEND_DATE, UPDATE_date)
+      VALUES(#{userId}, #{userPw}, #{userAuth}, #{appendDate}, #{updateDate});
+    </insert>
+
+    <select id="idCheck" parameterType="com.song.backfol.domain.signup.UserVo" resultType="int">
+      SELECT COUNT(*)
+      FROM TB_USER
+      WHERE USER_ID = #{userId};
+    </select>
+</mapper>

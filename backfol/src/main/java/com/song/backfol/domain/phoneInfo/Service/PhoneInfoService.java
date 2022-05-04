@@ -1,10 +1,10 @@
-package com.song.backfol.phoneInfo.Service;
+package com.song.backfol.domain.phoneInfo.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.song.backfol.phoneInfo.PhoneInfo;
-import com.song.backfol.phoneInfo.Dao.PhoneInfoDao;
+import com.song.backfol.domain.phoneInfo.PhoneInfo;
+import com.song.backfol.domain.phoneInfo.Dao.PhoneInfoDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

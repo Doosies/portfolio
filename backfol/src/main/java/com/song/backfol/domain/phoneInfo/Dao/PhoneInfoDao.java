@@ -1,11 +1,11 @@
-package com.song.backfol.phoneInfo.Dao;
+package com.song.backfol.domain.phoneInfo.Dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.song.backfol.phoneInfo.PhoneInfo;
+import com.song.backfol.domain.phoneInfo.PhoneInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
@@ -18,6 +18,8 @@ public class PhoneInfoDao implements IPhoneInfoDao {
 
     @Autowired(required = false)
     private JdbcTemplate jdbcTemplate;
+
+    
 
     @Override
     public void phoneInfoInsert(List<PhoneInfo> insertList) {

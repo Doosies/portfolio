@@ -1,4 +1,4 @@
-package com.song.backfol.controller;
+package com.song.backfol.domain.phoneInfo.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +11,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.song.backfol.phoneInfo.PhoneInfo;
-import com.song.backfol.phoneInfo.Service.PhoneInfoService;
+
+import com.song.backfol.domain.phoneInfo.PhoneInfo;
+import com.song.backfol.domain.phoneInfo.Service.PhoneInfoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
