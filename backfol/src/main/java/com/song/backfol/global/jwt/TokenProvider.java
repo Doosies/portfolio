@@ -77,22 +77,30 @@ public class TokenProvider implements InitializingBean{
         Date validity = new Date(now.getTime() + this.tokenValidityInMilliseconds);
 
         return Jwts.builder()
+                .setSubject(userId)
                 .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(validity) // 토큰 만료일 설정
                 .signWith(key, SignatureAlgorithm.HS512) // 암호화
                 .compact();
-
     }
     
     /**
      * Token에 담겨있는 정보를 이용해 Authentication 객체를 반환하는 메서드
      */
     public Authentication getAuthentication(String token) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserId(token));
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+        
+        UserDetails userDetails = 
+        userDetailsService.loadUserByUsername(this.getUserId(token));
+        
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
-    // 유저 이름 추출
+    // // 유저 이름 추출
     public String getUserId(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(key)
@@ -105,7 +113,6 @@ public class TokenProvider implements InitializingBean{
     // Request header에서 token 꺼내옴
     public String resolveToken(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
-
         // 가져온 Authorization Header 가 문자열이고, Bearer 로 시작해야 가져옴
         if (StringUtils.hasText(token) && token.startsWith("Bearer ")) {
             return token.substring(7);

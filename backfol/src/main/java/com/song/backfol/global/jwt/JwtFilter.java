@@ -16,11 +16,14 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.filter.GenericFilterBean;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 /**
  * GenericFillterBean을 Extends에서 doFilter Override, 
  * 실제 실터링 로직은 doFilter 내부에 작성
  */
+@Slf4j
 public class JwtFilter extends GenericFilterBean{
 
     private static final Logger logger = LoggerFactory.getLogger(JwtFilter.class);
@@ -41,11 +44,15 @@ public class JwtFilter extends GenericFilterBean{
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
 throws IOException, ServletException {
     HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-    String jwt = resolveToken(httpServletRequest);
-    String requestURI = httpServletRequest.getRequestURI();
 
-    if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
-        Authentication authentication = tokenProvider.getAuthentication(jwt);
+    String token = tokenProvider.resolveToken(httpServletRequest);
+    String requestURI = httpServletRequest.getRequestURI();
+    
+
+    if (StringUtils.hasText(token) && tokenProvider.validateToken(token)) {
+        
+        Authentication authentication = tokenProvider.getAuthentication(token);
+        
         SecurityContextHolder.getContext().setAuthentication(authentication);
         logger.debug("Security Contextx에 '{}' 인증 정보를 저장했습니다, uri: {}", authentication.getName(), requestURI);
     }else {
@@ -58,11 +65,11 @@ throws IOException, ServletException {
      * Request Header에서 토큰 정보를 꺼내오기 위한
      * resolveToken 메서드
      */
-    private String resolveToken(HttpServletRequest request) {
-        String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7);
-        }
-        return null;
-    }
+    // private String resolveToken(HttpServletRequest request) {
+    //     String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
+    //     if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+    //         return bearerToken.substring(7);
+    //     }
+    //     return null;
+    // }
 }

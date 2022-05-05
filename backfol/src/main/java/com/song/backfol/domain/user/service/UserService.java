@@ -11,10 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 // import io.jsonwebtoken.lang.Collections; 
 import lombok.RequiredArgsConstructor;
-import java.util.Optional;
 
 import com.song.backfol.domain.user.UserMapper;
-import com.song.backfol.domain.user.UserVo;
 import com.song.backfol.domain.user.dto.LoginDTO;
 import com.song.backfol.domain.user.dto.UserDTO;
 import com.song.backfol.global.exception.DuplicatedUsernameException;
@@ -59,18 +57,16 @@ public class UserService{
         .build();
 
         userMapper.join(userVo);
-        userMapper.addRole(userVo);
+        // userMapper.addRole(userVo);
         
         return userMapper.findUserId(user.getUserId()).isPresent();
     }
 
     public String login(LoginDTO loginDTO) {
-        System.out.println(loginDTO.getUserId());
-        System.out.println(loginDTO.getUserPw());
 
         UserDTO userDto = userMapper.findUser(loginDTO.getUserId())//indUserByUsername(loginDto.getUsername())
                 .orElseThrow(() -> new LoginFailedException("잘못된 아이디입니다"));
-
+        
         if (!passwordEncoder.matches(loginDTO.getUserPw(), userDto.getPassword())) {
             throw new LoginFailedException("잘못된 비밀번호입니다");
         }
