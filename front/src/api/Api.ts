@@ -1,15 +1,17 @@
 import axios from "axios";
 
-const url = 'http://localhost:8080';
+const url = 'http://localhost:8080/api/v1';
 interface UserType {
     userId: string;
     userPw: string;
 }
-export const createUser = (user: UserType) => axios.post(`${url}/signUp`,{
+export const createUser = async (user: UserType) => await axios.post(`${url}/join`,{
     userId: user.userId,
     userPw: user.userPw,
 });
 
-export const checkId = (userId: string) => axios.post(`${url}/checkId`,{
-    userId,
-});
+export const checkId = async (userId: string) => 
+    await axios.get(`${url}/get?userId=${userId}`);
+
+
+// http://localhost:8080/api/v1/get?userId=sdfasf123

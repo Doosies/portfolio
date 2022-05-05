@@ -1,18 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>  
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="com.song.backfol.domain.signup.UserMapper">
-    <insert id="createUser" parameterType="com.song.backfol.domain.signup.UserVo">
-      INSERT INTO TB_USER
-      (USER_ID, USER_PW, USER_AUTH, APPEND_DATE, UPDATE_date)
-      VALUES(#{userId}, #{userPw}, #{userAuth}, #{appendDate}, #{updateDate});
+<mapper namespace="com.song.backfol.domain.user.UserMapper">
+    <insert id="join" parameterType="com.song.backfol.domain.user.dto.UserDTO">
+      INSERT INTO user_TB
+      (user_ID, user_PW, create_date, update_date)
+      VALUES(#{userId}, #{userPw}, #{createDate}, #{updateDate});
     </insert>
 
-    <select id="idCheck" parameterType="com.song.backfol.domain.signup.UserVo" resultType="int">
-      SELECT COUNT(*)
-      FROM TB_USER
-      WHERE USER_ID = #{userId};
+    <insert id="addRole" parameterType="com.song.backfol.domain.user.dto.UserDTO">
+      INSERT INTO user_authority_TB
+      (user_FK, authority_FK)
+      VALUES(
+        (SELECT user_PK FROM user_TB WHERE user_ID = #{userId}),
+        (SELECT authority_PK FROM authority_TB WHERE authority_PK = #{userRole})
+      );
+    </insert>
+
+    <!-- <select id="findUserById" resultType="com.song.backfol.domain.user.UserVo">
+      SELECT 
+        b.user_ID AS user_ID, 
+        b.user_PW AS user_PW, 
+        a.authority_FK AS user_Auth 
+      FROM user_authority_Tb AS a
+      INNER JOIN user_Tb AS b
+      ON b.user_PK = a.user_FK
+      WHERE b.user_id = #{userId};
+    </select> -->
+
+    <select id="findUserId" resultType="com.song.backfol.domain.user.dto.UserDTO">
+      SELECT user_ID 
+      FROM user_TB
+      WHERE user_ID = #{userId};
     </select>
 </mapper>
+
+<!-- Optional<UserVo> findByUserId(String userId); -->

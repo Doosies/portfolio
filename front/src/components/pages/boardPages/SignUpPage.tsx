@@ -107,7 +107,7 @@ const SignUpPage = ({
         if (canSend.id && canSend.pw) {
             const response = await createUser({userId: input.id, userPw: input.pw});
             // 성공했을 때
-            if (response.status === 200 && response.data.data === input.id) {
+            if (response.status === 200 && response.data.data) {
                 alert("회원가입 성공! 로그인 페이지로 돌아갑니다.");
                 dispatch(changeRoute({route: RoutePages.SignIn, windowId}));
             }
@@ -134,7 +134,6 @@ const SignUpPage = ({
     }
     // 입력 상자 말고 다른곳을 클릭했을 때
     const handleBlurInput = async(e: React.FocusEvent<HTMLInputElement>) => {
-
         // 이전에 선택한게 id인 경우
         if(e.target.id === 'id'){
             // 일단 못보내는 상태로 처리
@@ -146,9 +145,9 @@ const SignUpPage = ({
             // id가 제대로 된 값일경우
             if ( isPassRegExp("id", input.id)) {
                 // 사용 가능한 아이디: 0, 중복된 아이디: 1
-                const dupleIdCnt = await checkId(input.id);
+                const canJoin = await checkId(input.id);
                 // id가 서버에 전송할 수 없는 값이면
-                if (dupleIdCnt.data.data > 0 ) {                
+                if (canJoin.data.data ) {                
                     setText({ ...text, id: texts.id.error_duple });
                 // id가 서버에 전송이 가능한 값이라면
                 }else {
@@ -157,7 +156,6 @@ const SignUpPage = ({
                     // cansend.id를 전송 가능상태로 변경
                     setCanSend({...canSend, id: true});
                 }
-            // id 제대로 된 값일 경우
             }else {
                 // id에 값이 없으면 error_empty 를 띄움
                 setText({ ...text, 

@@ -34,9 +34,16 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
 
-    // implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
-    // runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
-    // runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
+	// jwt토큰
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	implementation 'com.auth0:java-jwt:3.10.3'
+	// oauth2 token
+	implementation group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.3.5.RELEASE'
+
+
 
 	// mybatis
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
@@ -44,12 +51,12 @@ dependencies {
 	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.3.0'
 	implementation group: 'org.mybatis', name: 'mybatis-typehandlers-jsr310', version: '1.0.2'
 	implementation group: 'org.mybatis', name: 'mybatis-spring', version: '2.0.6'
-	// jwt토큰
-	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
-    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2',
+	
+	// implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+    // runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2',
             // Uncomment the next line if you want to use RSASSA-PSS (PS256, PS384, PS512) algorithms:
             //'org.bouncycastle:bcprov-jdk15on:1.60',
-            'io.jsonwebtoken:jjwt-jackson:0.11.2' // or 'io.jsonwebtoken:jjwt-gson:0.11.2' for gson
+            // 'io.jsonwebtoken:jjwt-jackson:0.11.2' // or 'io.jsonwebtoken:jjwt-gson:0.11.2' for gson
 }
 
 tasks.named('test') {
