@@ -16,6 +16,7 @@ public interface UserMapper {
     void join(UserDTO userVo);
     void addRole(UserDTO userVo);
     // Optional<UserVo> findUserById(String userId);
+    Optional<UserDTO> findUser(String userId);
     Optional<UserDTO> findUserId(String userId);
     // int findPkById(String id);sss
 }

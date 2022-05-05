@@ -4,20 +4,27 @@ import java.security.Key;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.song.backfol.domain.user.UserVo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.client.MultipartBodyBuilder.PartBuilder;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -34,11 +41,14 @@ public class TokenProvider implements InitializingBean{
     private final Logger logger = LoggerFactory.getLogger(TokenProvider.class);
 
     private static final String AUTHORITIES_KEY = "auth";
-
-    private final String secret;
     private final long tokenValidityInMilliseconds;
-
+    private final String secret;
     private Key key;
+
+
+    @Autowired
+    UserDetailsService userDetailsService;
+
 
     public TokenProvider(
         @Value("${jwt.secret}") String secret,
@@ -47,6 +57,7 @@ public class TokenProvider implements InitializingBean{
         this.secret = secret;
         this.tokenValidityInMilliseconds = tokenValidityInSeconds * 1000;
     }
+
 
     @Override
     public void afterPropertiesSet() {
@@ -57,44 +68,50 @@ public class TokenProvider implements InitializingBean{
     /**
      * 토큰 생성 메서드
      */
-    public String createToken(Authentication authentication) {
-        String authorities = authentication.getAuthorities().stream()
-            .map(GrantedAuthority::getAuthority)
-            .collect((Collectors.joining(",")));
+    public String createToken(String userId, List<String> roles) {
+        Claims claims = Jwts.claims().setSubject(userId);
+        claims.put("roles", roles);
 
-            long now = (new Date()).getTime();
-            // 토큰 만료기간
-            Date validity = new Date(now + this.tokenValidityInMilliseconds);
+        // 토큰 만료기간
+        Date now = new Date();
+        Date validity = new Date(now.getTime() + this.tokenValidityInMilliseconds);
 
-            return Jwts.builder()
-                .setSubject(authentication.getName())
-                .claim(AUTHORITIES_KEY, authorities)
-                .signWith(key, SignatureAlgorithm.HS512)
-                .setExpiration(validity)
+        return Jwts.builder()
+                .setClaims(claims)
+                .setIssuedAt(now)
+                .setExpiration(validity) // 토큰 만료일 설정
+                .signWith(key, SignatureAlgorithm.HS512) // 암호화
                 .compact();
+
     }
     
     /**
      * Token에 담겨있는 정보를 이용해 Authentication 객체를 반환하는 메서드
      */
     public Authentication getAuthentication(String token) {
-        Claims claims = Jwts
-            .parserBuilder()
-            .setSigningKey(key)
-            .build()
-            .parseClaimsJws(token)
-            .getBody();
-
-        Collection<? extends GrantedAuthority> authorities = 
-            Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
-
-        UserVo principal = new UserVo(claims.getSubject(), "", authorities);
-        
-        return new UsernamePasswordAuthenticationToken(principal, token, authorities);
+        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserId(token));
+        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+    }
+    // 유저 이름 추출
+    public String getUserId(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
     }
 
+    // Request header에서 token 꺼내옴
+    public String resolveToken(HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+
+        // 가져온 Authorization Header 가 문자열이고, Bearer 로 시작해야 가져옴
+        if (StringUtils.hasText(token) && token.startsWith("Bearer ")) {
+            return token.substring(7);
+        }
+        return null;
+    }
     /**
      * 토큰을 파싱하고 발생하는 예외를 처리, 문제가 있을경우 false 반환
      */

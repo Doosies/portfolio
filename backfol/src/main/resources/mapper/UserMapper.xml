@@ -19,7 +19,7 @@
       );
     </insert>
 
-    <!-- <select id="findUserById" resultType="com.song.backfol.domain.user.UserVo">
+    <select id="findUser" resultType="com.song.backfol.domain.user.dto.UserDTO">
       SELECT 
         b.user_ID AS user_ID, 
         b.user_PW AS user_PW, 
@@ -28,7 +28,7 @@
       INNER JOIN user_Tb AS b
       ON b.user_PK = a.user_FK
       WHERE b.user_id = #{userId};
-    </select> -->
+    </select>
 
     <select id="findUserId" resultType="com.song.backfol.domain.user.dto.UserDTO">
       SELECT user_ID 

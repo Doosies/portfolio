@@ -1,15 +1,18 @@
 package com.song.backfol.domain.user;
 
 
+import com.song.backfol.domain.user.dto.LoginDTO;
 import com.song.backfol.domain.user.dto.UserDTO;
 import com.song.backfol.domain.user.service.UserService;
 import com.song.backfol.global.DTO.response.BaseResponse;
 import com.song.backfol.global.DTO.response.SingleDataResponse;
 import com.song.backfol.global.exception.DuplicatedUsernameException;
+import com.song.backfol.global.exception.LoginFailedException;
 import com.song.backfol.global.exception.UserNotFoundException;
 import com.song.backfol.global.service.ResponseService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,6 +58,27 @@ public class UserController {
         return responseEntity;
     }
 
+    @PostMapping(value="/login")
+    public ResponseEntity login(@RequestBody LoginDTO loginDto) {
+        ResponseEntity responseEntity = null;
+        try {
+            String token = userService.login(loginDto);
+
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.add("Authorization", "Bearer " + token);
+
+            SingleDataResponse<String> response = responseService.getSingleDataResponse(true, "로그인 성공", token);
+
+            responseEntity = ResponseEntity.status(HttpStatus.OK).headers(httpHeaders).body(response);
+        } catch (LoginFailedException exception) {
+            log.debug(exception.getMessage());
+            BaseResponse response = responseService.getBaseResponse(false, exception.getMessage());
+
+            responseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
+
+        return responseEntity;
+    }
 
     /**
      * @param idDTO userId 전송을 위한 DTO
