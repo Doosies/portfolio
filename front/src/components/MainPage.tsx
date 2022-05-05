@@ -37,6 +37,7 @@ const ApplicationContainer = styled.div`
 const MainPage = () => {
     const applications = useAppSelector(state => state.application.appList).filter( el => el.applicationType !== ApplicationTypes.internet);
     const windows = useAppSelector(state => state.window.windowList);
+    
     const dispatch = useAppDispatch();
 
     const handleClickApplication = (

@@ -3,6 +3,7 @@ import applicationReducer from "./application";
 import windowReducer from "./window";
 import routeReducer from './route';
 import contentsReducer from './contents';
+import authReducer from './auth';
 
 export const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
         window: windowReducer,
         route: routeReducer,
         contents: contentsReducer,
+        auth: authReducer,
     }, 
     devTools: true
 });

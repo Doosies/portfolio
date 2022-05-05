@@ -1,26 +1,18 @@
 package com.song.backfol.global.jwt;
 
 import java.security.Key;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
-
-import com.song.backfol.domain.user.UserVo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.client.MultipartBodyBuilder.PartBuilder;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
@@ -41,7 +33,8 @@ public class TokenProvider implements InitializingBean{
     private final Logger logger = LoggerFactory.getLogger(TokenProvider.class);
 
     private static final String AUTHORITIES_KEY = "auth";
-    private final long tokenValidityInMilliseconds;
+    private final long accessTokenValidityInMilliseconds;
+    private final long refreshTokenValidityInMilliseconds;
     private final String secret;
     private Key key;
 
@@ -52,10 +45,12 @@ public class TokenProvider implements InitializingBean{
 
     public TokenProvider(
         @Value("${jwt.secret}") String secret,
-        @Value("${jwt.token-validity-in-seconds}") long tokenValidityInSeconds
+        @Value("${jwt.access-token-validity-in-seconds}") long accessTokenValidityInSeconds,
+        @Value("${jwt.refresh-token-validity-in-seconds}") long refreshTokenValidityInSeconds
     ){
         this.secret = secret;
-        this.tokenValidityInMilliseconds = tokenValidityInSeconds * 1000;
+        this.accessTokenValidityInMilliseconds = accessTokenValidityInSeconds * 1000;
+        this.refreshTokenValidityInMilliseconds = refreshTokenValidityInSeconds * 1000;
     }
 
 
@@ -66,20 +61,40 @@ public class TokenProvider implements InitializingBean{
     }
 
     /**
-     * 토큰 생성 메서드
+     * 액세스 토큰 생성 메서드
+     * @param userId 발급받는 유저의 아이디
+     * @param roles 발급받는 유저의 권한
+     * @return 발급받은 토큰을 리턴해줌
      */
-    public String createToken(String userId, List<String> roles) {
+    public String createAcessToken(String userId, List<String> roles) {
         Claims claims = Jwts.claims().setSubject(userId);
         claims.put("roles", roles);
-
         // 토큰 만료기간
         Date now = new Date();
-        Date validity = new Date(now.getTime() + this.tokenValidityInMilliseconds);
-
+        Date validity = new Date(now.getTime() + this.accessTokenValidityInMilliseconds);
         return Jwts.builder()
                 .setSubject(userId)
                 .setClaims(claims)
-                .setIssuedAt(now)
+                .setIssuedAt(now) //토큰 발행 시간정보
+                .setExpiration(validity) // 토큰 만료일 설정
+                .signWith(key, SignatureAlgorithm.HS512) // 암호화
+                .compact();
+    }
+    
+    /**
+     * 리프레시 토큰 생성 메서드
+     * @param userId 발급받는 유저의 아이디
+     * @param roles 발급받는 유저의 권한
+     * @return 발급받은 토큰을 리턴해줌
+     */
+    public String createRefreshToken(String userId, List<String> roles) {
+        Claims claims = Jwts.claims().setSubject(userId);
+        claims.put("roles", roles);
+        // 토큰 만료기간
+        Date now = new Date();
+        Date validity = new Date(now.getTime() + this.refreshTokenValidityInMilliseconds);
+        return Jwts.builder()
+                .setIssuedAt(now) //토큰 발행 시간정보
                 .setExpiration(validity) // 토큰 만료일 설정
                 .signWith(key, SignatureAlgorithm.HS512) // 암호화
                 .compact();
@@ -89,12 +104,6 @@ public class TokenProvider implements InitializingBean{
      * Token에 담겨있는 정보를 이용해 Authentication 객체를 반환하는 메서드
      */
     public Authentication getAuthentication(String token) {
-        Claims claims = Jwts.parserBuilder()
-                .setSigningKey(key)
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
-        
         UserDetails userDetails = 
         userDetailsService.loadUserByUsername(this.getUserId(token));
         
@@ -124,16 +133,29 @@ public class TokenProvider implements InitializingBean{
      */
     public boolean validateToken(String token) {
         try {
-           Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
-           return true;
+            Claims claim = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
+            // if ())
+            
+            // System.out.println(claim.getIssuedAt());
+        //    return true;
+            // 만료기간 검사
+            boolean test = claim.getExpiration().before(new Date());
+            System.out.println(claim.getExpiration().before(new Date()));
+            System.out.println(claim.getExpiration());
+            System.out.println(new Date());
+            return test;
         } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
            logger.info("잘못된 JWT 서명입니다.");
+           System.out.println("잘못된 JWT 서명입니다!");
         } catch (ExpiredJwtException e) {
            logger.info("만료된 JWT 토큰입니다.");
+           System.out.println("만료된 JWT 토큰입니다!");
         } catch (UnsupportedJwtException e) {
            logger.info("지원되지 않는 JWT 토큰입니다.");
+           System.out.println("지원되지 않는 JWT 토큰입니다!");
         } catch (IllegalArgumentException e) {
            logger.info("JWT 토큰이 잘못되었습니다.");
+           System.out.println("JWT 토큰이 잘못되었습니다!");
         }
         return false;
      }

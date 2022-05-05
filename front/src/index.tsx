@@ -6,10 +6,16 @@ import reportWebVitals from './reportWebVitals';
 import GlobalStyle from './GlobalStyle';
 import { Provider } from 'react-redux';
 import { store } from './modules/store';
+// import axios from 'axios';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+// axios.defaults.withCredentials;
+// axios.defaults.baseURL = "https://songminhyung.com";
+// axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 root.render(
   // <React.StrictMode>

@@ -1,5 +1,8 @@
-import React, {useState} from 'react';
+
+import React, {ChangeEvent, useState} from 'react';
 import styled from 'styled-components';
+import { signIn } from '../../../api/Api';
+import { login } from '../../../modules/auth';
 import { useAppDispatch } from '../../../modules/hooks';
 import { changeRoute, RoutePages } from '../../../modules/route';
 import Button from '../../Button';
@@ -52,8 +55,30 @@ const ButtomButtonButtom = styled.div`
 const SIgnInPage = ({
     windowId
 }:SIgnInPageProps) => {
+    const [input, setInput] = useState({
+        id: '',
+        pw: '',
+    })
+
     const dispatch = useAppDispatch();
 
+    const handleClickSignIn = async() => {
+        const res = await signIn({userId: input.id, userPw: input.pw});
+        const id = res.data.message;
+        if (res.status === 200) {
+            alert("로그인 완료! 메인화면으로 돌아갑니다.");
+            dispatch(login({id, token: res.data.data}));
+            dispatch(changeRoute({route: RoutePages.Main, windowId}));
+        }else {
+            alert("로그인 실패! 아이디, 비밀번호를 확인해주세요");
+        }
+    }
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setInput({
+            ...input,
+            [e.target.id]:e.target.value
+        });
+    }
     const handleClickSignUp = () => {
         dispatch(changeRoute({route:RoutePages.SignUp, windowId}));
     }
@@ -63,11 +88,11 @@ const SIgnInPage = ({
     return (
         <SIgnInPageBlock>
             <Title>로그인</Title>
-            <Input placeholder='아이디'/>
-            <Input placeholder='비밀번호'/>
+            <Input id="id" onChange={handleInputChange} value={input.id} placeholder='아이디'/>
+            <Input id="pw" onChange={handleInputChange} value={input.pw} placeholder='비밀번호'/>
             <BottomButtonContainer>
                 <BottomButtonTop>
-                    <Button>
+                    <Button onClick={handleClickSignIn}>
                         로그인
                     </Button>
                     <Button onClick={handleClickSignUp}>

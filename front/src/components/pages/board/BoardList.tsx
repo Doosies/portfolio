@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import { changeContents } from '../../../modules/contents';
-import { useAppDispatch } from '../../../modules/hooks';
+import { useAppDispatch, useAppSelector } from '../../../modules/hooks';
 import { changeRoute, RoutePages } from '../../../modules/route';
 import Button from '../../Button';
 import BoardBottom from './BoardBottom';
@@ -62,6 +62,7 @@ const board = [
 const BoardList = ({
     windowId, 
 }:BoardListProps) => {
+    const isLogin = useAppSelector(state => state.auth.logged);
     const dispatch = useAppDispatch();
 
     const handleClickEdit = () => {
@@ -78,9 +79,11 @@ const BoardList = ({
     return (
         <BoardListBlock>
             <ListTop>
-                <Button width='100px' onClick={handleClickEdit}>
-                    게시글 작성
-                </Button>
+                {isLogin &&
+                    <Button width='100px' onClick={handleClickEdit}>
+                        게시글 작성
+                    </Button>
+                }
             </ListTop>
             <BoardRow 
                     boardInfos={{nickname: '닉네임', title: '제목', content: '', id:-1, }}

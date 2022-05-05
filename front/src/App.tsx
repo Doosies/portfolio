@@ -21,7 +21,6 @@ const routes = useRoutes([
   return routes;
 }
 const App = () => {
-
   return (
     <BrowserRouter >
       <AppRoutes />

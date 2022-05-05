@@ -2,8 +2,10 @@ import { userInfo } from 'os';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import { checkId, createUser } from '../../../api/Api';
+import { login } from '../../../modules/auth';
 import { useAppDispatch } from '../../../modules/hooks';
 import { changeRoute, RoutePages } from '../../../modules/route';
+import { getCookie, setCookie } from '../../../utility/cookie';
 import Button from '../../Button';
 
 interface SignUpPageProps {
@@ -106,10 +108,14 @@ const SignUpPage = ({
     const handleClickSignUp = async () => {
         if (canSend.id && canSend.pw) {
             const response = await createUser({userId: input.id, userPw: input.pw});
-            // 성공했을 때
-            if (response.status === 200 && response.data.data) {
-                alert("회원가입 성공! 로그인 페이지로 돌아갑니다.");
-                dispatch(changeRoute({route: RoutePages.SignIn, windowId}));
+            const userId = response.data.message;
+            
+            if (response.status === 200) {   
+                alert("회원가입 성공! 홈 페이지로 돌아갑니다.");
+                console.log(response.data.data);
+                
+                dispatch(changeRoute({route: RoutePages.Main, windowId}));
+                dispatch(login({id: userId, token: response.data.data}));
             }
         }
     }

@@ -5,13 +5,21 @@ interface UserType {
     userId: string;
     userPw: string;
 }
-export const createUser = async (user: UserType) => await axios.post(`${url}/join`,{
-    userId: user.userId,
-    userPw: user.userPw,
-});
+
+
+export const createUser =  (user: UserType) => 
+    axios.post(`${url}/join`,{
+        userId: user.userId,
+        userPw: user.userPw,},
+    { withCredentials: true, }
+);
+
+export const signIn = (user: UserType) =>
+    axios.post(`${url}/login`,{
+        userId: user.userId,
+        userPw: user.userPw,},
+    { withCredentials: true, }
+);
 
 export const checkId = async (userId: string) => 
     await axios.get(`${url}/get?userId=${userId}`);
-
-
-// http://localhost:8080/api/v1/get?userId=sdfasf123

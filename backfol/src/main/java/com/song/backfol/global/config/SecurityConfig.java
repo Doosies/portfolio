@@ -15,6 +15,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -45,9 +48,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http
- 			.httpBasic().disable()      // Http basic Auth  기반으로 로그인 인증창이 뜸.  disable 시에 인증창 뜨지 않음. 
- 			.csrf().disable();       // rest api이므로 csrf 보안이 필요없으므로 disable처리.
+        http			
+		
+			.cors().configurationSource(corsConfigurationSource())    // rest api이므로 csrf 보안이 필요없으므로 disable처리.
+			.and().csrf().disable()
+ 			.httpBasic().disable();
+			      // Http basic Auth  기반으로 로그인 인증창이 뜸.  disable 시에 인증창 뜨지 않음. 
 		http.addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
 			.exceptionHandling()
 			.authenticationEntryPoint(jwtAuthenticationEntryPoint)
@@ -67,6 +73,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			// .anyRequest().authenticated();     // 나머지 모든 요청 불허  ( 생략 가능 )
 		http.apply(new JwtSecurityConfig(tokenProvider));
 
+	}
+	@Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+
+        configuration.addAllowedOrigin("*");
+        configuration.addAllowedHeader("*");
+        configuration.addAllowedMethod("*");
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
 	}
 	
 

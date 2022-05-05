@@ -3,17 +3,18 @@ package com.song.backfol.domain.user.service;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-// import io.jsonwebtoken.lang.Collections; 
 import lombok.RequiredArgsConstructor;
 
 import com.song.backfol.domain.user.UserMapper;
 import com.song.backfol.domain.user.dto.LoginDTO;
+import com.song.backfol.domain.user.dto.TokenDTO;
 import com.song.backfol.domain.user.dto.UserDTO;
 import com.song.backfol.global.exception.DuplicatedUsernameException;
 import com.song.backfol.global.exception.LoginFailedException;
@@ -61,8 +62,12 @@ public class UserService{
         
         return userMapper.findUserId(user.getUserId()).isPresent();
     }
-
-    public String login(LoginDTO loginDTO) {
+    /**
+     * 토큰 발급받는 메소드
+     * @param loginDTO 로그인 하는 유저의 정보
+     * @return result[0]: accessToken, result[1]: refreshToken
+     */
+    public String login (LoginDTO loginDTO) {
 
         UserDTO userDto = userMapper.findUser(loginDTO.getUserId())//indUserByUsername(loginDto.getUsername())
                 .orElseThrow(() -> new LoginFailedException("잘못된 아이디입니다"));
@@ -71,7 +76,9 @@ public class UserService{
             throw new LoginFailedException("잘못된 비밀번호입니다");
         }
 
-        return jwtTokenProvider.createToken(userDto.getUserId(), Collections.singletonList(userDto.getUserRole()));
+        return userDto.getUserId();
+        // return loginDTO.getUserId();
+        // // return tokenGenerator(userDto);
     }
 
     /**
@@ -98,4 +105,17 @@ public class UserService{
                 .orElseThrow(() -> 
                     new UserNotFoundException("알 수 없는 유저입니다."));
     }
+
+    public TokenDTO tokenGenerator(String userId) {
+        
+        UserDTO userDto = userMapper.findUser(userId)//indUserByUsername(loginDto.getUsername())
+        .orElseThrow(() -> new LoginFailedException("잘못된 아이디입니다"));
+
+        return TokenDTO.builder()
+        .accessToken(jwtTokenProvider.createAcessToken(userDto.getUserId(), Collections.singletonList(userDto.getUserRole())))
+        .refreshToken(jwtTokenProvider.createRefreshToken(userDto.getUserId(), Collections.singletonList(userDto.getUserRole())))
+        .build();
+    }
+
+    
 }

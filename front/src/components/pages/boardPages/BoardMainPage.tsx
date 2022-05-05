@@ -4,6 +4,8 @@ import BoardList from '../board/BoardList';
 import { useAppDispatch, useAppSelector } from '../../../modules/hooks';
 import { changeRoute, RoutePages } from '../../../modules/route';
 import Button from '../../Button';
+import { logout } from '../../../modules/auth';
+import { getCookie } from '../../../utility/cookie';
 
 interface BoardMainPageProps {
     windowId: number;
@@ -38,17 +40,20 @@ const Content = styled.div`
 const BoardMainPage = ({
     windowId
 }:BoardMainPageProps) => {
-    const nowRoute = useAppSelector(state => state.route.find( el => el.windowId === windowId)?.nowRoute);
+    const auth = useAppSelector(state => state.auth);
     const dispatch = useAppDispatch();
 
+    console.log(getCookie());
+
     const handleClickSignIn = () => {
-        dispatch(changeRoute({route: RoutePages.SignIn, windowId}));
+        if (auth.logged) dispatch(logout());
+        else dispatch(changeRoute({route: RoutePages.SignIn, windowId}));
     }
     return (
         <BoardMainPageBlock>
             <Top>
                 <Button width ={'100px'} onClick={handleClickSignIn}>
-                    로그인
+                    {auth.logged ? '로그아웃' : '로그인'}
                 </Button>
             </Top>
             <Content>
