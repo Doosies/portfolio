@@ -57,8 +57,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
  			// .and()
 		http.authorizeRequests()	
 			// .antMatchers("/board/create").hasRole("USER")  // 인증권한이 필요한 페이지. 
-			.antMatchers("/board/edit").hasRole("USER")  // 인증권한이 필요한 페이지. 
-			.antMatchers("/api").permitAll();
+			// .antMatchers("/api/v1/board/edit").hasRole("USER")  // 인증권한이 필요한 페이지. 
+			.antMatchers("/api/v1/get").permitAll()
+			.antMatchers("/api/v1/login").permitAll()
+			.antMatchers("/api/v1/join").permitAll()
+			.antMatchers("/api/v1/board/edit").permitAll();
+			// .antMatchers("/api/").permitAll();
 			// .antMatchers("/").permitAll()
 			// .anyRequest().authenticated();     // 나머지 모든 요청 불허  ( 생략 가능 )
 		http.apply(new JwtSecurityConfig(tokenProvider));

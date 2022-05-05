@@ -53,8 +53,6 @@ public class PhoneInfoController{
 
     @RequestMapping(value = "api/phoneinfo/a", method = RequestMethod.PATCH, consumes="application/json")
     public  ResponseEntity<String> patchData(@RequestBody Map<String,List<PhoneInfo>> object) {
-        System.out.println("------데이터받음------");
-
         List<Integer> deleteList = new ArrayList<Integer>();
         List<PhoneInfo> addList = new ArrayList<PhoneInfo>();
         List<PhoneInfo> updateList = new ArrayList<PhoneInfo>();
