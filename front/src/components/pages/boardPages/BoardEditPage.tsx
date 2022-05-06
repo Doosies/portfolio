@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import styled from 'styled-components';
-import { useAppDispatch } from '../../../modules/hooks';
+import { test } from '../../../api/Api';
+import { useAppDispatch, useAppSelector } from '../../../modules/hooks';
 import { changeRoute, RoutePages } from '../../../modules/route';
 import Button from '../../Button';
 
@@ -37,19 +38,35 @@ const BottomContainer = styled.div`
 const BoardEditPage = ({
     windowId
 }:BoardEditPageProps) => {
+    const [input, setInput] = useState({
+        title: '',
+        content: '',
+    })
+    const token = useAppSelector(state=>state.auth.token);
     const dispatch = useAppDispatch();
+
+    const handleChangeInput = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setInput({
+            ...input,
+            [e.target.id]:e.target.value,
+        });
+        // useAppSelector(state=>state.auth.token);
+    }
+    
     const handleClickCancel = () => {
         dispatch(changeRoute({route: RoutePages.Main, windowId}))
     }
-    const handleClickAppy = () => {
-
+    const handleClickAppy = async() => {
+        console.log(input);
+        const a= await test(token.accessToken);
+        console.log(a);
     }
     return (
         <BoardEditPageBlock>
-            <Title className='item' placeholder='제목을 입력해주세요'/>
-            <Content className='item' placeholder='내용을 입력해주세요' />
+            <Title onChange={handleChangeInput} value={input.title} id="title" className='item' placeholder='제목을 입력해주세요' maxLength={50}/>
+            <Content onChange={handleChangeInput} value={input.content} id="content" className='item' placeholder='내용을 입력해주세요' maxLength={2000}/>
             <BottomContainer>
-                <Button >적용</Button>
+                <Button onClick={handleClickAppy} >적용</Button>
                 <Button onClick={handleClickCancel}>취소</Button>
             </BottomContainer>
         </BoardEditPageBlock>

@@ -1,14 +1,5 @@
-import Cookies from 'universal-cookie';
+import Cookies from 'js-cookie'
 
-const cookies = new Cookies();
-
-export const setCookie = (value: string) => {
-    return cookies.set("refreshToken", value, {
-        // secure: true,
-        // httpOnly: true,
-    });
-}
-
-export const getCookie = () => {
-    return cookies.get("refreshToken");
+const getCookie = (coookieName: string): string | undefined=> {
+    return Cookies.get(coookieName);
 }

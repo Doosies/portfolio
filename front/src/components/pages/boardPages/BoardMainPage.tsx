@@ -5,8 +5,6 @@ import { useAppDispatch, useAppSelector } from '../../../modules/hooks';
 import { changeRoute, RoutePages } from '../../../modules/route';
 import Button from '../../Button';
 import { logout } from '../../../modules/auth';
-import { getCookie } from '../../../utility/cookie';
-
 interface BoardMainPageProps {
     windowId: number;
 }
@@ -42,8 +40,6 @@ const BoardMainPage = ({
 }:BoardMainPageProps) => {
     const auth = useAppSelector(state => state.auth);
     const dispatch = useAppDispatch();
-
-    console.log(getCookie());
 
     const handleClickSignIn = () => {
         if (auth.logged) dispatch(logout());

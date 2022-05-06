@@ -1,11 +1,9 @@
-import { userInfo } from 'os';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import { checkId, createUser } from '../../../api/Api';
 import { login } from '../../../modules/auth';
 import { useAppDispatch } from '../../../modules/hooks';
 import { changeRoute, RoutePages } from '../../../modules/route';
-import { getCookie, setCookie } from '../../../utility/cookie';
 import Button from '../../Button';
 
 interface SignUpPageProps {

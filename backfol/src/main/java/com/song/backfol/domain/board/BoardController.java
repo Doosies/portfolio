@@ -31,7 +31,7 @@ public class BoardController {
     }
 
 
-    @GetMapping("/board/get")
+    @GetMapping("/board/get/{startIdx}")
     public String getBoard() {
         return "get";
     }

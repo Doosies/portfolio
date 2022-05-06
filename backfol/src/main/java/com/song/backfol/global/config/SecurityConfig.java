@@ -3,6 +3,8 @@ package com.song.backfol.global.config;
 import com.song.backfol.global.filter.CorsFilter;
 import com.song.backfol.global.jwt.JwtAccessDeniedHandler;
 import com.song.backfol.global.jwt.JwtAuthenticationEntryPoint;
+import com.song.backfol.global.jwt.JwtExceptionFilter;
+import com.song.backfol.global.jwt.JwtFilter;
 import com.song.backfol.global.jwt.JwtSecurityConfig;
 import com.song.backfol.global.jwt.TokenProvider;
 
@@ -27,17 +29,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     private final CorsFilter corsFilter;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+	private final JwtExceptionFilter jwtExceptionFilter;
 	
 	public SecurityConfig(
 		TokenProvider tokenProvider,
 		CorsFilter corsFilter,
 		JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
-		JwtAccessDeniedHandler jwtAccessDeniedHandler
+		JwtAccessDeniedHandler jwtAccessDeniedHandler,
+		JwtExceptionFilter jwtExceptionFilter
+	
 	){
         this.tokenProvider = tokenProvider;
         this.corsFilter = corsFilter;
         this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
         this.jwtAccessDeniedHandler = jwtAccessDeniedHandler;
+		this.jwtExceptionFilter = jwtExceptionFilter;
 	}
 
 
@@ -53,14 +59,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.cors().configurationSource(corsConfigurationSource())    // rest api이므로 csrf 보안이 필요없으므로 disable처리.
 			.and().csrf().disable()
  			.httpBasic().disable();
-			      // Http basic Auth  기반으로 로그인 인증창이 뜸.  disable 시에 인증창 뜨지 않음. 
-		http.addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
-			.exceptionHandling()
-			.authenticationEntryPoint(jwtAuthenticationEntryPoint)
-			.accessDeniedHandler(jwtAccessDeniedHandler);
+			      
+
 	 	http.sessionManagement()
 		 	.sessionCreationPolicy(SessionCreationPolicy.STATELESS);  // jwt token으로 인증하므로 stateless 하도록 처리.
  			// .and()
+
 		http.authorizeRequests()	
 			// .antMatchers("/board/create").hasRole("USER")  // 인증권한이 필요한 페이지. 
 			// .antMatchers("/api/v1/board/edit").hasRole("USER")  // 인증권한이 필요한 페이지. 
@@ -68,10 +72,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/api/v1/login").permitAll()
 			.antMatchers("/api/v1/join").permitAll()
 			.antMatchers("/api/v1/board/edit").permitAll();
+		
+		http.addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
+			// .addFilterBefore(jwtExceptionFilter, JwtFilter.class)
+			.exceptionHandling()
+			.authenticationEntryPoint(jwtAuthenticationEntryPoint)
+			.accessDeniedHandler(jwtAccessDeniedHandler);
+			// .expressionHanling
 			// .antMatchers("/api/").permitAll();
 			// .antMatchers("/").permitAll()
 			// .anyRequest().authenticated();     // 나머지 모든 요청 불허  ( 생략 가능 )
+
 		http.apply(new JwtSecurityConfig(tokenProvider));
+		// http.addFilter(jwtau)
 
 	}
 	@Bean

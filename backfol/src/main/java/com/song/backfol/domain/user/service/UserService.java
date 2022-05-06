@@ -112,8 +112,8 @@ public class UserService{
         .orElseThrow(() -> new LoginFailedException("잘못된 아이디입니다"));
 
         return TokenDTO.builder()
-        .accessToken(jwtTokenProvider.createAcessToken(userDto.getUserId(), Collections.singletonList(userDto.getUserRole())))
-        .refreshToken(jwtTokenProvider.createRefreshToken(userDto.getUserId(), Collections.singletonList(userDto.getUserRole())))
+        .accessToken("Bearer" + jwtTokenProvider.createAcessToken(userDto.getUserId(), Collections.singletonList(userDto.getUserRole())))
+        .refreshToken("Bearer" + jwtTokenProvider.createRefreshToken(userDto.getUserId(), Collections.singletonList(userDto.getUserRole())))
         .build();
     }
 

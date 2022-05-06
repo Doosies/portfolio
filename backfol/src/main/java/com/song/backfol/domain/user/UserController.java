@@ -1,8 +1,5 @@
 package com.song.backfol.domain.user;
 
-
-import javax.servlet.http.Cookie;
-
 import com.song.backfol.domain.user.dto.LoginDTO;
 import com.song.backfol.domain.user.dto.TokenDTO;
 import com.song.backfol.domain.user.dto.UserDTO;
@@ -17,19 +14,15 @@ import com.song.backfol.global.service.ResponseService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpRange;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import antlr.Token;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,9 +36,10 @@ public class UserController {
     
     @Autowired
     UserService userService;
-    
     @Autowired
     ResponseService responseService;
+    @Autowired
+    TokenProvider tokenProvider;
 
 
 
@@ -57,11 +51,19 @@ public class UserController {
         
         try {
             userService.join(user);
-            // String msg = isJoin ? "회원가입 성공" : "회원가입 실패";
             TokenDTO token = userService.tokenGenerator(user.getUserId());
+            ResponseCookie responseCookie = 
+                ResponseCookie.from(HttpHeaders.SET_COOKIE, token.getRefreshToken())///new Cookie("refreshToken", token.getRefreshToken());
+                .path("/")
+                .maxAge(14 * 24 * 60 * 60) // 14일
+                // .httpOnly(true).secure(true)
+                .build();
+            
 
-            SingleDataResponse<TokenDTO> response = responseService.getSingleDataResponse(true, user.getUserId(), token);
-            responseEntity = ResponseEntity.status(HttpStatus.OK).body(response);
+            SingleDataResponse<String> response = responseService.getSingleDataResponse(true, user.getUserId(), token.getAccessToken());
+            responseEntity = ResponseEntity.status(HttpStatus.OK)
+                .header(HttpHeaders.SET_COOKIE, responseCookie.toString())
+                .body(response);
 
         }catch(DuplicatedUsernameException exception) {
             BaseResponse response = responseService.getBaseResponse(false, exception.getMessage());
@@ -77,9 +79,17 @@ public class UserController {
         try {
             String userId = userService.login(loginDto);
             TokenDTO token = userService.tokenGenerator(userId);
+            ResponseCookie responseCookie = 
+                ResponseCookie.from(HttpHeaders.SET_COOKIE, token.getRefreshToken())///new Cookie("refreshToken", token.getRefreshToken());
+                .path("/")
+                .maxAge(14 * 24 * 60 * 60) // 14일
+                // .httpOnly(true).secure(true)
+                .build();
 
-            SingleDataResponse<TokenDTO> response = responseService.getSingleDataResponse(true, userId, token);
-            responseEntity = ResponseEntity.status(HttpStatus.OK).body(response);
+                SingleDataResponse<String> response = responseService.getSingleDataResponse(true, userId, token.getAccessToken());
+                responseEntity = ResponseEntity.status(HttpStatus.OK)
+                    .header(HttpHeaders.SET_COOKIE, responseCookie.toString())
+                    .body(response);
     
         } catch (LoginFailedException exception) {
             log.debug(exception.getMessage());
@@ -110,26 +120,6 @@ public class UserController {
             log.debug(exception.getMessage());
             BaseResponse response = responseService.getBaseResponse(false, exception.getMessage());
             responseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-        }
-        return responseEntity;
-    }
-
-    @PostMapping(value = "/refreshToken")
-    // @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity refreshToken(@RequestParam TokenDTO token) {
-        ResponseEntity responseEntity = null;
-        // Cookie cookie = new Cookie("name", value)
-        try {
-            // boolean isHaveUser = userService.haveUser(userId);
-            // String message = isHaveUser ? "회원가입된 유저입니다." : "회원가입 안된 유저입니다.";
-            // SingleDataResponse<Boolean> response = responseService.getSingleDataResponse(true, message, isHaveUser);
-            // responseEntity = ResponseEntity.status(HttpStatus.CREATED).body(response);
-
-
-        }catch(UserNotFoundException exception) {
-            // log.debug(exception.getMessage());
-            // BaseResponse response = responseService.getBaseResponse(false, exception.getMessage());
-            // responseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
         return responseEntity;
     }

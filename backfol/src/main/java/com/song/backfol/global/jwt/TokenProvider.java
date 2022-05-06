@@ -20,6 +20,8 @@ import org.springframework.util.StringUtils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -123,8 +125,8 @@ public class TokenProvider implements InitializingBean{
     public String resolveToken(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
         // 가져온 Authorization Header 가 문자열이고, Bearer 로 시작해야 가져옴
-        if (StringUtils.hasText(token) && token.startsWith("Bearer ")) {
-            return token.substring(7);
+        if (StringUtils.hasText(token) && token.startsWith("Bearer")) {
+            return token.substring(6);
         }
         return null;
     }
@@ -132,31 +134,34 @@ public class TokenProvider implements InitializingBean{
      * 토큰을 파싱하고 발생하는 예외를 처리, 문제가 있을경우 false 반환
      */
     public boolean validateToken(String token) {
-        try {
-            Claims claim = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
-            // if ())
-            
-            // System.out.println(claim.getIssuedAt());
-        //    return true;
-            // 만료기간 검사
-            boolean test = claim.getExpiration().before(new Date());
-            System.out.println(claim.getExpiration().before(new Date()));
-            System.out.println(claim.getExpiration());
-            System.out.println(new Date());
-            return test;
-        } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
-           logger.info("잘못된 JWT 서명입니다.");
-           System.out.println("잘못된 JWT 서명입니다!");
-        } catch (ExpiredJwtException e) {
-           logger.info("만료된 JWT 토큰입니다.");
-           System.out.println("만료된 JWT 토큰입니다!");
-        } catch (UnsupportedJwtException e) {
-           logger.info("지원되지 않는 JWT 토큰입니다.");
-           System.out.println("지원되지 않는 JWT 토큰입니다!");
-        } catch (IllegalArgumentException e) {
-           logger.info("JWT 토큰이 잘못되었습니다.");
-           System.out.println("JWT 토큰이 잘못되었습니다!");
-        }
-        return false;
+        // try {
+            System.out.println("validateToken!!!!!!!!!!!!!");
+            Jws<Claims> claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+            return !claims.getBody().getExpiration().before(new Date());
+        // } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
+
+        //    logger.info("잘못된 JWT 서명입니다.");
+        //    System.out.println("잘못된 JWT 서명입니다!");
+        //     // throw new JwtException("잘못된 서명");
+
+        // } catch (ExpiredJwtException e) {
+
+        //    logger.info("만료된 JWT 토큰입니다.");
+        //    System.out.println("만료된 JWT 토큰입니다!");
+        // //    throw new JwtException("만료된 토큰");
+
+        // } catch (UnsupportedJwtException e) {
+
+        //    logger.info("지원되지 않는 JWT 토큰입니다.");
+        //    System.out.println("지원되지 않는 JWT 토큰입니다!");
+        // //    throw new JwtException("지원되지 않는 토큰");
+
+        // } catch (IllegalArgumentException e) {
+
+        //    logger.info("JWT 토큰이 잘못되었습니다.");
+        //    System.out.println("JWT 토큰이 잘못되었습니다!");
+        // //    throw new JwtException("잘못된 토큰");
+        // }
+        // return false;
      }
 }

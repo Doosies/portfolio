@@ -23,3 +23,9 @@ export const signIn = (user: UserType) =>
 
 export const checkId = async (userId: string) => 
     await axios.get(`${url}/get?userId=${userId}`);
+
+
+export const test = (accessToken: string) =>
+        axios.get(`${url}/test`,{
+            headers: {'accessToken':accessToken}
+        });
