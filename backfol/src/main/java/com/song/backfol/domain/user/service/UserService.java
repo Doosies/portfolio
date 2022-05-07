@@ -3,7 +3,6 @@ package com.song.backfol.domain.user.service;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,7 +17,6 @@ import com.song.backfol.domain.user.dto.TokenDTO;
 import com.song.backfol.domain.user.dto.UserDTO;
 import com.song.backfol.global.exception.DuplicatedUsernameException;
 import com.song.backfol.global.exception.LoginFailedException;
-import com.song.backfol.global.exception.UserNotFoundException;
 import com.song.backfol.global.jwt.TokenProvider;
 
 @Service

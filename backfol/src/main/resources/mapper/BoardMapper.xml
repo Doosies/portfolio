@@ -28,7 +28,7 @@
       where board_Pk = #{boardId};
     </select>
 
-    <delete id="deleteBoard">
+    <!-- <delete id="deleteBoard">
       delete from board_tb where board_Pk = #{boardId};
     </delete>
 
@@ -36,6 +36,6 @@
       update board_tb 
       set title = #{boardTitle}, content = #{boardContent}
       where board_Pk = #{boardId};
-    </update>
+    </update> -->
     
 </mapper>

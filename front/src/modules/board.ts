@@ -31,7 +31,6 @@ const initialContentsState: BoardState = {
     }
 }
 const url = 'http://localhost:8080/api/v1/board';
-
 export const getBoardLists = createAsyncThunk("BOARD_LIST_READ", async (_,{getState}) => {
     try {
         const {board } = getState() as {board: BoardState};

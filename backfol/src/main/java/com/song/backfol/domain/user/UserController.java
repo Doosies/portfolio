@@ -61,7 +61,7 @@ public class UserController {
                 .httpOnly(true)
                 // .httpOnly(true).secure(true)
                 .build();
-            
+            System.out.println(responseCookie.toString());
 
             SingleDataResponse<String> response = responseService.getSingleDataResponse(true, user.getUserId(), token.getAccessToken());
             responseEntity = ResponseEntity.status(HttpStatus.OK)
@@ -87,7 +87,7 @@ public class UserController {
                 .path("/")
                 .maxAge(14 * 24 * 60 * 60) // 14일
                 .httpOnly(true)
-                // .httpOnly(true).secure(true)
+                // .secure(true)
                 .build();
 
             SingleDataResponse<String> response = responseService.getSingleDataResponse(true, userId, token.getAccessToken());
@@ -115,6 +115,7 @@ public class UserController {
                 ResponseCookie.from(HttpHeaders.SET_COOKIE, "")///new Cookie("refreshToken", token.getRefreshToken());
                 .path("/")
                 .httpOnly(true)
+                .secure(true)
                 .maxAge(0).build();
             BaseResponse response = 
                 responseService.getBaseResponse(true, "로그아웃 성공");

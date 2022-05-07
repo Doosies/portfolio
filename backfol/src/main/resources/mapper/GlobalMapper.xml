@@ -6,5 +6,6 @@
 <mapper namespace="com.song.backfol.global.service.GlobalMapper">
     <select id="getNextIncrement" parameterType="String" resultType="int">
         select Auto_increment from information_schema.tables where table_schema = 'PHONEDB' and table_name = #{tableName};
-      </select>
+    </select>
+
 </mapper>

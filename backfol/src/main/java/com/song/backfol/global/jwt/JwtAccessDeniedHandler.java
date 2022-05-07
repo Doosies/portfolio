@@ -1,7 +1,6 @@
 package com.song.backfol.global.jwt;
 
 import java.io.IOException;
-import java.net.http.HttpResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

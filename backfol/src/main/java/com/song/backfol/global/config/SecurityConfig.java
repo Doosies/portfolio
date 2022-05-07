@@ -3,8 +3,6 @@ package com.song.backfol.global.config;
 import com.song.backfol.global.filter.CorsFilter;
 import com.song.backfol.global.jwt.JwtAccessDeniedHandler;
 import com.song.backfol.global.jwt.JwtAuthenticationEntryPoint;
-// import com.song.backfol.global.jwt.JwtExceptionFilter;
-import com.song.backfol.global.jwt.JwtFilter;
 import com.song.backfol.global.jwt.JwtSecurityConfig;
 import com.song.backfol.global.jwt.TokenProvider;
 

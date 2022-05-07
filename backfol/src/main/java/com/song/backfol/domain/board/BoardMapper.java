@@ -1,7 +1,6 @@
 package com.song.backfol.domain.board;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,6 +13,6 @@ public interface BoardMapper {
     List<BoardDTO> readBoardTitles(BoardRequestDTO boardRequestDTO);
     int getBoardListLimit();
     BoardDTO getBoard(int boardId);
-    void updateBoard(BoardDTO boardDTO);
-    void deleteBoard(int boardId);
+    // void updateBoard(BoardDTO boardDTO);
+    // void deleteBoard(int boardId);
 }

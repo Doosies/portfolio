@@ -103,39 +103,39 @@ public class BoardController {
         return responseEntity;
     }
 
-    @PostMapping("/updateBoard")
-    public ResponseEntity updateBoard(@RequestBody BoardDTO boardDTO, @RequestHeader(value = "Authorization") String accessToken) {
-        ResponseEntity responseEntity = null;
-        try {
+    // @PostMapping("/updateBoard")
+    // public ResponseEntity updateBoard(@RequestBody BoardDTO boardDTO, @RequestHeader(value = "Authorization") String accessToken) {
+    //     ResponseEntity responseEntity = null;
+    //     try {
             
 
-            SingleDataResponse<BoardDTO> response = 
-                responseService.getSingleDataResponse(true, "게시판 불러오기 성공", boardDTO);
-            responseEntity = ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
-        }catch (Exception e) {
-            log.error("불로오기 실해", e);
-            BaseResponse response = responseService.getBaseResponse(false, "게시판 불러오기 실패");
-                responseEntity = ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
-        }
-        return responseEntity;
-    }
+    //         SingleDataResponse<BoardDTO> response = 
+    //             responseService.getSingleDataResponse(true, "게시판 불러오기 성공", boardDTO);
+    //         responseEntity = ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+    //     }catch (Exception e) {
+    //         log.error("불로오기 실해", e);
+    //         BaseResponse response = responseService.getBaseResponse(false, "게시판 불러오기 실패");
+    //             responseEntity = ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+    //     }
+    //     return responseEntity;
+    // }
 
-    @PostMapping("/deleteBoard")
-    public ResponseEntity deleteBoard(@RequestBody BoardDTO boardDTO, @RequestHeader(value = "Authorization") String accessToken) {
-        ResponseEntity responseEntity = null;
-        try {
+    // @PostMapping("/deleteBoard")
+    // public ResponseEntity deleteBoard(@RequestBody BoardDTO boardDTO, @RequestHeader(value = "Authorization") String accessToken) {
+    //     ResponseEntity responseEntity = null;
+    //     try {
             
             
-            SingleDataResponse<BoardDTO> response = 
-                responseService.getSingleDataResponse(true, "게시판 불러오기 성공", boardDTO);
-            responseEntity = ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
-        }catch (Exception e) {
-            log.error("불로오기 실해", e);
-            BaseResponse response = responseService.getBaseResponse(false, "게시판 불러오기 실패");
-                responseEntity = ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
-        }
-        return responseEntity;
-    }
+    //         SingleDataResponse<BoardDTO> response = 
+    //             responseService.getSingleDataResponse(true, "게시판 불러오기 성공", boardDTO);
+    //         responseEntity = ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+    //     }catch (Exception e) {
+    //         log.error("불로오기 실해", e);
+    //         BaseResponse response = responseService.getBaseResponse(false, "게시판 불러오기 실패");
+    //             responseEntity = ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+    //     }
+    //     return responseEntity;
+    // }
     // @PostMapping("/board/update")
     // public String updateBoard() {
     //     return "updateBoard";z

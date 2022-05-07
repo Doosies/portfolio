@@ -3,15 +3,10 @@ package com.song.backfol.domain.board;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
-import com.song.backfol.global.exception.BoardException;
 import com.song.backfol.global.jwt.TokenProvider;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
@@ -58,18 +53,6 @@ public class BoardService {
         return boardMapper.getBoard(boardId);
     }
 
-    // 액세스 토큰을 받음
-    public void updateBoard(BoardDTO boardDTO, String accessToken) {
-        String userId = getUserIdFromToken(accessToken);
-        // TODO: 인증되면 업데이트 하게 바꾸기
-
-    }
-
-    // 액세스 토큰을 받음
-    public void deleteBoard(String boardId, String accessToken) {
-        String userId = getUserIdFromToken(accessToken);
-        // TODO: 인증되면 삭제하게 바꾸기
-    }
 
 
 
