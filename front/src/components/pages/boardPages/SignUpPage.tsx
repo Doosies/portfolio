@@ -152,6 +152,7 @@ const SignUpPage = ({
             if ( isPassRegExp("id", input.id)) {
                 // 사용 가능한 아이디: 0, 중복된 아이디: 1
                 const canJoin = await checkId(input.id);
+                console.log(canJoin.data);
                 // id가 서버에 전송할 수 없는 값이면
                 if (canJoin.data.data ) {                
                     setText({ ...text, id: texts.id.error_duple });
@@ -213,6 +214,7 @@ const SignUpPage = ({
             <InputContainer>
                 <Input 
                     id='pw' 
+                    type="password"
                     onChange={handleChangeInput} 
                     onBlur={handleBlurInput}
                     placeholder='비밀번호'

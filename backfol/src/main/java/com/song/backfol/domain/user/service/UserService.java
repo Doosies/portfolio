@@ -46,8 +46,11 @@ public class UserService{
     public boolean join(UserDTO user) {
         // 가입된 유저인지 확인
         if (userMapper.findUserId(user.getUserId()).isPresent()) {
+            System.out.println("!!!");
             throw new DuplicatedUsernameException("이미 가입된 유저에요");
         }
+
+        
         // 가입 안했으면 아래 진행
         UserDTO userVo = UserDTO.builder()
         .userId(user.getUserId())
@@ -103,7 +106,7 @@ public class UserService{
     public UserDTO findUserId(String userId) {
         return userMapper.findUserId(userId)
                 .orElseThrow(() -> 
-                    new UserNotFoundException("알 수 없는 유저입니다."));
+                    new DuplicatedUsernameException("유저 중볶!~!!!!."));
     }
 
     public TokenDTO tokenGenerator(String userId) {

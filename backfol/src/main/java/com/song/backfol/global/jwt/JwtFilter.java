@@ -70,6 +70,8 @@ public class JwtFilter extends GenericFilterBean{
         || requestURI.equals("/api/v1/join") 
         || requestURI.equals("/api/v1/get")
         || requestURI.equals("/api/v1/board/readBoardLists")
+        || requestURI.equals("/api/v1/board/getBoardListLimit")
+        || requestURI.equals("/api/v1/board/getBoard")
         ){
             filterChain.doFilter(request, response);
             return;

@@ -66,19 +66,11 @@ const SIgnInPage = ({
     const dispatch = useAppDispatch();
 
     const handleClickSignIn = async() => {
-        // loginUser()
-        // dispatch(loginuser)
         dispatch(loginUser({
             userId: input.id,
             userPw: input.pw,
             windowId,
         }));
-        // loginUser(input.id, input.pw);
-        // if (loggedIn) {
-        //     alert("로그인 완료! 메인화면으로 돌아갑니다.");
-        // }else {
-        //     alert("로그인 실패! 아이디, 비밀번호를 확인해주세요");
-        // }
     }
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setInput({
@@ -96,7 +88,7 @@ const SIgnInPage = ({
         <SIgnInPageBlock>
             <Title>로그인</Title>
             <Input id="id" onChange={handleInputChange} value={input.id} placeholder='아이디'/>
-            <Input id="pw" onChange={handleInputChange} value={input.pw} placeholder='비밀번호'/>
+            <Input id="pw" type = "password" onChange={handleInputChange} value={input.pw} placeholder='비밀번호' />
             <BottomButtonContainer>
                 <BottomButtonTop>
                     <Button onClick={handleClickSignIn}>

@@ -63,7 +63,7 @@ public class UserController {
                 .build();
             
 
-            SingleDataResponse<String> response = responseService.getSingleDataResponse(true, "회원가입 성공", token.getAccessToken());
+            SingleDataResponse<String> response = responseService.getSingleDataResponse(true, user.getUserId(), token.getAccessToken());
             responseEntity = ResponseEntity.status(HttpStatus.OK)
                 .header(HttpHeaders.SET_COOKIE, responseCookie.toString())
                 .body(response);
@@ -90,7 +90,7 @@ public class UserController {
                 // .httpOnly(true).secure(true)
                 .build();
 
-            SingleDataResponse<String> response = responseService.getSingleDataResponse(true, "로그인 성공", token.getAccessToken());
+            SingleDataResponse<String> response = responseService.getSingleDataResponse(true, userId, token.getAccessToken());
             responseEntity = ResponseEntity.status(HttpStatus.OK)
                 .header(HttpHeaders.SET_COOKIE, responseCookie.toString())
                 .body(response);

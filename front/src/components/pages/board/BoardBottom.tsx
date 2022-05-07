@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import { useAppDispatch } from '../../../modules/hooks';
+import { changePageState } from '../../../modules/board';
+import { useAppDispatch, useAppSelector } from '../../../modules/hooks';
 import { changePage, changeRoute } from '../../../modules/route';
 import BottomButton from './BottomButton';
 
 interface BoardBottomProps {
-    nowPage: number;
     windowId: number;
 }
 
@@ -28,14 +28,9 @@ const ButtonContainer = styled.div`
 
 
 const BoardBottom = ({
-    nowPage, windowId, 
+    windowId, 
 }:BoardBottomProps) => {
-    const boardEndIndex = 7;
-    const [buttonState, setButtonState] = useState({
-        startIndex: 1,
-        endIndex: 5,
-        nowPage: 1,
-    });
+    const {startPage, lastPage, nowPage, pageLimit} = useAppSelector(state => state.board);
     const dispatch = useAppDispatch();
 
     // 페이지 버튼 핸들러
@@ -46,30 +41,25 @@ const BoardBottom = ({
         let endIndex = selectPageNum > 2 ? selectPageNum + 2 : 5;
 
         // 만약 끝 인덱스가 페이지 최대를 넘어갈 경우
-        if (endIndex >= boardEndIndex){
+        if (endIndex >= pageLimit){
             // 시작 인덱스를 끝 - 4로 고정
-            startIndex = boardEndIndex - 4;
+            startIndex = pageLimit - 4;
             // 끝 인덱스를 끝으로 무조건 고정
-            endIndex = boardEndIndex;
+            endIndex = pageLimit;
         }
-        setButtonState({
-            ...buttonState,
-            nowPage: selectPageNum,
-            startIndex,
-            endIndex,
-        });
-        dispatch(changePage({page: nowPage, windowId}));
+        dispatch(changePageState({startPage: startIndex > 0 ? startIndex : 1, lastPage: endIndex, nowPage: selectPageNum}));
+        // dispatch(changePage({page: nowPage, windowId}));
         
     }
     // 버튼들 렌더링 해주는 함수
     const renderButtons = () => {
         const buttons: React.ReactNode[] = [];
-        for (let i = buttonState.startIndex; i<=buttonState.endIndex; i++) {
+        for (let i = startPage; i<=lastPage; i++) {
             buttons.push(
                 <BottomButton 
                     value = {i} 
                     key = {`BottomButton ${i}`}
-                    isThisPage = {i === buttonState.nowPage ? true : false}
+                    isThisPage = {i === nowPage ? true : false}
                     onClick={handleClickButton}
                 />
             );

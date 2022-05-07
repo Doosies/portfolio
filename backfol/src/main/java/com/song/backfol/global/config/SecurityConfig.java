@@ -73,8 +73,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			// .antMatchers("/api/v1/board/edit").hasRole("USER")  // 인증권한이 필요한 페이지. 
 			.antMatchers("/api/v1/get").permitAll()
 			.antMatchers("/api/v1/login").permitAll()
-			.antMatchers("/api/v1/join").permitAll()
-			.antMatchers("/api/v1/board/edit").permitAll();
+			.antMatchers("/api/v1/join").permitAll();
+			// .antMatchers("/api/v1/board/edit").permitAll();
 		
 		http
 			.addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)

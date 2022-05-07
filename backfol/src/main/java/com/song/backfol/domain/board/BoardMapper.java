@@ -12,4 +12,8 @@ public interface BoardMapper {
     // List<BoardDTO> readBoardTitles(int page, int boardListNum);
     // edit
     List<BoardDTO> readBoardTitles(BoardRequestDTO boardRequestDTO);
+    int getBoardListLimit();
+    BoardDTO getBoard(int boardId);
+    void updateBoard(BoardDTO boardDTO);
+    void deleteBoard(int boardId);
 }

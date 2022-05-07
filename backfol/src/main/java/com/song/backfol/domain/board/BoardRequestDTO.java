@@ -13,4 +13,5 @@ import lombok.Setter;
 public class BoardRequestDTO {
     int startPage;
     int pageNum;
+    int boardId;
 }

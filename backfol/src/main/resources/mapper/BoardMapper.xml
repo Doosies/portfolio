@@ -8,12 +8,34 @@
         insert into board_TB (writter, title, content, hits, create_date, update_date)
         VALUES((select user_pk from user_tb where user_id = #{boardWritter}), #{boardTitle}, #{boardContent}, #{boardHits}, #{createDate}, #{updateDate});
     </insert>
+
     <select id="readBoardTitles" parameterType="com.song.backfol.domain.board.BoardRequestDTO" resultType="Map">
-      select user.user_id as writter, bo.title as title
+      select user.user_id as writter, bo.title as title, bo.board_Pk as boardId
       from board_tb as bo 
       inner join user_tb as user 
       on bo.writter = user.user_pk
+      ORDER BY bo.create_date DESC
       LIMIT #{startPage}, #{pageNum};
     </select>
+
+    <select id="getBoardListLimit" resultType="int">
+      select count(*) from board_tb;
+    </select>
+
+    <select id="getBoard" resultType="com.song.backfol.domain.board.BoardDTO">
+      select (select user_Id from user_tb where user_pk = b.writter) as boardWritter, b.title as boardTitle, b.content as boardContent 
+      from board_tb as b
+      where board_Pk = #{boardId};
+    </select>
+
+    <delete id="deleteBoard">
+      delete from board_tb where board_Pk = #{boardId};
+    </delete>
+
+    <update id="updateBoard" parameterType="com.song.backfol.domain.board.BoardDTO">
+      update board_tb 
+      set title = #{boardTitle}, content = #{boardContent}
+      where board_Pk = #{boardId};
+    </update>
     
 </mapper>

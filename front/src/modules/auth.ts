@@ -11,6 +11,7 @@ type AuthState = {
     loading: boolean;
     logged: boolean;
     token: string;
+    myId: string;
 }
 
 type UserType = {
@@ -27,6 +28,7 @@ const initialAuthState: AuthState = {
     loading: false,
     logged: false,
     token: '',
+    myId: '',
 }
 
 const url = 'http://localhost:8080/api/v1';
@@ -40,9 +42,15 @@ export const loginUser = createAsyncThunk("LOGIN_USER", async (user: UserType & 
             withCredentials: true,
         });
         dispatch(login(response.data.data));
-        dispatch(changeRoute({route: RoutePages.Main, windowId: user.windowId}))
+        dispatch(changeRoute({route: RoutePages.Main, windowId: user.windowId}));
         return response.data;
     }catch (error: any) {
+        console.log(error);
+        if (error.response.status === 400) {
+            alert("아이디 혹은 비밀번호를 확인해주세요")
+        }else {
+            alert ("서버에 일시적으로 문제가 생겼습니다. 잠시후 다시 시도해주세요.")
+        }
         return error?.response;
     }
 });
@@ -89,25 +97,29 @@ export const createBoard = createAsyncThunk(
     // try {
     const {auth} = getState() as {auth: AuthState};
     try {
-        const response = await axios.post(`${url}/board/create`, {
+        await axios.post(`${url}/board/create`, {
         boardTitle: board.title,
         boardContent: board.content,},{ 
         withCredentials: true,
         headers: {
             Authorization: auth.token,
         },
+    }).then(res => {
+
+        dispatch(changeRoute({route:RoutePages.Main, windowId: board.windowId}));
+        return res;
     })
     }catch (err: any) {
-        console.log(err)
         const response = err.response;
         if (response.status === 401 && response.data.code === "Tk401"){
                 console.log("토큰 발급 요청")
                 const res = await  axios.post(`${url}/token/getAccessToken`, {},{
                     withCredentials: true,
-                    headers: {
-                        Authorization: auth.token,
-                    },
+                    // headers: {
+                    //     Authorization: auth.token,
+                    // },
                 }).catch(async(e) => {
+                    console.log("와라 토큰아")
                     const response = e.response;
                     if (response.status === 401 && response.data.code === "Tk401"){
                         alert("로그인 시간이 만료되어 자동으로 로그아웃 합니다.");
@@ -116,9 +128,17 @@ export const createBoard = createAsyncThunk(
                         return e;
                     }
                 });
-
                 if (res.status === 200 && res.data.success) {
                     dispatch(setToken(res.data.data));
+                    console.log("토큰발급받음")
+                    await axios.post(`${url}/board/create`, {
+                        boardTitle: board.title,
+                        boardContent: board.content,},{ 
+                        withCredentials: true,
+                        headers: {
+                            Authorization: auth.token,
+                    }});
+                    dispatch(changeRoute({route:RoutePages.Main, windowId: board.windowId}));
                 }
             }
         }
@@ -152,6 +172,11 @@ const authSlice = createSlice({
         });
         builder.addCase(loginUser.fulfilled, (state, action) => {
             state.loading = false;
+            state.myId = action.payload.message;
+        });
+        builder.addCase(join.fulfilled, (state, action) => {
+            state.loading = false;
+            state.myId = action.payload.message;
         });
 
 
