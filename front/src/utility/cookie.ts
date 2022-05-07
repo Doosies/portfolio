@@ -1,5 +1,20 @@
-import Cookies from 'js-cookie'
+import {Cookies} from 'react-cookie'
+const cookies = new Cookies();
 
-const getCookie = (coookieName: string): string | undefined=> {
-    return Cookies.get(coookieName);
+export const getAccessTokenCookie = (): string | undefined=> {
+    return cookies.get('accessToken');
+}
+// export const setAccessTokenCookie = (cookieName: string) => {
+//     cookies.set("accessToken", cookieName, {
+//         // secure: true,
+//         // httpOnly: true,
+//         path: '/',
+//         // maxAge: 60000,
+//         httpOnly: true,
+
+//     })
+// }
+export const removeAllCookies = () => {
+    cookies.remove("accessToken");
+    cookies.remove("Set-Cookie");
 }

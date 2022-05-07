@@ -1,9 +1,11 @@
 
+import e from 'express';
 import React, {ChangeEvent, useState} from 'react';
 import styled from 'styled-components';
-import { signIn } from '../../../api/Api';
-import { login } from '../../../modules/auth';
-import { useAppDispatch } from '../../../modules/hooks';
+import { loginUser } from '../../../modules/auth';
+// import { signIn } from '../../../api/Api';
+// import { login, loginUser } from '../../../modules/auth';
+import { useAppDispatch, useAppSelector } from '../../../modules/hooks';
 import { changeRoute, RoutePages } from '../../../modules/route';
 import Button from '../../Button';
 
@@ -59,19 +61,24 @@ const SIgnInPage = ({
         id: '',
         pw: '',
     })
+    const loggedIn = useAppSelector(state => state.auth.logged);
 
     const dispatch = useAppDispatch();
 
     const handleClickSignIn = async() => {
-        const res = await signIn({userId: input.id, userPw: input.pw});
-        const id = res.data.message;
-        if (res.status === 200) {
-            alert("로그인 완료! 메인화면으로 돌아갑니다.");
-            dispatch(login({id, token: res.data.data}));
-            dispatch(changeRoute({route: RoutePages.Main, windowId}));
-        }else {
-            alert("로그인 실패! 아이디, 비밀번호를 확인해주세요");
-        }
+        // loginUser()
+        // dispatch(loginuser)
+        dispatch(loginUser({
+            userId: input.id,
+            userPw: input.pw,
+            windowId,
+        }));
+        // loginUser(input.id, input.pw);
+        // if (loggedIn) {
+        //     alert("로그인 완료! 메인화면으로 돌아갑니다.");
+        // }else {
+        //     alert("로그인 실패! 아이디, 비밀번호를 확인해주세요");
+        // }
     }
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setInput({

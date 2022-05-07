@@ -1,7 +1,10 @@
+import { response } from 'express';
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import { checkId, createUser } from '../../../api/Api';
-import { login } from '../../../modules/auth';
+import { checkId } from '../../../api/Api';
+import { join } from '../../../modules/auth';
+// import { checkId, createUser } from '../../../api/Api';
+// import { join } from '../../../modules/auth';
 import { useAppDispatch } from '../../../modules/hooks';
 import { changeRoute, RoutePages } from '../../../modules/route';
 import Button from '../../Button';
@@ -104,17 +107,16 @@ const SignUpPage = ({
     }
     // 회원가입 클릭
     const handleClickSignUp = async () => {
-        if (canSend.id && canSend.pw) {
-            const response = await createUser({userId: input.id, userPw: input.pw});
-            const userId = response.data.message;
-            
-            if (response.status === 200) {   
-                alert("회원가입 성공! 홈 페이지로 돌아갑니다.");
-                console.log(response.data.data);
-                
-                dispatch(changeRoute({route: RoutePages.Main, windowId}));
-                dispatch(login({id: userId, token: response.data.data}));
-            }
+        
+        if (canSend.id && canSend.pw) {                
+            dispatch(join({userId: input.id, userPw: input.pw, windowId}));
+
+            // const res = await createUser({userId: input.id, userPw: input.pw});
+            // if (res?.status === 200) {
+            //     // alert("회원가입 성공! 홈 페이지로 돌아갑니다.");
+            //     // dispatch(changeRoute({route: RoutePages.Main, windowId}));
+            //     // dispatch(login());
+            // }
         }
     }
     
@@ -153,11 +155,11 @@ const SignUpPage = ({
                 // id가 서버에 전송할 수 없는 값이면
                 if (canJoin.data.data ) {                
                     setText({ ...text, id: texts.id.error_duple });
-                // id가 서버에 전송이 가능한 값이라면
+                // // id가 서버에 전송이 가능한 값이라면
                 }else {
-                    // text.id를 가능하다고 변경
+                //     // text.id를 가능하다고 변경
                     setText({ ...text, id: texts.id.success });
-                    // cansend.id를 전송 가능상태로 변경
+                //     // cansend.id를 전송 가능상태로 변경
                     setCanSend({...canSend, id: true});
                 }
             }else {

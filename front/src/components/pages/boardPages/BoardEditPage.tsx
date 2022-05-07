@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useState} from 'react';
 import styled from 'styled-components';
-import { test } from '../../../api/Api';
+import { createBoard } from '../../../modules/auth';
+// import { createBoard } from '../../../api/Api';
 import { useAppDispatch, useAppSelector } from '../../../modules/hooks';
 import { changeRoute, RoutePages } from '../../../modules/route';
 import Button from '../../Button';
@@ -42,7 +43,7 @@ const BoardEditPage = ({
         title: '',
         content: '',
     })
-    const token = useAppSelector(state=>state.auth.token);
+    // const token = useAppSelector(state=>state.auth.token);
     const dispatch = useAppDispatch();
 
     const handleChangeInput = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -57,9 +58,22 @@ const BoardEditPage = ({
         dispatch(changeRoute({route: RoutePages.Main, windowId}))
     }
     const handleClickAppy = async() => {
-        console.log(input);
-        const a= await test(token.accessToken);
-        console.log(a);
+        if (input.title.trim() === '') {
+            alert('제목은 필수값 입니다.')
+        }
+        else if (input.content.trim() === '') {
+            alert("내용은 필수값 입니다.")
+        }
+        else {
+            dispatch(createBoard({title: input.title, content: input.content, windowId}));
+            // const res = await createBoard({
+            //     title: input.title,
+            //     content: input.content,
+            //     // token: token,
+            // });
+            // console.log(res);
+        }
+        
     }
     return (
         <BoardEditPageBlock>

@@ -1,4 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
+import thunk from 'redux-thunk';
+// import logger from 'redux-logger';
 import applicationReducer from "./application";
 import windowReducer from "./window";
 import routeReducer from './route';
@@ -13,6 +15,7 @@ export const store = configureStore({
         contents: contentsReducer,
         auth: authReducer,
     }, 
+    // middleware: [thunk],
     devTools: true
 });
 

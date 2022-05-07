@@ -4,7 +4,8 @@ import BoardList from '../board/BoardList';
 import { useAppDispatch, useAppSelector } from '../../../modules/hooks';
 import { changeRoute, RoutePages } from '../../../modules/route';
 import Button from '../../Button';
-import { logout } from '../../../modules/auth';
+import { logoutUser } from '../../../modules/auth';
+// import { logout } from '../../../modules/auth';
 interface BoardMainPageProps {
     windowId: number;
 }
@@ -42,7 +43,7 @@ const BoardMainPage = ({
     const dispatch = useAppDispatch();
 
     const handleClickSignIn = () => {
-        if (auth.logged) dispatch(logout());
+        if (auth.logged) dispatch(logoutUser());
         else dispatch(changeRoute({route: RoutePages.SignIn, windowId}));
     }
     return (

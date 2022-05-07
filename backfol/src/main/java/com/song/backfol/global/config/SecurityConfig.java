@@ -3,7 +3,7 @@ package com.song.backfol.global.config;
 import com.song.backfol.global.filter.CorsFilter;
 import com.song.backfol.global.jwt.JwtAccessDeniedHandler;
 import com.song.backfol.global.jwt.JwtAuthenticationEntryPoint;
-import com.song.backfol.global.jwt.JwtExceptionFilter;
+// import com.song.backfol.global.jwt.JwtExceptionFilter;
 import com.song.backfol.global.jwt.JwtFilter;
 import com.song.backfol.global.jwt.JwtSecurityConfig;
 import com.song.backfol.global.jwt.TokenProvider;
@@ -29,21 +29,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     private final CorsFilter corsFilter;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
-	private final JwtExceptionFilter jwtExceptionFilter;
+	// private final JwtFilter jwtFilter;
+	// private final JwtExceptionFilter jwtExceptionFilter;
 	
 	public SecurityConfig(
 		TokenProvider tokenProvider,
 		CorsFilter corsFilter,
 		JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
-		JwtAccessDeniedHandler jwtAccessDeniedHandler,
-		JwtExceptionFilter jwtExceptionFilter
+		JwtAccessDeniedHandler jwtAccessDeniedHandler
+		// JwtFilter jwtFilter
+		// JwtExceptionFilter jwtExceptionFilter
 	
 	){
         this.tokenProvider = tokenProvider;
         this.corsFilter = corsFilter;
         this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
         this.jwtAccessDeniedHandler = jwtAccessDeniedHandler;
-		this.jwtExceptionFilter = jwtExceptionFilter;
+		// this.jwtFilter = jwtFilter;
+		// this.jwtExceptionFilter = jwtExceptionFilter;
 	}
 
 
@@ -73,8 +76,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/api/v1/join").permitAll()
 			.antMatchers("/api/v1/board/edit").permitAll();
 		
-		http.addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
-			// .addFilterBefore(jwtExceptionFilter, JwtFilter.class)
+		http
+			.addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
+			// .addFilterBefore(usernamepass, JwtFilter.class)
 			.exceptionHandling()
 			.authenticationEntryPoint(jwtAuthenticationEntryPoint)
 			.accessDeniedHandler(jwtAccessDeniedHandler);
@@ -84,6 +88,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			// .anyRequest().authenticated();     // 나머지 모든 요청 불허  ( 생략 가능 )
 
 		http.apply(new JwtSecurityConfig(tokenProvider));
+
 		// http.addFilter(jwtau)
 
 	}

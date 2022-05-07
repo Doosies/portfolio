@@ -1,4 +1,9 @@
 import axios from "axios";
+import { getAccessTokenCookie } from "../utility/cookie";
+// import { getCookie, setAccessTokenCookie } from "../utility/cookie";
+// import { response } from "express";
+// import Cookies from "js-cookie";
+// import { getAccessToken, setAccessToken } from "../utility/token";
 
 const url = 'http://localhost:8080/api/v1';
 interface UserType {
@@ -6,26 +11,24 @@ interface UserType {
     userPw: string;
 }
 
+interface TokenType {    
+    status: number;
+    token: string;
+}
 
-export const createUser =  (user: UserType) => 
-    axios.post(`${url}/join`,{
-        userId: user.userId,
-        userPw: user.userPw,},
-    { withCredentials: true, }
-);
 
-export const signIn = (user: UserType) =>
-    axios.post(`${url}/login`,{
-        userId: user.userId,
-        userPw: user.userPw,},
-    { withCredentials: true, }
-);
-
+// 유저 존재하는지 확인
 export const checkId = async (userId: string) => 
     await axios.get(`${url}/get?userId=${userId}`);
 
-
-export const test = (accessToken: string) =>
-        axios.get(`${url}/test`,{
-            headers: {'accessToken':accessToken}
-        });
+// acess 토큰 재발급받음.
+export const issueToken = (token: string) => 
+    axios.post(`${url}/token/getAccessToken`,{
+    },
+    { 
+        withCredentials: true,
+        headers: {
+            Authorization: token,
+        }
+    }
+);
