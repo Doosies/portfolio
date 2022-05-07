@@ -39,16 +39,11 @@ public class BoardController {
         
         ResponseEntity responseEntity = null;
         try {
-            // system
-
-            System.out.println("보드컨트롤러");
-            System.out.println(boardDTO.getBoardTitle());
-            System.out.println(boardDTO.getBoardContent());
             SingleDataResponse<Boolean> response = responseService.getSingleDataResponse(true, "msg", false);
             responseEntity = ResponseEntity.status(HttpStatus.CREATED).body(response);
 
         }catch(IllegalStateException e) {
-            System.out.println(e);
+            log.error(e.getMessage(), e);
         }catch (Exception e) {
             log.error("error creating", e);
         }

@@ -60,12 +60,10 @@ public class JwtFilter extends GenericFilterBean{
         throws IOException, ServletException {
 
 
-        System.out.println("!!");
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
         String requestURI = httpServletRequest.getRequestURI();
 
-        System.out.println(requestURI);
         // 아래 uri로 접근시 토큰이 필요하지 않으므로 바로 접근시킴.
         if (requestURI.equals("/api/v1/login") 
         || requestURI.equals("/api/v1/logout") 
@@ -82,11 +80,9 @@ public class JwtFilter extends GenericFilterBean{
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals(HttpHeaders.SET_COOKIE)) {
                 refreshToken = cookie.getValue();
-                System.out.println(refreshToken);
             }
         }
         if (requestURI.equals("/api/v1/token/getAccessToken")) {
-            System.out.println("refresh토큰ㅅ 사용");
             useToken = tokenProvider.resolveToken(refreshToken);
             try {
                 if (StringUtils.hasText(refreshToken) && tokenProvider.validateToken(useToken)){
@@ -98,7 +94,6 @@ public class JwtFilter extends GenericFilterBean{
             }
         }
         else {//if (requestURI != "/api/v1/token/getAccessToken") {
-            System.out.println("access토큰 사용");
             useToken = tokenProvider.resolveToken(httpServletRequest.getHeader("Authorization"));
         }
 

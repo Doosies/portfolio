@@ -139,29 +139,24 @@ public class TokenProvider implements InitializingBean{
         // try {
             Jws<Claims> claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
             return !claims.getBody().getExpiration().before(new Date());
-            // System.out.println("validateToken!!!!!!!!!!!!!");
         // } 
         // catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
         //    logger.info("잘못된 JWT 서명입니다.");
-        //    System.out.println("잘못된 JWT 서명입니다!");
         //     // throw new JwtException("잘못된 서명");
 
         // } catch (ExpiredJwtException e) {
 
         //    logger.info("만료된 JWT 토큰입니다.");
-        //    System.out.println("만료된 JWT 토큰입니다!");
         // //    throw new JwtException("만료된 토큰");
 
         // } catch (UnsupportedJwtException e) {
 
         //    logger.info("지원되지 않는 JWT 토큰입니다.");
-        //    System.out.println("지원되지 않는 JWT 토큰입니다!");
         // //    throw new JwtException("지원되지 않는 토큰");
 
         // } catch (IllegalArgumentException e) {
 
         //    logger.info("JWT 토큰이 잘못되었습니다.");
-        //    System.out.println("JWT 토큰이 잘못되었습니다!");
         // //    throw new JwtException("잘못된 토큰");
         // }
         // return false;

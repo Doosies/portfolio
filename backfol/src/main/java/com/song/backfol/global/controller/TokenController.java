@@ -52,7 +52,6 @@ public class TokenController {
         // try{ZZ
             String refreshToken = tokenProvider.resolveToken(refreshCookie.getValue());
             // String oldAccessToken = tokenProvider.resolveToken(accessTokenRequest);
-            System.out.println(refreshToken);
 
             // 유저 권한 저장 들어있는 컬렉션
             Collection<? extends GrantedAuthority> accessTokenAuthoriryCollection = tokenProvider.getAuthentication(refreshToken).getAuthorities();
@@ -67,7 +66,6 @@ public class TokenController {
                     accessTokenAuthorities.add(x.getAuthority());
                 }
                 newAccessToken = "Bearer" + tokenProvider.createAcessToken(accessTokenUserId, accessTokenAuthorities);
-                System.out.println(accessTokenAuthorities);
                 log.debug("토큰 재발급 성공");
                 SingleDataResponse<String> response = responseService.getSingleDataResponse(true, "accessToken 발급성공", newAccessToken);
                 responseEntity = ResponseEntity.status(HttpStatus.OK).body(response);
