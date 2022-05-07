@@ -69,6 +69,7 @@ public class JwtFilter extends GenericFilterBean{
         || requestURI.equals("/api/v1/logout") 
         || requestURI.equals("/api/v1/join") 
         || requestURI.equals("/api/v1/get")
+        || requestURI.equals("/api/v1/board/readBoardLists")
         ){
             filterChain.doFilter(request, response);
             return;

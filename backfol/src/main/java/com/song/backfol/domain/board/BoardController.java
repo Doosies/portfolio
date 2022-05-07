@@ -1,7 +1,8 @@
 package com.song.backfol.domain.board;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
+
+import java.util.List;
+import java.util.Map;
 
 import com.song.backfol.global.DTO.response.SingleDataResponse;
 import com.song.backfol.global.service.ResponseService;
@@ -10,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,15 +30,40 @@ public class BoardController {
     
     @Autowired
     ResponseService responseService;
-    // BoardService boardService;
+    @Autowired
+    BoardService boardService;
 
     @PostMapping("/create")
     @PreAuthorize("hasAnyRole('USER')")
-    public ResponseEntity createBoard(@RequestBody BoardDTO boardDTO ) {
+    public ResponseEntity createBoard(@RequestBody BoardDTO boardDTO, @RequestHeader(value = "Authorization") String accessToken) {
         
         ResponseEntity responseEntity = null;
         try {
-            SingleDataResponse<Boolean> response = responseService.getSingleDataResponse(true, "msg", false);
+            boolean isEnd = boardService.createBoardService(boardDTO, accessToken);
+            SingleDataResponse<Boolean> response = responseService.getSingleDataResponse(true, "게시판 생성 성공", isEnd);
+            responseEntity = ResponseEntity.status(HttpStatus.CREATED).body(response);
+
+        }catch(IllegalStateException e) {
+            log.error(e.getMessage(), e);
+        }catch (Exception e) {
+            log.error("error creating", e);
+        }
+        return responseEntity;
+    }
+
+    @GetMapping("/readBoardLists")
+    public ResponseEntity readBoardLists(@RequestParam int startPage, @RequestParam int pageNum) {
+        
+        ResponseEntity responseEntity = null;
+        try {
+            BoardRequestDTO boardRequestDTO = BoardRequestDTO.builder().startPage(startPage).pageNum(pageNum).build();
+            List<BoardDTO> boards = boardService.readBoardLists(boardRequestDTO);
+
+            // boolean isEnd = boardService.createBoardService(boardDTO, accessToken);
+            // boardService.boardMapper()
+            SingleDataResponse<List<BoardDTO>> response = responseService.getSingleDataResponse(true, "게시판 생성 성공", boards);
+            // response.(boards);response
+            // response.
             responseEntity = ResponseEntity.status(HttpStatus.CREATED).body(response);
 
         }catch(IllegalStateException e) {

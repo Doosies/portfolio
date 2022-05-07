@@ -22,13 +22,13 @@ export const checkId = async (userId: string) =>
     await axios.get(`${url}/get?userId=${userId}`);
 
 // acess 토큰 재발급받음.
-export const issueToken = (token: string) => 
+export const issueToken = () => 
     axios.post(`${url}/token/getAccessToken`,{
     },
     { 
         withCredentials: true,
-        headers: {
-            Authorization: token,
-        }
+        // headers: {
+        //     Authorization: token,
+        // }
     }
 );

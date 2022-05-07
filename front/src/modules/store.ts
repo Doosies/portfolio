@@ -6,6 +6,7 @@ import windowReducer from "./window";
 import routeReducer from './route';
 import contentsReducer from './contents';
 import authReducer from './auth';
+import boardReducer from './board'
 
 export const store = configureStore({
     reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
         route: routeReducer,
         contents: contentsReducer,
         auth: authReducer,
+        board: boardReducer,
     }, 
     // middleware: [thunk],
     devTools: true

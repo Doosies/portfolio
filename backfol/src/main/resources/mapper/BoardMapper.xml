@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.song.backfol.domain.board.BoardMapper">
+    <insert id="createBoard" parameterType="com.song.backfol.domain.board.BoardDTO">
+        insert into board_TB (writter, title, content, hits, create_date, update_date)
+        VALUES((select user_pk from user_tb where user_id = #{boardWritter}), #{boardTitle}, #{boardContent}, #{boardHits}, #{createDate}, #{updateDate});
+    </insert>
+    <select id="readBoardTitles" parameterType="com.song.backfol.domain.board.BoardRequestDTO" resultType="Map">
+      select user.user_id as writter, bo.title as title
+      from board_tb as bo 
+      inner join user_tb as user 
+      on bo.writter = user.user_pk
+      LIMIT #{startPage}, #{pageNum};
+    </select>
+    
+</mapper>

@@ -171,5 +171,5 @@ const authSlice = createSlice({
     }
 });
 
-const {login, logout, setToken} = authSlice.actions;
+export const {login, logout, setToken} = authSlice.actions;
 export default authSlice.reducer;

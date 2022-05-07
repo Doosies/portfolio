@@ -69,7 +69,7 @@ const BoardRow = ({
             </Column>
             <Column isTop={isTop} >
                 <Text>
-                    {boardInfos.nickname} 
+                    {boardInfos.writter} 
                 </Text>
             </Column>
         </BoardRowBlock>

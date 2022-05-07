@@ -22,8 +22,8 @@ import com.song.backfol.global.exception.UserNotFoundException;
 import com.song.backfol.global.jwt.TokenProvider;
 
 @Service
-@RequiredArgsConstructor
 @Transactional(readOnly = true)
+@RequiredArgsConstructor
 public class UserService{
     // 암호화 위한 엔코더
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

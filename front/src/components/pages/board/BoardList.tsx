@@ -11,10 +11,9 @@ interface BoardListProps {
     windowId: number;
 }
 export interface BoardInfos {
-    id: number;
+    writter: string;
     title: string;
-    nickname: string;
-    content: string;
+    // content: string;
 }
 
 const BoardListBlock = styled.div`
@@ -37,32 +36,33 @@ const ListTop = styled.div`
     justify-content: flex-end;
     /* align-items: center; */
 `;
-const board = [
-    {id: 1, title: "이건 그1231231233231냥 제목이1231231231라고 지어봤어", nickname: "송민형", content: '이건 본문 내용인데 내용이라고해'},
-    {id: 2, title: "제목", nickname: "송민형", content: '두번째 컨텐츠'},
-    {id: 3, title: "제목", nickname: "송민형", content: '세번재 컨텐츠인데 나도몰랑'},
-    {id: 4, title: "제목", nickname: "송민형", content: ''},
-    {id: 5, title: "제목", nickname: "송민형", content: ''},
-    {id: 6, title: "제목", nickname: "송민형", content: ''},
-    {id: 7, title: "제목", nickname: "송민형", content: ''},
-    {id: 8, title: "제목", nickname: "송민형", content: ''},
-    {id: 9, title: "제목", nickname: "송민형", content: ''},
-    {id: 10, title: "제목", nickname: "송민형", content: ''},
-    {id: 11, title: "제목", nickname: "송민형", content: ''},
-    {id: 12, title: "제목", nickname: "송민형", content: ''},
-    {id: 13, title: "제목", nickname: "송민형", content: ''},
-    {id: 14, title: "제목", nickname: "송민형", content: ''},
-    {id: 15, title: "제목", nickname: "송민형", content: ''},
-    {id: 16, title: "제목", nickname: "송민형", content: ''},
-    {id: 17, title: "제목", nickname: "송민형", content: ''},
-    {id: 18, title: "제목", nickname: "송민형", content: ''},
-    {id: 19, title: "제목", nickname: "송민형", content: ''},
-    {id: 20, title: "제목", nickname: "송민형", content: ''},
-]
+// const board = [
+//     {id: 1, title: "이건 그1231231233231냥 제목이1231231231라고 지어봤어", nickname: "송민형", content: '이건 본문 내용인데 내용이라고해'},
+//     {id: 2, title: "제목", nickname: "송민형", content: '두번째 컨텐츠'},
+//     {id: 3, title: "제목", nickname: "송민형", content: '세번재 컨텐츠인데 나도몰랑'},
+//     {id: 4, title: "제목", nickname: "송민형", content: ''},
+//     {id: 5, title: "제목", nickname: "송민형", content: ''},
+//     {id: 6, title: "제목", nickname: "송민형", content: ''},
+//     {id: 7, title: "제목", nickname: "송민형", content: ''},
+//     {id: 8, title: "제목", nickname: "송민형", content: ''},
+//     {id: 9, title: "제목", nickname: "송민형", content: ''},
+//     {id: 10, title: "제목", nickname: "송민형", content: ''},
+//     {id: 11, title: "제목", nickname: "송민형", content: ''},
+//     {id: 12, title: "제목", nickname: "송민형", content: ''},
+//     {id: 13, title: "제목", nickname: "송민형", content: ''},
+//     {id: 14, title: "제목", nickname: "송민형", content: ''},
+//     {id: 15, title: "제목", nickname: "송민형", content: ''},
+//     {id: 16, title: "제목", nickname: "송민형", content: ''},
+//     {id: 17, title: "제목", nickname: "송민형", content: ''},
+//     {id: 18, title: "제목", nickname: "송민형", content: ''},
+//     {id: 19, title: "제목", nickname: "송민형", content: ''},
+//     {id: 20, title: "제목", nickname: "송민형", content: ''},
+// ]
 const BoardList = ({
     windowId, 
 }:BoardListProps) => {
     const isLogin = useAppSelector(state => state.auth.logged);
+    const board = useAppSelector(state => state.board.boards);
     const dispatch = useAppDispatch();
 
     const handleClickEdit = () => {
@@ -71,7 +71,7 @@ const BoardList = ({
     const handleClickRow = (boardInfods: BoardInfos, isTop?: boolean) => {
         if (!isTop){
             dispatch(changeRoute({route: RoutePages.Contents, windowId}));
-            dispatch(changeContents(boardInfods));
+            // dispatch(changeContents(boardInfods));
         }
         // TODO: boardId로 서버에서 값을 받아와줌
     }
@@ -86,7 +86,7 @@ const BoardList = ({
                 }
             </ListTop>
             <BoardRow 
-                    boardInfos={{nickname: '닉네임', title: '제목', content: '', id:-1, }}
+                    boardInfos={{writter: '아이디', title: '제목' }}
                     isTop
             />
             <List>
@@ -94,7 +94,7 @@ const BoardList = ({
                     <BoardRow 
                         boardInfos={el}
                         onClick={handleClickRow}
-                        key={`boardlist${i}번쨰: ${el.title} ${el.nickname} `}
+                        key={`boardlist${i}번쨰: ${el.title} ${el.title} `}
                     />
                 )}
             </List>

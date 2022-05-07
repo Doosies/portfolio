@@ -1,4 +1,5 @@
 package com.song.backfol.domain.board;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,11 +12,6 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BoardDTO {
-    private String boardWritter;
-    private String boardTitle;
-    private String boardContent;
-    private int boardHits;
-    private String createDate;
-    private String updateDate;
+public class BoardListDTO {
+    List<BoardDTO> list;
 }
