@@ -49,7 +49,7 @@ public class TokenController {
         @CookieValue(value = HttpHeaders.SET_COOKIE) Cookie refreshCookie
      ) {
         ResponseEntity responseEntity = null;
-        // try{ZZ
+        try{
             String refreshToken = tokenProvider.resolveToken(refreshCookie.getValue());
             // String oldAccessToken = tokenProvider.resolveToken(accessTokenRequest);
 
@@ -75,5 +75,8 @@ public class TokenController {
                 responseEntity = ResponseEntity.status(HttpStatus.CONFLICT).body(response);
             }
         return responseEntity;
+        }catch (Exception e) {
+            return responseEntity;
+        }
     }
 }
