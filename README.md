@@ -1,5 +1,7 @@
 # 📌포트폴리오 사이트 - version 1.0
-![](https://user-images.githubusercontent.com/43428643/175229509-a296e805-d158-424d-b2b7-0ac4e942e41a.png)
+![](https://user-images.githubusercontent.com/43428643/184470646-7f87ad7a-c91f-4387-a872-9eba318fa15e.gif)
+
+
 **사이트주소** 👉 https://songminhyung.com  
 **기간** 👉 2022년 5월 19일 ~ 2022년 6월 8일 (3주)
 
