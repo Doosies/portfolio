@@ -30,7 +30,11 @@ https://songminhyung.com
 - 게시글 작성기능
 
 # 🏞️사이트 미리보기
+https://user-images.githubusercontent.com/43428643/189617322-1d4054a4-5b3a-4b56-8b1f-57994b14baaf.mov
 
+https://user-images.githubusercontent.com/43428643/189617353-c0013925-3647-44d0-af79-4f518f356d55.mov
 
-https://user-images.githubusercontent.com/43428643/189616309-665333f6-bff8-453d-baa8-bb979c82e8fb.mov
+https://user-images.githubusercontent.com/43428643/189617370-d619f16e-e016-4c93-9822-086bc5757024.mov
+
+https://user-images.githubusercontent.com/43428643/189617388-24fc8865-01c8-455a-9fdc-4e5aa8bdbb13.mov
 
