@@ -2,15 +2,21 @@
 ![](https://user-images.githubusercontent.com/43428643/184470646-7f87ad7a-c91f-4387-a872-9eba318fa15e.gif)
 
 
-**사이트주소** 👉 https://songminhyung.com  
-**기간** 👉 2022년 5월 19일 ~ 2022년 6월 8일 (3주)
 
-# 🔧기술스택
-### FrontEnd 
+### 📍배포주소 
+https://songminhyung.com  
+
+
+### 📆개발일정 
+2022.05.19 ~ 2022.06.08
+
+
+### ⚙️기술스택 
+#### FrontEnd 
 👉 타입스크립트, 리액트, 리덕스 툴킷, 스타일드 컴포넌트 
-### BackEnd 
+#### BackEnd 
 👉 자바, 스프링 부트  
-### DevOps 
+#### DevOps 
 👉 nginx, aws lighsail  
 
 # ⚙️구현기능
@@ -22,3 +28,7 @@
 - 회원가입시 중복 체크후 회원 정보를 암호화해서 DB에 저장후 JWT 발급
 - 클라이언트가 액세스토큰 요청시 리프레시토큰 검증후 재발급
 - 게시글 작성기능
+
+# 🏞️사이트 이미지
+
+<img width="400" alt="스크린샷 2022-09-07 오후 7 19 39" src="https://user-images.githubusercontent.com/43428643/188854845-1b73dc84-e7b9-451c-a166-241135f01348.png">
