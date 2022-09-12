@@ -12,20 +12,20 @@ https://songminhyung.com
 
 
 ## ⚙️기술스택 
-#### FrontEnd 
-👉 타입스크립트, 리액트, 리덕스 툴킷, 스타일드 컴포넌트 
+### FrontEnd 
+- 타입스크립트, 리액트, 리덕스 툴킷, 스타일드 컴포넌트 
 ### BackEnd 
-👉 자바, 스프링 부트  
+- 자바, 스프링 부트  
 ### DevOps 
-👉 nginx, aws lighsail  
+- nginx, aws lighsail  
 
 
 ## ⚒️구현기능
-#### FrontEnd
+### FrontEnd
 - os 사용시와 유사하게 창이동, 닫기 구현
 - redux를 사용해 윈도우마다 다르게 보여주기위해 routing 기능 구현
 
-#### BackEnd
+### BackEnd
 - 회원가입시 중복 체크후 회원 정보를 암호화해서 DB에 저장후 JWT 발급
 - 클라이언트가 액세스토큰 요청시 리프레시토큰 검증후 재발급
 - 게시글 작성기능
