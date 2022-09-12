@@ -19,7 +19,7 @@ https://songminhyung.com
 #### DevOps 
 👉 nginx, aws lighsail  
 
-# ⚙️구현기능
+# ⚒️구현기능
 ### FrontEnd
 - os 사용시와 유사하게 창이동, 닫기 구현
 - redux를 사용해 윈도우마다 다르게 보여주기위해 routing 기능 구현
