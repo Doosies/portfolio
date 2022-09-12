@@ -32,11 +32,8 @@ https://songminhyung.com
 
 
 ## 🏞️사이트 미리보기
-https://user-images.githubusercontent.com/43428643/189617322-1d4054a4-5b3a-4b56-8b1f-57994b14baaf.mov
-
-https://user-images.githubusercontent.com/43428643/189617353-c0013925-3647-44d0-af79-4f518f356d55.mov
-
-https://user-images.githubusercontent.com/43428643/189617370-d619f16e-e016-4c93-9822-086bc5757024.mov
-
-https://user-images.githubusercontent.com/43428643/189617388-24fc8865-01c8-455a-9fdc-4e5aa8bdbb13.mov
+![프로필](https://user-images.githubusercontent.com/43428643/189621301-419f6757-a8b4-4fe3-90b7-4fec27b07b3f.gif)
+![프로젝트](https://user-images.githubusercontent.com/43428643/189621310-77613894-2fc1-433e-8e2b-fa2aa124e003.gif)
+![메일](https://user-images.githubusercontent.com/43428643/189621322-d6ab7f4b-939f-494f-a432-1f96bee013b1.gif)
+![게시판](https://user-images.githubusercontent.com/43428643/189621330-9cd0a9c8-7fec-4004-9960-5519d8e9c8ad.gif)
 
